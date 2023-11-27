@@ -54,10 +54,13 @@ const config: Config = {
         },
         'green': 'var(--green-color-100)',
         'red': 'var(--red-color-100)',
-        'bg-color': 'var(--bg-color)'
+        'bg-color': 'var(--bg-color)',
+        'input-defaut-color': 'var(--input-color-defaut)'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
 export default config

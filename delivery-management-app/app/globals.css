@@ -4,67 +4,86 @@
 
 @layer base {
   :root {
-    --bg-color: #F4F5FA;
+    --bg-color: #f4f5fa;
     /* color */
-    --primary-color-100: #5570F1;
-    --primary-color-90: #6078EC;
-    --primary-color-80: #6D83EC;
-    --primary-color-70: #7C8FEC;
-    --primary-color-60: #8899E9;
-    --primary-color-50: #97A5EB;
-    --primary-color-40: #ABB5E9;
-    --primary-color-30: #B6BFE8;
-    --primary-color-20: #C4CAE8;
-    --primary-color-10: #DBDEEE;
-  
-    --secondary-color-100: #FFCC91;
-    --secondary-color-90: #FFD29E;
-    --secondary-color-80: #FFDAAE;
-    --secondary-color-70: #FFDFBA;
-    --secondary-color-60: #FFE5C8;
-    --secondary-color-50: #FFEAD1;
-    --secondary-color-40: #FFF0DE;
-    --secondary-color-30: #FFF2E2;
-    --secondary-color-20: #FEF5EA;
-    --secondary-color-10: #FEF9F2;
-  
-    --black-color-100: #1C1D22;
-    --black-color-100: #2C2D33;
-    --black-color-100: #33343A;
-    --black-color-100: #37393F;
-    --black-color-100: #45464E;
-    --black-color-100: #53545C;
-    --black-color-100: #6E7079;
-    --black-color-100: #8B8D97;
-    --black-color-100: #A6A8B1;
-    --black-color-100: #BEC0CA;
-  
-    --green-color-100: #519C66;
-    --red-color-100: #CC5F5F;
+    --primary-color-100: #5570f1;
+    --primary-color-90: #6078ec;
+    --primary-color-80: #6d83ec;
+    --primary-color-70: #7c8fec;
+    --primary-color-60: #8899e9;
+    --primary-color-50: #97a5eb;
+    --primary-color-40: #abb5e9;
+    --primary-color-30: #b6bfe8;
+    --primary-color-20: #c4cae8;
+    --primary-color-10: #dbdeee;
+
+    --secondary-color-100: #ffcc91;
+    --secondary-color-90: #ffd29e;
+    --secondary-color-80: #ffdaae;
+    --secondary-color-70: #ffdfba;
+    --secondary-color-60: #ffe5c8;
+    --secondary-color-50: #ffead1;
+    --secondary-color-40: #fff0de;
+    --secondary-color-30: #fff2e2;
+    --secondary-color-20: #fef5ea;
+    --secondary-color-10: #fef9f2;
+
+    --black-color-100: #1c1d22;
+    --black-color-90: #2c2d33;
+    --black-color-80: #33343a;
+    --black-color-70: #37393f;
+    --black-color-60: #45464e;
+    --black-color-50: #53545c;
+    --black-color-40: #6e7079;
+    --black-color-20: #8b8d97;
+    --black-color-30: #a6a8b1;
+    --black-color-10: #bec0ca;
+
+    --green-color-100: #519c66;
+    --red-color-100: #cc5f5f;
+
+    --input-color-defaut: #EFF1F9;
   }
 }
 
-
 @font-face {
-  font-family: 'Poppins-Regular';
+  font-family: "Poppins-Regular";
   src: url(../public/font/Poppins-Regular.ttf);
 }
 
 @font-face {
-  font-family: 'Poppins-Bold';
+  font-family: "Poppins-Bold";
   src: url(../public/font/Poppins-Bold.ttf);
 }
 
 @font-face {
-  font-family: 'Poppins-Regular';
-  src: url(../public/font/Poppins-Regular.ttf);
+  font-family: "Poppins-Medium";
+  src: url(../public/font/Poppins-Medium.ttf);
 }
 
+@layer components {
+  .sub-h3 {
+    color: #000;
+    /* subHeading 3/Bold */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .p2 {
+    color: var(--black-color-30);
+    /* Paragraph 2/Regular */
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
 
 body {
   box-sizing: border-box;
   min-height: 100vh;
-  min-width: 75vw;
+  min-width: 100vw;
   margin: 0;
   padding: 0;
 }
