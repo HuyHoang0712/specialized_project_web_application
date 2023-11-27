@@ -1,10 +1,9 @@
 import Image from 'next/image'
-
+import LoginPage from './(auth)/login/page'
 export default function Home() {
   return (
     <main>
-      <h1>Hello world!</h1>
-
+      <LoginPage/>
     </main>
   )
 }

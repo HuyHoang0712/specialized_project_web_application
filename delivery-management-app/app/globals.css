@@ -2,17 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
+    --bg-color: #F4F5FA;
+    /* color */
+    --primary-color-100: #5570F1;
+    --primary-color-90: #6078EC;
+    --primary-color-80: #6D83EC;
+    --primary-color-70: #7C8FEC;
+    --primary-color-60: #8899E9;
+    --primary-color-50: #97A5EB;
+    --primary-color-40: #ABB5E9;
+    --primary-color-30: #B6BFE8;
+    --primary-color-20: #C4CAE8;
+    --primary-color-10: #DBDEEE;
+  
+    --secondary-color-100: #FFCC91;
+    --secondary-color-90: #FFD29E;
+    --secondary-color-80: #FFDAAE;
+    --secondary-color-70: #FFDFBA;
+    --secondary-color-60: #FFE5C8;
+    --secondary-color-50: #FFEAD1;
+    --secondary-color-40: #FFF0DE;
+    --secondary-color-30: #FFF2E2;
+    --secondary-color-20: #FEF5EA;
+    --secondary-color-10: #FEF9F2;
+  
+    --black-color-100: #1C1D22;
+    --black-color-100: #2C2D33;
+    --black-color-100: #33343A;
+    --black-color-100: #37393F;
+    --black-color-100: #45464E;
+    --black-color-100: #53545C;
+    --black-color-100: #6E7079;
+    --black-color-100: #8B8D97;
+    --black-color-100: #A6A8B1;
+    --black-color-100: #BEC0CA;
+  
+    --green-color-100: #519C66;
+    --red-color-100: #CC5F5F;
   }
 }
+
+
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url(../public/font/Poppins-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url(../public/font/Poppins-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url(../public/font/Poppins-Regular.ttf);
+}
+
 
 body {
   box-sizing: border-box;
   min-height: 100vh;
+  min-width: 75vw;
+  margin: 0;
+  padding: 0;
 }
