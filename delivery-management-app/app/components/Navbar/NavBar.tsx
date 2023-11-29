@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import logo from "../../../public/logo.svg";
-import Icons from "@/app/constances/icons";
+import Icons from "@/app/lib/constants/icons";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
