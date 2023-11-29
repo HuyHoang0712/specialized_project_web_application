@@ -2,6 +2,7 @@
 import React from "react";
 import RequiredInput from "../Inputs/RequiredInput";
 import Image from "next/image";
+import Link from "next/link";
 function LoginForm() {
   const userNameInput = {
     placeholder: "Username",
@@ -29,6 +30,7 @@ function LoginForm() {
       </span>
       <button
         className="rounded-xl w-[11.25rem] bg-primary-100 p-3 font-['Poppins-Regular'] text-white text-xl mt-12"
+        onClick={() => {<Link href="/dashboard"/>}}
       >Login</button>
     </div>
   );

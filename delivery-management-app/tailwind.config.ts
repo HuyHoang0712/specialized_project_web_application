@@ -54,6 +54,7 @@ const config: Config = {
         },
         'green': 'var(--green-color-100)',
         'red': 'var(--red-color-100)',
+        'red-20': 'rgba(204, 95, 95, 0.2)',
         'bg-color': 'var(--bg-color)',
         'input-defaut-color': 'var(--input-color-defaut)'
       }

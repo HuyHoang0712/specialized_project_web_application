@@ -63,20 +63,27 @@
 
 @layer components {
   .sub-h3 {
-    color: #000;
-    /* subHeading 3/Bold */
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
-    font-weight: 700;
+    line-height: normal;
+  }
+  .sub-h2 {
+    color: #000;
+    font-size: 1.5rem;
+    font-style: normal;
     line-height: normal;
   }
   .p2 {
     color: var(--black-color-30);
-    /* Paragraph 2/Regular */
-    font-size: 14px;
+    font-size: .875rem;
     font-style: normal;
-    font-weight: 400;
     line-height: normal;
+  }
+  .page-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
   }
 }
 
