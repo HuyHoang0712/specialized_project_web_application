@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import Icons from "@/app/constances/icons";
+import { Icons } from "@/app/lib/constants";
 function RequiredInput(props: any) {
   const { placeholder, type, required, icon } = props;
   const [showInput, setShowInput] = useState(type == "password" ? false : true);

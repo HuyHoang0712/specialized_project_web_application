@@ -19,6 +19,9 @@ import IssueActive from "./issue.Bulk.svg"
 import Profile from "./settingLight.svg"
 import ProfileActive from "./settingBulk.svg"
 import Logout from "./logout.svg"
+// Headerbar
+import Notification from "./notification.svg"
+import Home from "./home.svg"
 const Icons = {
     Mail,
     Password,
@@ -38,7 +41,9 @@ const Icons = {
     IssueActive,
     Profile,
     ProfileActive,
-    Logout
+    Logout,
+    Notification,
+    Home
 }
 
 export default Icons;

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import logo from "../../../public/logo.svg";
-import Icons from "@/app/lib/constants/icons";
+import { Icons } from "@/app/lib/constants";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -66,7 +66,7 @@ function NavBar() {
       <div className="flex flex-row gap-5 items-center">
         <Image src={logo} width={60} height={60} alt="" />
         <span
-          className="sub-h2 font-['Poppins-Bold'] w-[9.75rem] h-fit text-primary-100"
+          className="sub-h2 font-['Poppins-Bold'] text-primary-100"
           hidden={!full}
         >
           Transportation Management
