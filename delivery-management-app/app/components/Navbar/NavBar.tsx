@@ -93,7 +93,7 @@ function NavBar() {
                   width={30}
                   alt=""
                 />
-                {full? `${item.name}`:null}
+                {full && `${item.name}`}
               </Link>
             );
           })}
@@ -108,7 +108,7 @@ function NavBar() {
         }
       >
         <Image src={Icons.Logout} height={30} width={30} alt="" />
-        {full ? "Logout" : null}
+        {full && "Logout"}
       </button>
     </div>
   );
