@@ -45,7 +45,9 @@ function OrderSummaryCard() {
             <span className="p2 font-[Poppins-Medium] text-black-30">
               {item.title}
             </span>
-            <span className={`sub-h3 font-[Poppins-Medium] text-${item.color}`}>
+            <span
+              className={"sub-h3 font-[Poppins-Medium] " + `text-${item.color}`}
+            >
               0
             </span>
           </div>

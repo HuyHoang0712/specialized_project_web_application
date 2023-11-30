@@ -3,9 +3,14 @@ import React from "react";
 import dynamic from "next/dynamic";
 
 const Map = dynamic(() => import("../Map/Map"), { ssr: false });
-const OrderListDashboard = dynamic(() => import("../Lists/OrderListDashboard"), {
-  ssr: false,
-});
+const OrderListDashboard = dynamic(
+  () => import("../Lists/OrderListDashboard"),
+  { ssr: false }
+);
+const IssueListDashboard = dynamic(
+  () => import("../Lists/IssueListDashboard"),
+  { ssr: false }
+);
 
 function DashboardSummaryCards(props: any) {
   const { title, type } = props;
@@ -23,7 +28,7 @@ function DashboardSummaryCards(props: any) {
       {(() => {
         switch (type) {
           case "issue":
-            return <></>;
+            return <IssueListDashboard />;
           case "order":
             return <OrderListDashboard />;
           case "tracking":
