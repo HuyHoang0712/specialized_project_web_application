@@ -7,34 +7,35 @@ const OrderSummaryCard = dynamic(
 
 const DashboardSummaryCards = dynamic(
   () => import("../../components/Cards/DashboardSummaryCards"),
-  { ssr: true, loading: () => <>Loading...</>}
-)
+  { ssr: true, loading: () => <>Loading...</> }
+);
 
 const CardInfors = [
   {
     title: "Recent Issues",
-    type: "issue"
+    type: "issue",
   },
   {
     title: "Recent Orders",
-    type: "order"
+    type: "order",
   },
   {
     title: "Vehicles Tracking",
-    type: "tracking"
-  }
-]
+    type: "tracking",
+  },
+];
 
 function DashboardPage() {
   return (
-    <div className="flex flex-col flex-auto bg-bg-color gap-5 p-5">
+    <div className="content-container">
       <OrderSummaryCard />
-      <div className="flex flex-row flex-1 gap-5">
-        <div className="flex flex-col flex-1 gap-5">
-          <DashboardSummaryCards {...CardInfors[0]}/>
-          <DashboardSummaryCards {...CardInfors[2]}/>
-        </div>
-        <DashboardSummaryCards {...CardInfors[1]}/>
+      <div
+        className="flex flex-row gap-5"
+        style={{ height: "calc(100vh - 18.875rem)" }}
+      >
+        <DashboardSummaryCards {...CardInfors[2]} />
+        <DashboardSummaryCards {...CardInfors[0]} />
+        <DashboardSummaryCards {...CardInfors[1]} />
       </div>
     </div>
   );

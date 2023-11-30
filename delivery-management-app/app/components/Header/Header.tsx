@@ -10,7 +10,7 @@ function Header() {
   let pageName = paths[1];
 
   return (
-    <div className="flex flex-col divide-y">
+    <div className="flex flex-col h-[5.625rem] divide-y">
       <div className="flex flex-row items-center px-5 py-[.875rem] justify-between">
         <span className="sub-h3 font-[Poppins-Medium] text-black-60">
           {pageName[0].toUpperCase() + pageName.slice(1)}

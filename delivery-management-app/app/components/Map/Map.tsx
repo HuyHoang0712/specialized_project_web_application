@@ -19,11 +19,7 @@ function Map() {
       zoom: position.zoom,
     });
   });
-  return (
-    <div className="flex flex-1">
-      <div ref={mapContainerRef}></div>
-    </div>
-  );
+  return <div className="h-full w-[35vw]" ref={mapContainerRef}></div>;
 }
 
 export default Map;

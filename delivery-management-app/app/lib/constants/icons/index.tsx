@@ -22,6 +22,9 @@ import Logout from "./logout.svg"
 // Headerbar
 import Notification from "./notification.svg"
 import Home from "./home.svg"
+// OrderCard
+import Package from "./package.svg"
+import Truck from "./truck.svg"
 const Icons = {
     Mail,
     Password,
@@ -43,7 +46,9 @@ const Icons = {
     ProfileActive,
     Logout,
     Notification,
-    Home
+    Home,
+    Package,
+    Truck
 }
 
 export default Icons;

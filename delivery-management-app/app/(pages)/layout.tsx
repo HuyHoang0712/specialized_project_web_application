@@ -7,12 +7,12 @@ export default function PagesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="page-container">
+    <main className="page-container">
       <NavBar />
-      <section className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col">
         <Header />
         {children}
-      </section>
-    </section>
+      </div>
+    </main>
   );
 }

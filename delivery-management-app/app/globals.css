@@ -42,7 +42,22 @@
     --green-color-100: #519c66;
     --red-color-100: #cc5f5f;
 
-    --input-color-defaut: #EFF1F9;
+    --input-color-defaut: #eff1f9;
+  }
+}
+
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
   }
 }
 
@@ -83,6 +98,24 @@
     flex-direction: row;
     width: 100%;
     min-height: 100vh;
+    max-height: 100vh;
+  }
+  .card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: calc(100vh - 5.625rem);
+    overflow: hidden;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    background-color: var(--bg-color);
   }
 }
 
