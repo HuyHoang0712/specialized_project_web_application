@@ -2,25 +2,21 @@
 import React from "react";
 import RequiredInput from "../Inputs/RequiredInput";
 import Image from "next/image";
+import Link from "next/link";
 function LoginForm() {
   const userNameInput = {
-    placeholder: 'Username',
-    type: 'text',
+    placeholder: "Username",
+    type: "text",
     required: true,
-    icon: 'Mail'
-  }
+    icon: "Mail",
+  };
   const passwordInput = {
-    placeholder: 'Password',
-    type: 'password',
+    placeholder: "Password",
+    type: "password",
     required: true,
-    icon: 'Password'
-  }
+    icon: "Password",
+  };
   return (
-<<<<<<< Updated upstream
-    <div className="flex flex-col items-center justify-start gap-8 w-full">
-      <RequiredInput {...userNameInput}/>
-      <RequiredInput {...passwordInput}/>
-=======
     <div className="flex flex-col items-center justify-start w-full">
       <div className="flex flex-col items-center justify-start gap-8 w-full">
         <RequiredInput {...userNameInput} />
@@ -40,7 +36,6 @@ function LoginForm() {
           Login
         </button>
       </Link>
->>>>>>> Stashed changes
     </div>
   );
 }

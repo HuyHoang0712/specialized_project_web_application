@@ -53,7 +53,9 @@ const config: Config = {
           10: 'var(--black-color-10)',
         },
         'green': 'var(--green-color-100)',
+        'green-20': 'rgba(50, 147, 111, 0.2)',
         'red': 'var(--red-color-100)',
+        'red-20': 'rgba(204, 95, 95, 0.2)',
         'bg-color': 'var(--bg-color)',
         'blur-color': 'rgba(0, 0, 0, 0.5)',
         'input-defaut-color': 'var(--input-color-defaut)'
