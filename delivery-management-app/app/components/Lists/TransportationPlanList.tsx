@@ -4,10 +4,10 @@ const TransportationPlanList = () => {
   return (
     <div className="flex flex-1">
       <div className="flex flex-row w-full justify-between items-center">
-        <span className="sub-h3 text-black-60 font-[Poppins-Medium]">
+        <span className="text-xl text-black-60 font-medium">
           Transportation Plans
         </span>
-        <
+        
       </div>
     </div>
   );

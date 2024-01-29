@@ -61,38 +61,7 @@
   }
 }
 
-@font-face {
-  font-family: "Poppins-Regular";
-  src: url(../public/font/Poppins-Regular.ttf);
-}
-
-@font-face {
-  font-family: "Poppins-Bold";
-  src: url(../public/font/Poppins-Bold.ttf);
-}
-
-@font-face {
-  font-family: "Poppins-Medium";
-  src: url(../public/font/Poppins-Medium.ttf);
-}
-
 @layer components {
-  .sub-h3 {
-    font-size: 1.25rem;
-    font-style: normal;
-    line-height: normal;
-  }
-  .sub-h2 {
-    color: #000;
-    font-size: 1.5rem;
-    font-style: normal;
-    line-height: normal;
-  }
-  .p2 {
-    font-size: 1rem;
-    font-style: normal;
-    line-height: normal;
-  }
   .page-container {
     display: flex;
     flex-direction: row;

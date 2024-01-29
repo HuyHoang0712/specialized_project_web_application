@@ -16,12 +16,12 @@ const IssueCard = (props: any) => {
       />
       <div className="flex flex-col flex-1 gap-1">
         <div className="card-content">
-          <span className="text-black-80 font-[Poppins-Bold] text-base">
+          <span className="text-black-80 font-bold text-base">
             {owner}
           </span>
           <span
             className={
-              "font-[Poppins-Regular] px-[.438rem] py-[0.125rem] text-sm rounded-lg " +
+              "font-normal px-[.438rem] py-[0.125rem] text-sm rounded-lg " +
               Themes.StatusStyle[`${status}` as keyof typeof Themes.StatusStyle]
             }
           >
@@ -29,10 +29,10 @@ const IssueCard = (props: any) => {
           </span>
         </div>
         <div className="card-content">
-          <span className="text-black-50 font-[Poppins-Medium] text-base">
+          <span className="text-black-50 font-medium text-base">
             Label: {label}
           </span>
-          <span className="text-black-20 font-[Poppins-Regular] text-sm">
+          <span className="text-black-20 font-normal text-sm">
             {datetime}
           </span>
         </div>

@@ -23,7 +23,7 @@ function LoginForm() {
         <RequiredInput {...passwordInput} />
       </div>
       <span
-        className="p2 text-primary-100 font-['Poppins-Regular'] mt-3 self-end cursor-pointer hover:scale-105"
+        className="text-base text-primary-100 font-normal mt-3 self-end cursor-pointer hover:scale-105"
         onClick={() => {}}
       >
         Recover Password
@@ -31,7 +31,7 @@ function LoginForm() {
       <Link href={"/dashboard"}>
         <button
           type="submit"
-          className="rounded-xl w-[11.25rem] bg-primary-100 p-3 font-['Poppins-Regular'] text-white text-xl mt-12 hover:scale-110"
+          className="rounded-xl w-[11.25rem] bg-primary-100 p-3 font-normal text-white text-xl mt-12 hover:scale-110"
         >
           Login
         </button>

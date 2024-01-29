@@ -37,16 +37,16 @@ function OrderSummaryCard() {
           height={48}
           alt=""
         />
-        <span className="sub-h3 font-[Poppins-Medium]">Order</span>
+        <span className="text-xl font-medium">Order</span>
       </div>
       <div className="flex flex-row flex-1 items-center justify-between">
         {SummaryItems.map((item, idx) => (
           <div className="flex flex-col gap-2" key={idx}>
-            <span className="p2 font-[Poppins-Medium] text-black-30">
+            <span className="text-base font-medium text-black-30">
               {item.title}
             </span>
             <span
-              className={"sub-h3 font-[Poppins-Medium] " + `text-${item.color}`}
+              className={"text-xl font-medium " + `text-${item.color}`}
             >
               0
             </span>

@@ -12,7 +12,7 @@ function Header() {
   return (
     <div className="flex flex-col h-[5.625rem] divide-y">
       <div className="flex flex-row items-center px-5 py-[.875rem] justify-between">
-        <span className="sub-h3 font-[Poppins-Medium] text-black-60">
+        <span className="text-xl font-medium text-black-60">
           {pageName[0].toUpperCase() + pageName.slice(1)}
         </span>
         <div className="flex flex-row items-center gap-5">
@@ -23,7 +23,7 @@ function Header() {
             height={24}
             alt=""
           />
-          <span className="p2 font-[Poppins-Regular] text-black-100 px-3 py-[.313rem] bg-secondary-20 rounded-lg">
+          <span className="text-base font-normal text-black-100 px-3 py-[.313rem] bg-secondary-20 rounded-lg">
             Username
           </span>
           <Link href={"/profile"}>
@@ -48,7 +48,7 @@ function Header() {
               <div key={idx}>
                 <span className="text-black-30">/</span>
                 <Link href={`/${pageName}`}>
-                  <span className="p2 text-black-30 font-[Poppins-Regular] hover:underline hover:text-primary-80 hover:underline-offset-2 ">
+                  <span className="text-base text-black-30 font-normal hover:underline hover:text-primary-80 hover:underline-offset-2 ">
                     {item}
                   </span>
                 </Link>

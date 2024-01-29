@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import clsx from "clsx";
 import Image from "next/image";
 import logo from "../../../public/logo.svg";
 import { Icons } from "@/app/lib/constants";
@@ -58,17 +59,15 @@ function NavBar() {
   return (
     <div
       className={
-        "flex flex-col gap-20 transition-[width] duration-150 " + (full ? "w-96 p-8" : "w-[6rem] p-[1.125rem]")
+        "flex flex-col gap-20 transition-[width] duration-150 " +
+        (full ? "w-96 p-8" : "w-[6rem] p-[1.125rem]")
       }
       onMouseEnter={() => setFull(true)}
       onMouseLeave={() => setFull(false)}
     >
       <div className="flex flex-row gap-5 items-center">
         <Image src={logo} width={60} height={60} alt="" />
-        <span
-          className="sub-h2 font-['Poppins-Bold'] text-primary-100"
-          hidden={!full}
-        >
+        <span className="text-2xl font-bold text-primary-100" hidden={!full}>
           Transportation Management
         </span>
       </div>
@@ -79,12 +78,14 @@ function NavBar() {
             return (
               <Link
                 key={item.path}
-                className={
-                  "flex flex-row gap-3 items-center font-['Poppins-Bold'] text-[1.25rem] rounded-xl " +
-                  (full? "px-5 py-4 ":"p-[0.938rem] ") +
-                  (isActive ? "text-white bg-primary-100" : "text-black-50") +
-                  " hover:bg-primary-20"
-                }
+                className={clsx(
+                  "flex flex-row gap-3 items-center font-bold text-[1.25rem] rounded-xl hover:bg-primary-20",
+                  { "px-5 py-4": full, "p-[0.938rem]": !full },
+                  {
+                    "text-white bg-primary-100": isActive,
+                    "text-black-50": !isActive,
+                  }
+                )}
                 href={item.path}
               >
                 <Image
@@ -101,11 +102,10 @@ function NavBar() {
       </div>
       <button
         type="button"
-        className={
-          "flex flex-row gap-3 items-center font-['Poppins-Bold'] text-[1.25rem] rounded-xl text-red bottom-9 " +
-          (full? "px-5 py-4 ":"p-[0.938rem] ") +
-          "hover:bg-red-20"
-        }
+        className={clsx(
+          "flex flex-row gap-3 items-center font-bold text-[1.25rem] rounded-xl text-red bottom-9 hover:bg-red-20",
+          { "px-5 py-4": full, "p-[0.938rem]": !full }
+        )}
       >
         <Image src={Icons.Logout} height={30} width={30} alt="" />
         {full && "Logout"}

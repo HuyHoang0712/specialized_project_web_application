@@ -7,9 +7,6 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    fontFamily: {
-      poppins: ['Poppins-Regular', 'Poppins-Bold', 'Poppins-Regular']
-    },
     extend: {
       spacing: {
         '28': '28rem',

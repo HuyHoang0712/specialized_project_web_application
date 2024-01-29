@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import dynamic from "next/dynamic";
-
+import clsx from "clsx";
 const Map = dynamic(() => import("../Map/Map"), { ssr: false });
 const OrderListDashboard = dynamic(
   () => import("../Lists/OrderListDashboard"),
@@ -17,14 +17,12 @@ function DashboardSummaryCards(props: any) {
 
   return (
     <div
-      className={
-        "flex flex-col rounded-xl p-4 gap-5 bg-white overflow-hidden" +
-        (type != "tracking" ? " flex-1" : "")
-      }
+      className={clsx(
+        "flex flex-col rounded-xl p-4 gap-5 bg-white overflow-hidden",
+        { " flex-1": type != "tracking" }
+      )}
     >
-      <span className="sub-h3 font-[Poppins-Medium] text-black-60">
-        {title}
-      </span>
+      <span className="text-xl font-medium text-black-60">{title}</span>
       {(() => {
         switch (type) {
           case "issue":
