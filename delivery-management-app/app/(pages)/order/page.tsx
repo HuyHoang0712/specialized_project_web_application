@@ -1,15 +1,19 @@
 import React from "react";
-import CreateTransportationPlanModal from "@/app/components/Modals/CreateTransportationPlanModal";
+import CreateModal from "@/app/components/Modals/CreateModal";
+import TransportationPlanList from "@/app/components/Lists/TransportationPlanList";
+
+
 function OrderPage() {
   return (
     <div className="content-container">
-      <div className="flex flex-row justify-end w-full">
-        <CreateTransportationPlanModal />
+      <div className="flex flex-row justify-end w-full gap-3">
+        <CreateModal title={"Create Transportation Plan"} type={"Plan"}/>
+        <CreateModal title={"Create Order"} type={"Order"}/>
       </div>
       <div
         className="flex-1 bg-white p-5 rounded-xl"
       >
-        <div className="flex flex-row justify-between w-full"></div>
+        <TransportationPlanList />
       </div>
     </div>
   );

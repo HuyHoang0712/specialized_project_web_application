@@ -45,14 +45,14 @@ function Header() {
           (item, idx) => {
             item = item[0].toUpperCase() + item.slice(1);
             return (
-              <>
+              <div key={idx}>
                 <span className="text-black-30">/</span>
                 <Link href={`/${pageName}`}>
                   <span className="p2 text-black-30 font-[Poppins-Regular] hover:underline hover:text-primary-80 hover:underline-offset-2 ">
                     {item}
                   </span>
                 </Link>
-              </>
+              </div>
             );
           }
         )}
