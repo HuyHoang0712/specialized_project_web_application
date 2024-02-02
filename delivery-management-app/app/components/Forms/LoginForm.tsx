@@ -3,6 +3,11 @@ import React from "react";
 import RequiredInput from "../Inputs/RequiredInput";
 import Image from "next/image";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+
+import { useFormState, useFormStatus } from "react-dom";
+import { authenticate } from "../../lib/actions";
+
 function LoginForm() {
   const userNameInput = {
     placeholder: "Username",
@@ -16,8 +21,12 @@ function LoginForm() {
     required: true,
     icon: "Password",
   };
+  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
   return (
-    <div className="flex flex-col items-center justify-start w-full">
+    <form
+      action={dispatch}
+      className="flex flex-col items-center justify-start w-full"
+    >
       <div className="flex flex-col items-center justify-start gap-8 w-full">
         <RequiredInput {...userNameInput} />
         <RequiredInput {...passwordInput} />
@@ -28,15 +37,14 @@ function LoginForm() {
       >
         Recover Password
       </span>
-      <Link href={"/dashboard"}>
-        <button
-          type="submit"
-          className="rounded-xl w-[11.25rem] bg-primary-100 p-3 font-normal text-white text-xl mt-12 hover:scale-110"
-        >
-          Login
-        </button>
-      </Link>
-    </div>
+
+      <button
+        type="submit"
+        className="rounded-xl w-[11.25rem] bg-primary-100 p-3 font-normal text-white text-xl mt-12 hover:scale-110"
+      >
+        Login
+      </button>
+    </form>
   );
 }
 
