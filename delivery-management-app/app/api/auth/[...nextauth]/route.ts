@@ -1,9 +1,12 @@
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { User } from "../lib/types";
-import bcrypt from "bcrypt";
+import { User } from "../../../lib/types";
+import * as bcrypt from "bcrypt";
 import NextAuth from "next-auth/next";
 export const authOptions: AuthOptions = {
+  pages: {
+    signIn: "/auth/login",
+  },
   providers: [
     CredentialsProvider({
       name: "Credential",
@@ -30,33 +33,32 @@ export const authOptions: AuthOptions = {
           }
         );
         if (!res.ok) throw new Error("Username or Password is not correct");
-        const user = res.json();
+        if (!credentials?.password)
+          throw new Error("Please Provide Your Password");
+        const user = (await res.json()) as User;
         const isPasswordCorrect = await bcrypt.compare(
-          credentials?.password,
-          user["password"]
+          credentials.password,
+          user.password
         );
 
         if (!isPasswordCorrect)
           throw new Error("Username or Password is not correct");
-        return user;
+        const { password, ...userWithoutPass } = user;
+        return userWithoutPass;
       },
     }),
   ],
-  pages: {
-    signIn: '/login'
-  },
 
   callbacks: {
-    
-    async jwt({token, user}) {
-        return token;
+    async jwt({ token, user }) {
+      return token;
     },
-    async session({token, session}) {
-        return session;
-    }
-  }
+    async session({ token, session }) {
+      return session;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST}
+export { handler as GET, handler as POST };

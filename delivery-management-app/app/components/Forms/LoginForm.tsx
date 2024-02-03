@@ -5,8 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 
-import { useFormState, useFormStatus } from "react-dom";
-import { authenticate } from "../../lib/actions";
 
 function LoginForm() {
   const userNameInput = {
@@ -21,10 +19,8 @@ function LoginForm() {
     required: true,
     icon: "Password",
   };
-  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
   return (
     <form
-      action={dispatch}
       className="flex flex-col items-center justify-start w-full"
     >
       <div className="flex flex-col items-center justify-start gap-8 w-full">
