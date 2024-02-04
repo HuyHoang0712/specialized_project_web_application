@@ -6,7 +6,7 @@ import logo from "../../../public/logo.svg";
 import { Icons } from "@/app/lib/constants";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-
+import { logOut } from "@/app/lib/actions/authActions";
 const navItems = [
   {
     path: "/dashboard",
@@ -106,6 +106,7 @@ function NavBar() {
           "flex flex-row gap-3 items-center font-bold text-[1.25rem] rounded-xl text-red bottom-9 hover:bg-red-20",
           { "px-5 py-4": full, "p-[0.938rem]": !full }
         )}
+        onClick={async () => await logOut()}
       >
         <Image src={Icons.Logout} height={30} width={30} alt="" />
         {full && "Logout"}
