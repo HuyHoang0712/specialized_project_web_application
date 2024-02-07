@@ -47,6 +47,7 @@ function LoginForm() {
           />
         </div>
       </div>
+      {errorMessage && <div>{errorMessage}</div>}
       <Link
         href={"/auth/fotgotPass"}
         className="text-base text-primary-100 font-normal mt-3 self-end cursor-pointer hover:scale-105"
@@ -67,7 +68,7 @@ function LoginButton() {
       disabled={pending}
       className="rounded-xl w-[11.25rem] bg-primary-100 p-3 font-normal text-white text-xl mt-12 hover:scale-110"
     >
-      {pending? "Singing in...": "Log in"}
+      {pending ? "Singing in..." : "Log in"}
     </button>
   );
 }
