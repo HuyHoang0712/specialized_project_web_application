@@ -67,7 +67,7 @@ function LoginButton() {
       disabled={pending}
       className="rounded-xl w-[11.25rem] bg-primary-100 p-3 font-normal text-white text-xl mt-12 hover:scale-110"
     >
-      Login
+      {pending? "Singing in...": "Log in"}
     </button>
   );
 }

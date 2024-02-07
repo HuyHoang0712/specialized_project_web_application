@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import { authConfig } from "../../auth.config";
+import { authConfig } from "../auth.config";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 import { User } from "@/app/lib/types";
@@ -7,13 +7,16 @@ import bcrypt from "bcryptjs";
 
 async function getUser(email: string): Promise<User | undefined> {
   try {
-    const user = await fetch(process.env.BACKEND_BASE_URL + "/employees/get_user/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username: email }),
-    });
+    const user = await fetch(
+      process.env.BACKEND_BASE_URL + "/employees/get_user/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: email }),
+      }
+    );
     return user.json();
   } catch (error) {
     console.error("Failed to fetch user:", error);
