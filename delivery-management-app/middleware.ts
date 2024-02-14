@@ -1,4 +1,3 @@
-import NextAuth from "next-auth";
 import { NextRequest } from "next/server";
 
 export const config = {
