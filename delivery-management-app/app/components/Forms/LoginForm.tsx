@@ -4,52 +4,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { Icons } from "@/app/lib/constants";
 import Link from "next/link";
-import { z } from "zod";
-import { signIn } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-interface Props {
-  callbackUrl?: string;
-}
 
-const FormSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-  password: z.string({
-    required_error: "Please enter your password",
-  }),
-});
-
-type InputType = z.infer<typeof FormSchema>;
-
-function LoginForm(props: Props) {
+function LoginForm() {
   const router = useRouter();
   const [showInput, setShowInput] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<InputType>({
-    resolver: zodResolver(FormSchema),
-  });
-
-  const onSubmit: SubmitHandler<InputType> = async (data) => {
-    const result = await signIn("credentials", {
-      redirect: false,
-      username: data.email,
-      password: data.password,
-    });
-    if (!result?.ok) {
-      alert(result?.error);
-      return;
-    }
-    alert("Welcome To Sakura Dev Channel");
-    router.push(props.callbackUrl ? props.callbackUrl : "/");
-  };
+ 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col items-center justify-start w-full"
     >
       <div className="flex flex-col items-center justify-start gap-8 w-full">

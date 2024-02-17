@@ -1,0 +1,75 @@
+"use client";
+
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type {
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+} from "@reduxjs/toolkit/query";
+import { logOut, setCredentials } from "./features/auth/authSlice";
+import TokenService from "@/utils/Token.service";
+import { RootState } from "./store";
+import { Mutex } from "async-mutex";
+
+const apiURL =
+  process.env.NEXT_PUBLIC_NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_BACKEND_PROD
+    : process.env.NEXT_PUBLIC_BACKEND_DEV;
+
+const mutex = new Mutex();
+const baseQuery = fetchBaseQuery({
+  baseUrl: apiURL,
+  credentials: "include",
+  prepareHeaders: (headers, { getState }) => {
+    const state = getState() as RootState;
+    const token = state.auth?.token;
+    const tokenExpired = TokenService.isAccessExpired();
+    if (token) {
+      if (!tokenExpired) {
+        headers.set("authorization", `Bearer ${token.accessToken}`);
+      } else {
+        headers.set("authorization", `Bearer ${token.accessToken}`);
+        headers.set("x-refresh", `${token.refreshToken}`);
+      }
+    }
+    return headers;
+  },
+});
+
+const baseQueryWithReauth: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError
+> = async (args, api, extraOptions) => {
+  await mutex.waitForUnlock();
+  let result = await baseQuery(args, api, extraOptions);
+
+  if (result?.error?.status === 401) {
+    console.log("sending refresh token");
+    // send refresh token to get new access token
+    if (!mutex.isLocked()) {
+      const release = await mutex.acquire();
+      const refreshResult = await baseQuery("/refresh", api, extraOptions);
+      console.log(refreshResult);
+      if (refreshResult?.data) {
+        const user = (api.getState() as RootState).auth.user;
+        // store the new token
+        api.dispatch(setCredentials({ response: refreshResult.data }));
+        // retry the original query with new access token
+        result = await baseQuery(args, api, extraOptions);
+      } else {
+        api.dispatch(logOut());
+      }
+    } else {
+      // wait until the mutex is available without locking it
+      await mutex.waitForUnlock();
+      result = await baseQuery(args, api, extraOptions);
+    }
+  }
+  return result;
+};
+
+export const apiSlice = createApi({
+  baseQuery: baseQueryWithReauth,
+  endpoints: (builder) => ({}),
+});

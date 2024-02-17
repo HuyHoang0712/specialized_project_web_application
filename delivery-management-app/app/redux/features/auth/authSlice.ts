@@ -1,0 +1,45 @@
+"use client";
+import { createSlice } from "@reduxjs/toolkit";
+import TokenService from "@/utils/Token.service";
+import { jwtDecode } from "jwt-decode";
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState: {
+    user: TokenService.getUser(),
+    token: TokenService.getToken(),
+  },
+  reducers: {
+    setCredentials: (state, action) => {
+      const { response } = action.payload;
+
+      const decodedUser = jwtDecode(response?.accessToken);
+
+      state.user = decodedUser;
+      state.token = response?.accessToken;
+
+      TokenService.updateLocalAccessToken(response);
+    },
+    logOut: (state) => {
+      state.user = null;
+      state.token = null;
+      TokenService.removeUser();
+    },
+  },
+});
+
+export const { setCredentials, logOut } = authSlice.actions;
+
+export const selectCurrentUser = (state: any) => {
+  if (state?.auth?.user) return state.auth.user;
+
+  return null;
+};
+
+export const selectCurrentToken = (state: any) => {
+  if (state?.auth?.token) return state.auth.token;
+
+  return null;
+};
+
+export default authSlice.reducer;
