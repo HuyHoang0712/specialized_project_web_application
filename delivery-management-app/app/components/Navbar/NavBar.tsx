@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import logo from "../../../public/logo.svg";
-import { Icons } from "@/app/lib/constants";
+import { Icons } from "@/app/lib/assets";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 

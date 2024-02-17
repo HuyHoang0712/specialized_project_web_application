@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { Icons } from "@/app/lib/constants";
+import { Icons } from "@/app/lib/assets";
 
 const SummaryItems = [
   {

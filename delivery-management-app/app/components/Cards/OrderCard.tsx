@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { Icons, Themes } from "@/app/lib/constants";
+import { Icons, Themes } from "@/app/lib/assets";
 
 function OrderCard(props: any) {
   const { depot, delivery, vehicle, status, demand } = props;

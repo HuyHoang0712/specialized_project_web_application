@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/auth/authSlice";
-import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "./apiSlice";
 
 export const makeStore = () => {
@@ -11,6 +10,7 @@ export const makeStore = () => {
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(apiSlice.middleware),
+    devTools: process.env.NODE_ENV !== 'production'
   });
 };
 

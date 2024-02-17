@@ -1,20 +1,37 @@
 "use client";
-import React, { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
+import React, { useState, useRef, FormEvent } from "react";
 import Image from "next/image";
-import { Icons } from "@/app/lib/constants";
+import { Icons } from "@/app/lib/assets";
 import Link from "next/link";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-
+import { toast } from "react-toastify";
+import { useLoginMutation } from "@/app/redux/features/auth/authApiSlice";
+import { useAppDispatch } from "@/app/redux/hooks";
+import { setCredentials } from "@/app/redux/features/auth/authSlice";
 
 function LoginForm() {
   const router = useRouter();
   const [showInput, setShowInput] = useState(false);
+  const [login, { isLoading, data, error }] = useLoginMutation();
+  const usernameRef = useRef(null);
+  const passRef = useRef(null);
 
- 
+  const submitForm = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      const formData = new FormData(event.currentTarget);
+      const username = formData.get("username");
+      const password = formData.get("password");
+      const res = await login({ username, password }).unwrap();
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <form
+      onSubmit={submitForm}
       className="flex flex-col items-center justify-start w-full"
     >
       <div className="flex flex-col items-center justify-start gap-8 w-full">
@@ -22,9 +39,10 @@ function LoginForm() {
           <Image src={Icons.Mail} width={24} height={24} alt={""} />
           <input
             type="text"
-            id="Username"
+            name="username"
             className="peer flex-1 h-[3.35rem] border-none placeholder-black-20 bg-transparent focus:border-transparent focus:outline-none focus:ring-0"
             placeholder="Username"
+            ref={usernameRef}
             required
           />
         </div>
@@ -32,9 +50,10 @@ function LoginForm() {
           <Image src={Icons.Password} width={24} height={24} alt={""} />
           <input
             type={showInput ? "text" : "password"}
-            id="Password"
+            name="password"
             className="peer flex-1 h-[3.35rem] border-none placeholder-black-20 bg-transparent focus:border-transparent focus:outline-none focus:ring-0"
             placeholder="Password"
+            ref={passRef}
             required
           />
           <Image

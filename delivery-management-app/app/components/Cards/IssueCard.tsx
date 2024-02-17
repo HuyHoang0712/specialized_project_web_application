@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { Icons, Images, Themes } from "@/app/lib/constants";
+import { Icons, Images, Themes } from "@/app/lib/assets";
 
 const IssueCard = (props: any) => {
   const { owner, label, datetime, status, type } = props;

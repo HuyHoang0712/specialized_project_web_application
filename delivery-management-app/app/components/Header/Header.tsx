@@ -3,7 +3,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Icons, Images } from "@/app/lib/constants";
+import { Icons, Images } from "@/app/lib/assets";
 function Header() {
   let pathname = usePathname() || "/";
   let paths = pathname.split("/");

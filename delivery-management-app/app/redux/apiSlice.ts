@@ -19,6 +19,7 @@ const apiURL =
 const mutex = new Mutex();
 const baseQuery = fetchBaseQuery({
   baseUrl: apiURL,
+  mode: "no-cors",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const state = getState() as RootState;
@@ -32,6 +33,7 @@ const baseQuery = fetchBaseQuery({
         headers.set("x-refresh", `${token.refreshToken}`);
       }
     }
+    headers.set("Content-Type", "application/json")
     return headers;
   },
 });
@@ -44,7 +46,7 @@ const baseQueryWithReauth: BaseQueryFn<
   await mutex.waitForUnlock();
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result?.error?.status === 401) {
+  if (result?.error?.status === 403) {
     console.log("sending refresh token");
     // send refresh token to get new access token
     if (!mutex.isLocked()) {

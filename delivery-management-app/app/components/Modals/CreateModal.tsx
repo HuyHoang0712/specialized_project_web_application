@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Icons } from "@/app/lib/constants";
+import { Icons } from "@/app/lib/assets";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 const CreateModal = ({ title, type }: any) => {
