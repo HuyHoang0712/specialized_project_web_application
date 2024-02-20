@@ -8,11 +8,17 @@ export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (credentials) => ({
-        url: "/employees/get_user/",
-        method: "POST",
-        body: { ...credentials },
+        url: "/auth/login",
+        method: "post",
+        body: credentials,
       }),
+      transformResponse: (response: any) => {
+        console.log(response);
+        
+        return response.data;
+      }
     }),
+
   }),
   overrideExisting: true,
 });

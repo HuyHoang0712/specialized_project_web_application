@@ -19,8 +19,6 @@ const apiURL =
 const mutex = new Mutex();
 const baseQuery = fetchBaseQuery({
   baseUrl: apiURL,
-  mode: "no-cors",
-  credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const state = getState() as RootState;
     const token = state.auth?.token;
@@ -33,7 +31,8 @@ const baseQuery = fetchBaseQuery({
         headers.set("x-refresh", `${token.refreshToken}`);
       }
     }
-    headers.set("Content-Type", "application/json")
+    headers.set("Content-Type", "application/json");
+    headers.set("Accept", "application/json");
     return headers;
   },
 });

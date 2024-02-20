@@ -20,9 +20,11 @@ function LoginForm() {
     event.preventDefault();
     try {
       const formData = new FormData(event.currentTarget);
-      const username = formData.get("username");
-      const password = formData.get("password");
-      const res = await login({ username, password }).unwrap();
+      const data = {
+        username: formData.get("username"),
+        password: formData.get("password")
+      }
+      const res = await login(JSON.stringify(data)).unwrap();
       console.log(res);
     } catch (error) {
       console.log(error);
