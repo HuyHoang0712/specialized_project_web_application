@@ -12,11 +12,11 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: "post",
         body: credentials,
       }),
-      transformResponse: (response: any) => {
-        console.log(response);
+      // transformResponse: (response: any) => {
+      //   console.log(response);
         
-        return response.data;
-      }
+      //   return response.data;
+      // }
     }),
 
   }),

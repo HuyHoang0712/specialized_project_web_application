@@ -18,7 +18,7 @@ function Map() {
       center: [position.longtitude, position.latitude],
       zoom: position.zoom,
     });
-  });
+  }, []);
   return <div className="h-full w-[35vw]" ref={mapContainerRef}></div>;
 }
 

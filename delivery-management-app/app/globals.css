@@ -1,3 +1,5 @@
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,6 +45,8 @@
     --red-color-100: #cc5f5f;
 
     --input-color-defaut: #eff1f9;
+
+    --height-header: 5.275rem
   }
 }
 
@@ -67,7 +71,7 @@
     flex-direction: row;
     width: 100%;
     min-height: 100vh;
-    max-height: 100vh;
+
   }
   .card-content {
     display: flex;
@@ -80,10 +84,10 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    height: calc(100vh - 5.625rem);
+    height: calc(100vh - var(--height-header));
     overflow: hidden;
-    gap: 1.25rem;
-    padding: 1.25rem;
+    gap: 1rem;
+    padding: 1rem;
     background-color: var(--bg-color);
   }
 }

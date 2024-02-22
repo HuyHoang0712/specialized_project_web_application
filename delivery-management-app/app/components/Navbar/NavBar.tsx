@@ -5,7 +5,9 @@ import Image from "next/image";
 import logo from "../../../public/logo.svg";
 import { Icons } from "@/app/lib/assets";
 import { usePathname } from "next/navigation";
+import { useAppDispatch } from "@/app/redux/hooks";
 import Link from "next/link";
+import { logOut } from "@/app/redux/features/auth/authSlice";
 
 const navItems = [
   {
@@ -55,32 +57,32 @@ const navItems = [
 function NavBar() {
   let pathname = usePathname() || "/";
   let [full, setFull] = useState(true);
-
+  const dispatch = useAppDispatch();
   return (
     <div
       className={
-        "flex flex-col gap-20 transition-[width] duration-150 " +
-        (full ? "w-96 p-8" : "w-[6rem] p-[1.125rem]")
+        "flex flex-col relative transition-[width] h-100vh px-3 py-3 " +
+        (full ? "w-[18.75rem]" : "w-[5.25rem]")
       }
       onMouseEnter={() => setFull(true)}
       onMouseLeave={() => setFull(false)}
     >
-      <div className="flex flex-row gap-5 items-center">
-        <Image src={logo} width={60} height={60} alt="" />
-        <span className="text-2xl font-bold text-primary-100" hidden={!full}>
+      <div className="flex flex-row gap-4 items-center h-16">
+        <Image src={logo} width={60} alt="" />
+        <span className="text-2xl font-bold text-primary-100 w-[12.5rem]" hidden={!full}>
           Transportation Management
         </span>
       </div>
-      <div className="">
-        <nav className="flex flex-col gap-6">
+      <div className="mt-8">
+        <nav className="flex flex-col gap-4">
           {navItems.map((item, idx) => {
             const isActive = item.path === pathname;
             return (
               <Link
-                key={item.path}
+                key={idx}
                 className={clsx(
-                  "flex flex-row gap-3 items-center font-bold text-[1.25rem] rounded-xl hover:bg-primary-20",
-                  { "px-5 py-4": full, "p-[0.938rem]": !full },
+                  "flex flex-row gap-3 items-center font-bold rounded-lg hover:bg-primary-20 w-full px-4 py-4",
+                  { "justify-center": !full },
                   {
                     "text-white bg-primary-100": isActive,
                     "text-black-50": !isActive,
@@ -90,8 +92,7 @@ function NavBar() {
               >
                 <Image
                   src={isActive ? item.active : item.icon}
-                  height={30}
-                  width={30}
+                  width={24}
                   alt=""
                 />
                 {full && `${item.name}`}
@@ -100,16 +101,20 @@ function NavBar() {
           })}
         </nav>
       </div>
-      <button
+      <Link
         type="button"
         className={clsx(
-          "flex flex-row gap-3 items-center font-bold text-[1.25rem] rounded-xl text-red bottom-9 hover:bg-red-20",
-          { "px-5 py-4": full, "p-[0.938rem]": !full }
+          "flex flex-row gap-3 absolute bottom-[1.25rem] items-center font-bold rounded-xl text-red px-5 py-4 hover:bg-red-20",
+          { "w-[18.5rem]": full }
         )}
+        href={"/auth/login"}
+        onClick={() => {
+          dispatch(logOut());
+        }}
       >
-        <Image src={Icons.Logout} height={30} width={30} alt="" />
+        <Image src={Icons.Logout} width={24} alt="" />
         {full && "Logout"}
-      </button>
+      </Link>
     </div>
   );
 }

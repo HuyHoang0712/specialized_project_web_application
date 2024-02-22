@@ -4,13 +4,17 @@ import Image from "next/image";
 import { Icons } from "@/app/lib/assets";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useLoginMutation } from "@/app/redux/features/auth/authApiSlice";
 import { useAppDispatch } from "@/app/redux/hooks";
 import { setCredentials } from "@/app/redux/features/auth/authSlice";
 
+const ERROR_TOAST = 0;
+const SUCCESS_TOAST = 1;
+
 function LoginForm() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [showInput, setShowInput] = useState(false);
   const [login, { isLoading, data, error }] = useLoginMutation();
   const usernameRef = useRef(null);
@@ -22,14 +26,17 @@ function LoginForm() {
       const formData = new FormData(event.currentTarget);
       const data = {
         username: formData.get("username"),
-        password: formData.get("password")
-      }
+        password: formData.get("password"),
+      };
       const res = await login(JSON.stringify(data)).unwrap();
-      console.log(res);
-    } catch (error) {
-      console.log(error);
+      dispatch(setCredentials(res));
+      toast.success("Successfully logged in....", {toastId: SUCCESS_TOAST});
+      router.push("/dashboard");
+    } catch (error: any) {
+      toast.error(error.data.error_message, {toastId: ERROR_TOAST});
     }
   };
+
 
   return (
     <form

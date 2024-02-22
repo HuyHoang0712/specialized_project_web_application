@@ -12,17 +12,22 @@ const IssueListDashboard = dynamic(
   { ssr: false }
 );
 
-function DashboardSummaryCards(props: any) {
+interface Props {
+  title: string;
+  type: string;
+}
+
+function DashboardSummaryCards(props: Props) {
   const { title, type } = props;
 
   return (
     <div
       className={clsx(
-        "flex flex-col rounded-xl p-4 gap-5 bg-white overflow-hidden",
+        "flex flex-col rounded-lg p-3 gap-3 bg-white overflow-hidden",
         { " flex-1": type != "tracking" }
       )}
     >
-      <span className="text-xl font-medium text-black-60">{title}</span>
+      <span className="text-lg font-medium text-black-60">{title}</span>
       {(() => {
         switch (type) {
           case "issue":

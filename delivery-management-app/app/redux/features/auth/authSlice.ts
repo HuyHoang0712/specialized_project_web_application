@@ -11,12 +11,13 @@ const authSlice = createSlice({
   },
   reducers: {
     setCredentials: (state, action) => {
-      const { response } = action.payload;
-
-      const decodedUser = jwtDecode(response?.accessToken);
+      const response = action.payload;
+      console.log(response);
+      
+      const decodedUser = jwtDecode(response?.access_token);
 
       state.user = decodedUser;
-      state.token = response?.accessToken;
+      state.token = response?.access_token;
 
       TokenService.updateLocalAccessToken(response);
     },

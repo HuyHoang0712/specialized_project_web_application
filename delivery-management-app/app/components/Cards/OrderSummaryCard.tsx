@@ -28,25 +28,24 @@ const SummaryItems = [
 
 function OrderSummaryCard() {
   return (
-    <div className="flex flex-col gap-3 h-[9.5rem] bg-white p-4 rounded-xl">
-      <div className="flex flex-row flex-1 items-center gap-[.625rem]">
+    <div className="flex flex-col gap-3 h-[8rem] bg-white p-3 rounded-lg">
+      <div className="flex flex-row items-center gap-3">
         <Image
-          className="bg-secondary-30 p-3 rounded-lg"
+          className="bg-secondary-30 p-2 rounded-lg"
           src={Icons.Order}
-          width={48}
-          height={48}
+          width={40}
           alt=""
         />
-        <span className="text-xl font-medium">Order</span>
+        <span className="text-lg font-medium">Order</span>
       </div>
-      <div className="flex flex-row flex-1 items-center justify-between">
+      <div className="flex flex-row items-center justify-between">
         {SummaryItems.map((item, idx) => (
-          <div className="flex flex-col gap-2" key={idx}>
-            <span className="text-base font-medium text-black-30">
+          <div className="flex flex-col" key={idx}>
+            <span className="text-base font-medium text-black-50">
               {item.title}
             </span>
             <span
-              className={"text-xl font-medium " + `text-${item.color}`}
+              className={"text-base font-medium " + `text-${item.color}`}
             >
               0
             </span>

@@ -30,8 +30,8 @@ function DashboardPage() {
     <div className="content-container">
       <OrderSummaryCard />
       <div
-        className="flex flex-row gap-5"
-        style={{ height: "calc(100vh - 18.875rem)" }}
+        className="flex flex-row gap-4"
+        style={{ height: "calc(100vh - 16.275rem)" }}
       >
         <DashboardSummaryCards {...CardInfors[2]} />
         <DashboardSummaryCards {...CardInfors[0]} />

@@ -2,13 +2,16 @@ import React from "react";
 import Image from "next/image";
 import logo from "../../../public/logo.svg";
 import LoginForm from "@/app/components/Forms/LoginForm";
+import { Bounce, ToastContainer } from "react-toastify";
+
+
 function LoginPage() {
   return (
     <div className="flex-1 flex flex-col bg-bg-color min-h-screen">
       <div className="flex flex-row gap-7 justify-start items-center w-full h-20 bg-white px-5">
         <Image src={logo} width={64} height={63} alt={""} />
         <span className="font-bold text-3xl text-primary-100">
-          Transporatation Management
+          Transportation Management
         </span>
       </div>
       <div className="flex flex-1 justify-center items-center w-full shadow-xl">
