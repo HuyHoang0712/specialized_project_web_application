@@ -30,13 +30,17 @@ function LoginForm() {
       };
       const res = await login(JSON.stringify(data)).unwrap();
       dispatch(setCredentials(res));
-      toast.success("Successfully logged in....", {toastId: SUCCESS_TOAST});
+      toast.success("Successfully logged in....", { toastId: SUCCESS_TOAST });
       router.push("/dashboard");
     } catch (error: any) {
-      toast.error(error.data.error_message, {toastId: ERROR_TOAST});
+      if (error.data)
+        toast.error(error.data?.error_message, { toastId: ERROR_TOAST });
+      else
+        toast.error("Something went wrong! Please try again later!", {
+          toastId: ERROR_TOAST,
+        });
     }
   };
-
 
   return (
     <form
@@ -45,7 +49,7 @@ function LoginForm() {
     >
       <div className="flex flex-col items-center justify-start gap-8 w-full">
         <div className="flex flex-row px-4 gap-2.5 relative rounded-[0.5rem] border-none bg-input-defaut-color shadow-sm w-full h-[3.35rem]">
-          <Image src={Icons.Mail} width={24} height={24} alt={""} />
+          <Image src={Icons.Mail} width={24} alt={""} />
           <input
             type="text"
             name="username"
@@ -56,10 +60,11 @@ function LoginForm() {
           />
         </div>
         <div className="flex flex-row px-4 gap-2.5 relative rounded-[0.5rem] border-none bg-input-defaut-color shadow-sm w-full h-[3.35rem]">
-          <Image src={Icons.Password} width={24} height={24} alt={""} />
+          <Image src={Icons.Password} width={24} alt={""} />
           <input
             type={showInput ? "text" : "password"}
             name="password"
+            autoComplete="current-password"
             className="peer flex-1 h-[3.35rem] border-none placeholder-black-20 bg-transparent focus:border-transparent focus:outline-none focus:ring-0"
             placeholder="Password"
             ref={passRef}
@@ -68,7 +73,6 @@ function LoginForm() {
           <Image
             src={showInput ? Icons.Eye : Icons.HideEye}
             width={16}
-            height={16}
             alt={""}
             onClick={() => setShowInput(!showInput)}
             className="hover:scale-105"

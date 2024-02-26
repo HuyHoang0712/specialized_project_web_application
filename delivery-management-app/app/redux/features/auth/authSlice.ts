@@ -12,8 +12,7 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       const response = action.payload;
-      console.log(response);
-      
+
       const decodedUser = jwtDecode(response?.access_token);
 
       state.user = decodedUser;
