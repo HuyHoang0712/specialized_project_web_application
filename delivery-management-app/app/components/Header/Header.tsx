@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Icons, Images } from "@/app/lib/assets";
+import { BellIcon } from "@heroicons/react/24/solid";
+
 function Header() {
   let pathname = usePathname() || "/";
   let paths = pathname.split("/");
@@ -16,13 +18,7 @@ function Header() {
           {pageName[0].toUpperCase() + pageName.slice(1)}
         </span>
         <div className="flex flex-row items-center gap-3">
-          <Image
-            className="hover:scale-110"
-            src={Icons.Notification}
-            width={24}
-            height={24}
-            alt=""
-          />
+          <BellIcon className="w-6 fill-primary-100 hover:scale-105"/>
           <span className="text-sm font-normal text-black-100 px-3 py-[.313rem] bg-secondary-20 rounded-lg">
             Username
           </span>

@@ -3,54 +3,72 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import logo from "../../../public/logo.svg";
-import { Icons } from "@/app/lib/assets";
 import { usePathname } from "next/navigation";
 import { useAppDispatch } from "@/app/redux/hooks";
 import Link from "next/link";
 import { logOut } from "@/app/redux/features/auth/authSlice";
+import {
+  Squares2X2Icon as Squares2X2IconActive,
+  ShoppingBagIcon as ShoppingBagIconActive,
+  UserGroupIcon as UserGroupIconActive,
+  UsersIcon as UsersIconActive,
+  TruckIcon as TruckIconActive,
+  InformationCircleIcon as InformationCircleIconActive,
+  IdentificationIcon as IdentificationIconActive,
+} from "@heroicons/react/24/solid";
+import {
+  Squares2X2Icon,
+  ShoppingBagIcon,
+  UserGroupIcon,
+  UsersIcon,
+  TruckIcon,
+  InformationCircleIcon,
+  IdentificationIcon,
+  ArrowRightStartOnRectangleIcon
+} from "@heroicons/react/24/outline";
 
 const navItems = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    icon: Icons.Dashboard,
-    active: Icons.DashboardActive,
+    Unactive: Squares2X2Icon,
+    Active: Squares2X2IconActive,
   },
   {
     path: "/order",
     name: "Orders",
-    icon: Icons.Order,
-    active: Icons.OrderActive,
+    Unactive: ShoppingBagIcon,
+    Active: ShoppingBagIconActive,
   },
   {
     path: "/customer",
     name: "Customers",
-    icon: Icons.Customer,
-    active: Icons.CustomerActive,
+    Unactive: UserGroupIcon,
+    Active: UserGroupIconActive,
   },
   {
     path: "/employee",
     name: "Employees",
-    icon: Icons.Employee,
-    active: Icons.EmployeeActive,
+    Unactive: UsersIcon,
+    Active: UsersIconActive,
   },
   {
     path: "/facilities",
     name: "Facilities",
-    icon: Icons.Facilities,
-    active: Icons.FacilitiesActive,
+    Unactive: TruckIcon,
+    Active: TruckIconActive,
   },
   {
     path: "/issue",
     name: "Issues",
-    icon: Icons.Issue,
-    active: Icons.IssueActive,
+    Unactive: InformationCircleIcon,
+    Active: InformationCircleIconActive,
   },
   {
     path: "/profile",
     name: "Profile",
-    icon: Icons.Profile,
-    active: Icons.ProfileActive,
+    Unactive: IdentificationIcon,
+    Active: IdentificationIconActive,
   },
 ];
 
@@ -69,7 +87,10 @@ function NavBar() {
     >
       <div className="flex flex-row gap-4 items-center h-16">
         <Image src={logo} width={60} alt="" />
-        <span className="text-2xl font-bold text-primary-100 w-[12.5rem]" hidden={!full}>
+        <span
+          className="text-2xl font-bold text-primary-100 w-[12.5rem]"
+          hidden={!full}
+        >
           Transportation Management
         </span>
       </div>
@@ -90,11 +111,11 @@ function NavBar() {
                 )}
                 href={item.path}
               >
-                <Image
-                  src={isActive ? item.active : item.icon}
-                  width={24}
-                  alt=""
-                />
+                {isActive ? (
+                  <item.Active className="w-6 icon-sw-2" />
+                ) : (
+                  <item.Unactive className="w-6 icon-sw-2" />
+                )}
                 {full && `${item.name}`}
               </Link>
             );
@@ -112,7 +133,7 @@ function NavBar() {
           dispatch(logOut());
         }}
       >
-        <Image src={Icons.Logout} width={24} alt="" />
+        <ArrowRightStartOnRectangleIcon className="w-6 icon-sw-2" />
         {full && "Logout"}
       </Link>
     </div>

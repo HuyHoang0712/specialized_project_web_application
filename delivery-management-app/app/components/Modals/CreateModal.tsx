@@ -1,12 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { Icons } from "@/app/lib/assets";
-import Image from "next/image";
+import Modal from "./Modal";
 import dynamic from "next/dynamic";
-const CreateModal = ({ title, type }: any) => {
-  const [active, setActive] = useState(false);
-  let FormContent: any;
+import SolidButton from "../Buttons/SolidButton";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
+const CreateModal = ({ title, type }: any) => {
+  let FormContent: any;
+  const [active, setActive] = useState(false);
   if (type === "Plan") {
     FormContent = dynamic(
       () => import("@/app/components/Forms/CreateTransportationPlan"),
@@ -19,28 +20,24 @@ const CreateModal = ({ title, type }: any) => {
     );
   }
 
+  const modalProps = {
+    title: title,
+    FormContent: FormContent,
+    setActive: setActive,
+  };
+
+  const btnProps = {
+    label: title,
+    onClick: () => setActive(true),
+    Icon: PlusIcon,
+    type: "Normal",
+  };
+
   return (
-    <div>
-      <button
-        type="button"
-        className="flex flex-row items-center gap-2 px-3 py-2 bg-primary-100 text-white text-base font-normal rounded-lg hover:scale-105"
-        onClick={() => setActive(true)}
-      >
-        <Image src={Icons.Add} alt="" width={20} />
-        {title}
-      </button>
-      {active && (
-        <div className="absolute w-full h-full top-0 left-0 flex justify-center items-center bg-blur-color">
-          <div className="bg-white p-5">
-            <div className="flex flex-row justify-between items-center">
-              <span>{title}</span>
-              <span onClick={() => setActive(false)}>x</span>
-            </div>
-            <FormContent />
-          </div>
-        </div>
-      )}
-    </div>
+    <>
+      <SolidButton {...btnProps} />
+      {active && <Modal {...modalProps} />}
+    </>
   );
 };
 
