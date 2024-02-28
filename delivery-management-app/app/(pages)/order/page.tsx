@@ -11,7 +11,7 @@ function OrderPage() {
         <CreateModal title={"Create Order"} type={"Order"}/>
       </div>
       <div
-        className="flex-1 bg-white p-5 rounded-xl"
+        className="flex-1 bg-white p-3 rounded-xl"
       >
         <TransportationPlanList />
       </div>

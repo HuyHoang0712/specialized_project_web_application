@@ -64,6 +64,10 @@ const config: Config = {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    // require("daisyui")
   ],
+  // daisyui: {
+  //   themes: ["light"]
+  // }
 };
 export default config;

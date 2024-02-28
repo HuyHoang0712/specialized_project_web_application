@@ -23,10 +23,10 @@ const CreateModal = ({ title, type }: any) => {
     <div>
       <button
         type="button"
-        className="flex flex-row gap-2 p-3 bg-primary-100 text-white text-base font-normal rounded-xl hover:scale-105"
+        className="flex flex-row items-center gap-2 px-3 py-2 bg-primary-100 text-white text-base font-normal rounded-lg hover:scale-105"
         onClick={() => setActive(true)}
       >
-        <Image src={Icons.Add} alt="" width={24} />
+        <Image src={Icons.Add} alt="" width={20} />
         {title}
       </button>
       {active && (
