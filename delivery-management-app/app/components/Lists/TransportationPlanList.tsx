@@ -2,6 +2,7 @@
 import React from "react";
 import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
+import List from "./List";
 
 const transportationPlanList = [
   {
@@ -96,9 +97,14 @@ const transportationPlanList = [
   },
 ];
 
+const listProps = {
+  headers: ["Date", "Number of Orders", "Status", "Issue"],
+  data: transportationPlanList,
+};
+
 const TransportationPlanList = () => {
   return (
-    <div className="flex flex-1 flex-col gap-3">
+    <div className="flex h-full w-full flex-col gap-3">
       <div className="flex flex-row w-full justify-between items-center">
         <span className="text-lg text-black-60 font-medium">
           Transportation Plans
@@ -108,24 +114,7 @@ const TransportationPlanList = () => {
           <FilterModal />
         </div>
       </div>
-      <div className="list-content">
-        <div className="list-header">
-          <span>Date</span>
-          <span>Number of Orders</span>
-          <span>Status</span>
-          <span>issues</span>
-        </div>
-        <div className="list-body no-scrollbar">
-          {transportationPlanList.map((item, idx) => (
-            <div key={idx} className="body-row">
-              <span>{item.date}</span>
-              <span>{item.orders}</span>
-              <span>{item.status}</span>
-              <span>{item.issues}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <List {...listProps} />
     </div>
   );
 };
