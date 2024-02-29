@@ -81,7 +81,6 @@
   .content-container {
     display: flex;
     flex-direction: column;
-    flex: 1;
     height: calc(100vh - var(--height-header));
     overflow: hidden;
     gap: 1rem;
