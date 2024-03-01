@@ -88,7 +88,7 @@ const List = (props: Props) => {
         </div>
         <div className="flex gap-2 items-center">
           <input
-            id="items"
+            id="page"
             type="number"
             min={1}
             max={totalPage}
@@ -96,7 +96,7 @@ const List = (props: Props) => {
             value={curPage}
             onChange={(e) => movePage(parseInt(e.target.value) - curPage)}
           />
-          <label htmlFor="items" className="text-black-40">
+          <label htmlFor="page" className="text-black-40">
             of {totalPage} pages
           </label>
           <span className="flex items-center ml-2 gap-2 text-black-50">

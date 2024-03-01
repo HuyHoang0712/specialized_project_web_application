@@ -19,6 +19,7 @@ const Search = () => {
         onClick={() => handleSearch(search)}
       />
       <input
+        id="search"
         type="text"
         title="search"
         placeholder="Search"
