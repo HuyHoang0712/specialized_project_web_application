@@ -23,7 +23,8 @@ const SolidButton = (props: Props) => {
       onClick={() => onClick()}
     >
       <Icon
-        className={clsx("icon-sw-3",
+        className={clsx(
+          "icon-sw-3",
           { "w-5": type === "Normal" },
           { "w-5": type === "Small" },
           { "w-6": type === "Large" }

@@ -1,6 +1,11 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import CreateModal from "@/app/components/Modals/CreateModal";
-import TransportationPlanList from "@/app/components/Lists/TransportationPlanList";
+
+const TransportationPlanList = dynamic(
+  () => import("@/app/components/Lists/TransportationPlanList"),
+  { ssr: true, loading: () => <>Loading...</> }
+);
 
 function OrderPage() {
   return (
