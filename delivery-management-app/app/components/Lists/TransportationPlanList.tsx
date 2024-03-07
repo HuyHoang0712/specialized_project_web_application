@@ -10,116 +10,117 @@ const transportationPlanList = [
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "In-Progress",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Pending",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
   {
     id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
-    issues: "None",
+    issue: "None",
   },
 ];
 
-const listProps = {
+const LIST_PROPS = {
   headers: [
     { title: "#ID", key: "id" },
     { title: "Date", key: "date" },
     { title: "Number of Orders", key: "orders" },
     { title: "Status", key: "status" },
-    { title: "Issue", key: "issues" },
+    { title: "Issue", key: "issue" },
   ],
   data: transportationPlanList,
+  type: "plan",
 };
 
 const TransportationPlanList = () => {
@@ -134,7 +135,7 @@ const TransportationPlanList = () => {
           <FilterModal />
         </div>
       </div>
-      <List {...listProps} />
+      <List {...LIST_PROPS} />
     </div>
   );
 };

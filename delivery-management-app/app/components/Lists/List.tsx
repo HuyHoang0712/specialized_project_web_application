@@ -7,10 +7,11 @@ import clsx from "clsx";
 interface Props {
   headers: any[];
   data: any[];
+  type: string;
 }
 
 const List = (props: Props) => {
-  const { headers, data } = props;
+  const { headers, data, type } = props;
   const lenData = data.length;
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [totalPage, setTotalPage] = useState(Math.ceil(lenData / itemsPerPage));
@@ -58,7 +59,8 @@ const List = (props: Props) => {
           <span
             key={idx}
             className={clsx("flex flex-1", {
-              "flex-none w-40": item.key === "id",
+              "flex-none w-28": item.key === "id",
+              "flex-none w-40": ["status", "issue"].includes(item.key),
             })}
           >
             {item.title}
@@ -68,12 +70,17 @@ const List = (props: Props) => {
       {/* Content */}
       <div className="flex flex-1 flex-col p-3 gap-6 text-black-50 overflow-auto no-scrollbar">
         {curData.map((content, idx) => (
-          <Link href={`/plan/${content.id}`} key={idx} className="flex items-center">
+          <Link
+            href={`/${type}/${content.id}`}
+            key={idx}
+            className="flex items-center"
+          >
             {headers.map((item: any, index) => (
               <span
                 key={index}
                 className={clsx("flex flex-1", {
-                  "flex-none w-40": item.key === "id",
+                  "flex-none w-28": item.key === "id",
+                  "flex-none w-40": ["status", "issue"].includes(item.key),
                 })}
               >
                 {item.key === "status" ? (
