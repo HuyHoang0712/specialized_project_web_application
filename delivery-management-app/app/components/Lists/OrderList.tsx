@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
@@ -32,12 +32,17 @@ const LIST_PROPS = {
   type: "order",
 };
 
-const OrderList = () => {
+interface Props {
+  id: string;
+}
+
+const OrderList = (props: Props) => {
+  const { id } = props;
   return (
     <div className="flex h-full w-full flex-col gap-3">
       <div className="flex flex-row w-full justify-between items-center">
         <span className="text-lg text-black-60 font-medium">
-          Transportation Plans
+          Transportation Plan {}
         </span>
         <div className="flex flex-row gap-3">
           <Search />

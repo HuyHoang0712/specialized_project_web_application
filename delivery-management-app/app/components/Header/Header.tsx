@@ -47,7 +47,7 @@ function Header() {
         <Link href={"/dashboard"}>
           <Image src={Icons.Home} width={18} alt="" />
         </Link>
-        {(pageName != "dashboard" ? paths.slice(1) : paths.slice(2)).map(
+        {(paths[1] != "dashboard" ? paths.slice(1) : paths.slice(2)).map(
           (item, idx) => {
             item = item[0].toUpperCase() + item.slice(1);
             return (
@@ -56,7 +56,7 @@ function Header() {
                 className="flex items-center text-sm text-black-30 font-normal"
               >
                 <span>/</span>
-                <Link href={`/${pageName}`}>
+                <Link href={`/${paths[1]}`}>
                   <span className="hover:underline hover:text-primary-80 hover:underline-offset-2">
                     {item}
                   </span>
