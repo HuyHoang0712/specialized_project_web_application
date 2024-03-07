@@ -24,7 +24,7 @@ import {
   TruckIcon,
   InformationCircleIcon,
   IdentificationIcon,
-  ArrowRightStartOnRectangleIcon
+  ArrowRightStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 
 const navItems = [
@@ -35,7 +35,7 @@ const navItems = [
     Active: Squares2X2IconActive,
   },
   {
-    path: "/order",
+    path: "/plans",
     name: "Orders",
     Unactive: ShoppingBagIcon,
     Active: ShoppingBagIconActive,
@@ -129,6 +129,7 @@ function NavBar() {
           { "w-[18.5rem]": full }
         )}
         href={"/auth/login"}
+        scroll={false}
         onClick={() => {
           dispatch(logOut());
         }}

@@ -6,6 +6,91 @@ import List from "./List";
 
 const transportationPlanList = [
   {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "Completed",
+    issues: "None",
+  },
+  {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "In-Progress",
+    issues: "None",
+  },
+  {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "Pending",
+    issues: "None",
+  },
+  {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "Completed",
+    issues: "None",
+  },
+  {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "Completed",
+    issues: "None",
+  },
+  {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "Completed",
+    issues: "None",
+  },
+  {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "Completed",
+    issues: "None",
+  },
+  {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "Completed",
+    issues: "None",
+  },
+  {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "Completed",
+    issues: "None",
+  },
+  {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "Completed",
+    issues: "None",
+  },
+  {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "Completed",
+    issues: "None",
+  },
+  {
+    id: 1,
+    date: "12 Aug 2022",
+    orders: 56,
+    status: "Completed",
+    issues: "None",
+  },
+  {
+    id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
@@ -18,78 +103,7 @@ const transportationPlanList = [
     issues: "None",
   },
   {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
-    date: "12 Aug 2022",
-    orders: 56,
-    status: "Completed",
-    issues: "None",
-  },
-  {
+    id: 1,
     date: "12 Aug 2022",
     orders: 56,
     status: "Completed",
@@ -98,7 +112,13 @@ const transportationPlanList = [
 ];
 
 const listProps = {
-  headers: ["Date", "Number of Orders", "Status", "Issue"],
+  headers: [
+    { title: "#ID", key: "id" },
+    { title: "Date", key: "date" },
+    { title: "Number of Orders", key: "orders" },
+    { title: "Status", key: "status" },
+    { title: "Issue", key: "issues" },
+  ],
   data: transportationPlanList,
 };
 

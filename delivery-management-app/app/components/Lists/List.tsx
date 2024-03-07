@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-
+import StatusCard from "../Cards/StatusCard";
+import clsx from "clsx";
 interface Props {
-  headers: string[];
+  headers: any[];
   data: any[];
 }
 
@@ -50,24 +52,41 @@ const List = (props: Props) => {
 
   return (
     <div className="flex h-[90%] flex-col">
+      {/* Tittle */}
       <div className="flex items-center p-3 border-y-2 font-medium text-black-90">
         {headers.map((item, idx) => (
-          <span key={idx} className="flex flex-1">
-            {item}
+          <span
+            key={idx}
+            className={clsx("flex flex-1", {
+              "flex-none w-40": item.key === "id",
+            })}
+          >
+            {item.title}
           </span>
         ))}
       </div>
+      {/* Content */}
       <div className="flex flex-1 flex-col p-3 gap-6 text-black-50 overflow-auto no-scrollbar">
-        {curData.map((item, idx) => (
-          <div key={idx} className="flex items-center">
-            {Object.values(item).map((value: any, index) => (
-              <span key={index} className="flex flex-1">
-                {value}
+        {curData.map((content, idx) => (
+          <Link href={`/plan/${content.id}`} key={idx} className="flex items-center">
+            {headers.map((item: any, index) => (
+              <span
+                key={index}
+                className={clsx("flex flex-1", {
+                  "flex-none w-40": item.key === "id",
+                })}
+              >
+                {item.key === "status" ? (
+                  <StatusCard label={content[item.key]} />
+                ) : (
+                  content[item.key]
+                )}
               </span>
             ))}
-          </div>
+          </Link>
         ))}
       </div>
+      {/* Bottom */}
       <div className="flex px-3 py-2 justify-between border-t-2 text-sm font-medium">
         <div className="flex gap-2 items-center">
           <select

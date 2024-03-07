@@ -7,7 +7,7 @@ const TransportationPlanList = dynamic(
   { ssr: true, loading: () => <>Loading...</> }
 );
 
-function OrderPage() {
+function PlansPage() {
   return (
     <div className="content-container">
       <div className="flex flex-row justify-end w-full gap-3">
@@ -21,4 +21,4 @@ function OrderPage() {
   );
 }
 
-export default OrderPage;
+export default PlansPage;
