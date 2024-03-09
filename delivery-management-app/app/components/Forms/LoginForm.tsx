@@ -64,7 +64,6 @@ function LoginForm() {
           <input
             type={showInput ? "text" : "password"}
             name="password"
-            autoComplete="current-password"
             className="peer flex-1 h-[3.35rem] border-none placeholder-black-20 bg-transparent focus:border-transparent focus:outline-none focus:ring-0"
             placeholder="Password"
             ref={passRef}

@@ -16,11 +16,15 @@ const SolidButton = (props: Props) => {
     <button
       type="button"
       className={clsx(
-        "flex flex-row items-center gap-2 px-3 py-2 bg-primary-100 text-white font-normal rounded-lg hover:scale-105 " +
-          styles,
-        { "text-base": type === "Normal" },
-        { "text-sm": type === "Small" },
-        { "text-lg": type === "Large" }
+        `flex flex-row items-center gap-2 px-3 py-2 text-white font-normal rounded-lg hover:scale-105 ${styles}`,
+        {
+          "text-base": type === "Normal",
+          "text-sm": type === "Small",
+          "text-lg": type === "Large",
+        },
+        {
+          "bg-primary-100": !styles,
+        }
       )}
       onClick={() => onClick()}
     >

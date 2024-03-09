@@ -15,7 +15,7 @@ function LoginPage() {
         </span>
       </div>
       <div className="flex flex-1 justify-center items-center w-full shadow-xl">
-        <div className="flex flex-col items-center justify-start w-28 h-36 rounded-xl bg-white p-8 gap-12">
+        <div className="flex flex-col items-center justify-start w-[28rem] h-36 rounded-xl bg-white p-8 gap-12">
           <div className="flex flex-col items-center justify-start">
             <Image src={logo} width={105} height={104} alt={""} />
             <span className="font-medium text-xl">Welcome back!</span>

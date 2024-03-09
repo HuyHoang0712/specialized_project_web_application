@@ -76,6 +76,19 @@ function NavBar() {
   let pathname = usePathname() || "/";
   let [full, setFull] = useState(true);
   const dispatch = useAppDispatch();
+
+  const transformName = (curPath: string) => {
+    const dashboard = ["dashboard"];
+    const orderManage = ["plans", "plan", "order"];
+    if (dashboard.includes(curPath)) {
+      return "Dashboard";
+    } else if (orderManage.includes(curPath)) {
+      return "Orders";
+    } else return curPath[0].toUpperCase() + curPath.slice(1);
+  };
+
+  const curPath = transformName(pathname.split("/")[1]);
+
   return (
     <div
       className={
@@ -97,7 +110,7 @@ function NavBar() {
       <div className="mt-8">
         <nav className="flex flex-col gap-4">
           {navItems.map((item, idx) => {
-            const isActive = item.path === pathname;
+            const isActive = curPath === item.name;
             return (
               <Link
                 key={idx}
