@@ -24,7 +24,7 @@ function DashboardSummaryCards(props: Props) {
     <div
       className={clsx(
         "flex flex-col rounded-lg p-3 gap-3 bg-white overflow-hidden",
-        { " flex-1": type != "tracking" }
+        { " flex-1": type != "tracking", "w-[40%]": type == "tracking" }
       )}
     >
       <span className="text-lg font-medium text-black-60">{title}</span>
@@ -35,7 +35,7 @@ function DashboardSummaryCards(props: Props) {
           case "order":
             return <OrderListDashboard />;
           case "tracking":
-            return <Map />;
+            return <Map mapWidth={"40vw"}/>;
           default:
             return null;
         }

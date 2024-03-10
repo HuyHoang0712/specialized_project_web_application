@@ -1,7 +1,14 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
-function Map() {
+
+interface Props {
+  mapWidth?: string;
+}
+
+function Map(props: Props) {
+  const { mapWidth } = props;
+
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN as string;
   const mapContainerRef = useRef<any | null>(null);
   const mapRef = useRef<any | null>(null);
@@ -18,8 +25,19 @@ function Map() {
       center: [position.longtitude, position.latitude],
       zoom: position.zoom,
     });
+    mapRef.current.on("load", () => {
+      console.log("Map loaded");
+
+      mapRef.current.resize();
+    });
   }, []);
-  return <div className="h-full w-[35vw]" ref={mapContainerRef}></div>;
+
+  return (
+    <div
+      className={`h-full w-full overflow-hidden`}
+      ref={mapContainerRef}
+    ></div>
+  );
 }
 
 export default Map;

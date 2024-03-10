@@ -133,23 +133,22 @@ function NavBar() {
               </Link>
             );
           })}
+          <Link
+            type="button"
+            className={clsx(
+              "flex flex-row gap-3 items-center font-bold rounded-lg text-red px-4 py-4 hover:bg-red-20"
+            )}
+            href={"/auth/login"}
+            scroll={false}
+            onClick={() => {
+              dispatch(logOut());
+            }}
+          >
+            <ArrowRightStartOnRectangleIcon className="w-6 icon-sw-2" />
+            {full && "Logout"}
+          </Link>
         </nav>
       </div>
-      <Link
-        type="button"
-        className={clsx(
-          "flex flex-row gap-3 absolute bottom-[1.25rem] items-center font-bold rounded-xl text-red px-5 py-4 hover:bg-red-20",
-          { "w-[18.5rem]": full }
-        )}
-        href={"/auth/login"}
-        scroll={false}
-        onClick={() => {
-          dispatch(logOut());
-        }}
-      >
-        <ArrowRightStartOnRectangleIcon className="w-6 icon-sw-2" />
-        {full && "Logout"}
-      </Link>
     </div>
   );
 }

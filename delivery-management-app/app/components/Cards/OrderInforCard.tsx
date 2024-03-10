@@ -14,7 +14,7 @@ const OrderInforCard = (props: Prosp) => {
   switch (type) {
     case "driver":
       Icon = dynamic(
-        () => import("@heroicons/react/24/solid").then((res) => res.UserIcon),
+        () => import("@heroicons/react/24/outline").then((res) => res.UserIcon),
         {
           ssr: false,
           loading: () => <>Loading...</>,
@@ -23,7 +23,8 @@ const OrderInforCard = (props: Prosp) => {
       break;
     case "vehicle":
       Icon = dynamic(
-        () => import("@heroicons/react/24/solid").then((res) => res.TruckIcon),
+        () =>
+          import("@heroicons/react/24/outline").then((res) => res.TruckIcon),
         {
           ssr: false,
           loading: () => <>Loading...</>,
@@ -34,7 +35,7 @@ const OrderInforCard = (props: Prosp) => {
     default:
       Icon = dynamic(
         () =>
-          import("@heroicons/react/24/solid").then(
+          import("@heroicons/react/24/outline").then(
             (res) => res.QuestionMarkCircleIcon
           ),
         {
@@ -86,11 +87,11 @@ const OrderInforCard = (props: Prosp) => {
   };
 
   return (
-    <div className="flex flex-1 flex-col w-[25rem] bg-white rounded-lg p-3 gap-6">
+    <div className="flex flex-1 flex-col bg-white rounded-lg p-3 gap-6">
       <div className="flex items-start gap-6">
         <Icon className="w-10 p-2 bg-secondary-20 rounded-lg" />
         <div className="flex flex-col">
-          <span className="text-base font-bold text-black-90">{title}</span>
+          <span className="text-base font-medium text-black-60">{title}</span>
           {Object.entries(titleContent).map(
             ([key, value]: [string, any], idx) => (
               <span className="text-sm font-medium text-black-60" key={idx}>
@@ -100,12 +101,9 @@ const OrderInforCard = (props: Prosp) => {
           )}
         </div>
       </div>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-3">
         {Object.entries(content).map(([key, value]: [string, any], idx) => (
-          <div
-            className="flex flex-col text-sm font-medium text-black-60"
-            key={idx}
-          >
+          <div className="text-sm font-medium text-black-60 truncate" key={idx}>
             <span className="flex gap-1 text-black-30">
               {getIcon(idx)}
               {key}
