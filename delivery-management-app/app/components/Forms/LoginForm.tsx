@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Icons } from "@/app/lib/assets";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useLoginMutation } from "@/app/redux/features/auth/authApiSlice";
 import { useAppDispatch } from "@/app/redux/hooks";
 import { setCredentials } from "@/app/redux/features/auth/authSlice";

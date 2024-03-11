@@ -1,0 +1,24 @@
+"use client";
+import { createSlice, createDraftSafeSelector } from "@reduxjs/toolkit";
+const orderSlice = createSlice({
+  name: "order",
+  initialState: {
+    orderList: [],
+    curOrder: {},
+  },
+  reducers: {
+    setOrderList: (state, action) => {
+      state.orderList = action.payload;
+    },
+  },
+});
+
+const selectOrder = (state: any) => state?.order;
+export const selectOrderList = createDraftSafeSelector(
+  selectOrder,
+  (order) => order.orderList
+);
+
+export const { setOrderList } = orderSlice.actions;
+
+export default orderSlice.reducer;
