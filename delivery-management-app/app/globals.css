@@ -5,45 +5,7 @@
 @layer base {
   :root {
     --bg-color: #f4f5fa;
-    /* color */
-    --primary-color-100: #5570f1;
-    --primary-color-90: #6078ec;
-    --primary-color-80: #6d83ec;
-    --primary-color-70: #7c8fec;
-    --primary-color-60: #8899e9;
-    --primary-color-50: #97a5eb;
-    --primary-color-40: #abb5e9;
-    --primary-color-30: #b6bfe8;
-    --primary-color-20: #c4cae8;
-    --primary-color-10: #dbdeee;
-
-    --secondary-color-100: #ffcc91;
-    --secondary-color-90: #ffd29e;
-    --secondary-color-80: #ffdaae;
-    --secondary-color-70: #ffdfba;
-    --secondary-color-60: #ffe5c8;
-    --secondary-color-50: #ffead1;
-    --secondary-color-40: #fff0de;
-    --secondary-color-30: #fff2e2;
-    --secondary-color-20: #fef5ea;
-    --secondary-color-10: #fef9f2;
-
-    --black-color-100: #1c1d22;
-    --black-color-90: #2c2d33;
-    --black-color-80: #33343a;
-    --black-color-70: #37393f;
-    --black-color-60: #45464e;
-    --black-color-50: #53545c;
-    --black-color-40: #6e7079;
-    --black-color-20: #8b8d97;
-    --black-color-30: #a6a8b1;
-    --black-color-10: #bec0ca;
-
-    --green-color-100: #519c66;
-    --red-color-100: #cc5f5f;
-
     --input-color-defaut: #eff1f9;
-
     --height-header: 5.275rem;
   }
 }

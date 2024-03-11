@@ -9,7 +9,7 @@ const StatusCard = (props: Props) => {
   const { label } = props;
   return (
     <div
-      className={clsx("px-3 py-2 rounded-xl", {
+      className={clsx("text-sm px-2 py-1 rounded-xl", {
         "bg-[#32936F]/[.16] text-green": label === "Completed",
         "bg-secondary-30 text-[#FAA300]": label === "Pending",
         "bg-[#5570F1]/[.16] text-primary-100": label === "In-Progress",

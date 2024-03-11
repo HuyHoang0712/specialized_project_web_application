@@ -25,6 +25,8 @@ import {
   InformationCircleIcon,
   IdentificationIcon,
   ArrowRightStartOnRectangleIcon,
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
 } from "@heroicons/react/24/outline";
 
 const navItems = [
@@ -75,6 +77,7 @@ const navItems = [
 function NavBar() {
   let pathname = usePathname() || "/";
   let [full, setFull] = useState(true);
+  let [toggle, setToggle] = useState(false);
   const dispatch = useAppDispatch();
 
   const transformName = (curPath: string) => {
@@ -95,8 +98,8 @@ function NavBar() {
         "flex flex-col relative transition-[width] h-100vh px-3 py-3 " +
         (full ? "w-[18.75rem]" : "w-[5.25rem]")
       }
-      onMouseEnter={() => setFull(true)}
-      onMouseLeave={() => setFull(false)}
+      onMouseEnter={() => setToggle(true)}
+      onMouseLeave={() => setToggle(false)}
     >
       <div className="flex flex-row gap-4 items-center h-16">
         <Image src={logo} width={60} alt="" />
@@ -149,6 +152,18 @@ function NavBar() {
           </Link>
         </nav>
       </div>
+      {toggle && (
+        <div
+          className="absolute top-1/2 left-full bg-primary-100/25 py-3 pl-1 pr-2 text-black-60 rounded-r-full"
+          onClick={() => setFull(!full)}
+        >
+          {full ? (
+            <ChevronDoubleLeftIcon className="w-5 icon-sw-2" />
+          ) : (
+            <ChevronDoubleRightIcon className="w-5 icon-sw-2" />
+          )}
+        </div>
+      )}
     </div>
   );
 }
