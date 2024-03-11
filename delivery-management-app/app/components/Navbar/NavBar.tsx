@@ -76,7 +76,7 @@ const navItems = [
 
 function NavBar() {
   let pathname = usePathname() || "/";
-  let [full, setFull] = useState(true);
+  let [full, setFull] = useState(false);
   let [toggle, setToggle] = useState(false);
   const dispatch = useAppDispatch();
 

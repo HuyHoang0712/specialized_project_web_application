@@ -32,8 +32,7 @@ const OrderDetailPage = ({ params }: { params: { id: string } }) => {
           <OrderInforCard {...vehicle_card_props} />
         </div>
         <div
-          className="flex flex-col flex-1 rounded-lg p-3 bg-white overflow-hidden"
-          // style={{ height: "calc(100vh - 16.275rem)" }}
+          className="flex flex-col flex-1 rounded-lg p-3 gap-2 bg-white overflow-hidden"
         >
           <span className="text-lg font-medium text-black-60">
             Order Tracking
