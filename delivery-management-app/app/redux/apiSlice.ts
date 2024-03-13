@@ -1,5 +1,5 @@
 "use client";
-
+import type { Action, PayloadAction } from "@reduxjs/toolkit";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type {
   BaseQueryFn,
@@ -9,7 +9,13 @@ import type {
 import { logOut, setCredentials } from "./features/auth/authSlice";
 import TokenService from "@/utils/Token.service";
 import { RootState } from "./store";
+import { HYDRATE } from "next-redux-wrapper";
+
 // import { Mutex } from "async-mutex";
+
+function isHydrateAction(action: Action): action is PayloadAction<RootState> {
+  return action.type === HYDRATE;
+}
 
 const apiURL =
   process.env.NEXT_PUBLIC_NODE_ENV === "production"
@@ -72,5 +78,10 @@ const baseQueryWithReauth: BaseQueryFn<
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
+  extractRehydrationInfo(action, { reducerPath }): any {
+    if (isHydrateAction(action)) {
+      return action.payload[reducerPath];
+    }
+  },
   endpoints: (builder) => ({}),
 });

@@ -10,6 +10,9 @@ const orderSlice = createSlice({
     setOrderList: (state, action) => {
       state.orderList = action.payload;
     },
+    setCurOder: (state, action) => {
+      state.curOrder = action.payload;
+    },
   },
 });
 
@@ -19,6 +22,6 @@ export const selectOrderList = createDraftSafeSelector(
   (order) => order.orderList
 );
 
-export const { setOrderList } = orderSlice.actions;
+export const { setOrderList, setCurOder } = orderSlice.actions;
 
 export default orderSlice.reducer;
