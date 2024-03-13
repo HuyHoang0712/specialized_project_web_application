@@ -3,8 +3,9 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Icons, Images } from "@/app/lib/assets";
-import { BellIcon } from "@heroicons/react/24/solid";
+import {Images } from "@/app/lib/assets";
+
+import { BellIcon, HomeIcon } from "@heroicons/react/24/solid";
 
 function Header() {
   let pathname = usePathname() || "/";
@@ -45,7 +46,7 @@ function Header() {
       </div>
       <div className="flex flex-row items-center px-3 py-1 gap-1">
         <Link href={"/dashboard"}>
-          <Image src={Icons.Home} width={18} alt="" />
+          <HomeIcon className="w-[1.125rem] text-primary-100" />
         </Link>
         {(paths[1] != "dashboard" ? paths.slice(1) : paths.slice(2)).map(
           (item, idx) => {

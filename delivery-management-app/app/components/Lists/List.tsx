@@ -12,12 +12,14 @@ interface Props {
 
 const List = (props: Props) => {
   const { headers, data, type } = props;
+
   const lenData = data.length;
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [totalPage, setTotalPage] = useState(Math.ceil(lenData / itemsPerPage));
   const [curPage, setCurPage] = useState(1);
-  const [curData, setCurData] = useState(data.slice(0, itemsPerPage));
-
+  const [curData, setCurData] = useState(
+    data.slice(0, lenData > itemsPerPage ? itemsPerPage : lenData)
+  );
   const movePage = (move: number) => {
     if (move > 0 && curPage < totalPage) {
       setCurData(

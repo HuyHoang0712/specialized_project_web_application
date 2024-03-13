@@ -1,70 +1,18 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import IssueCard from "../Cards/IssueCard";
-
-const IssueLists = [
-  {
-    owner: "John A",
-    label: 'Request Leave',
-    datetime: '30-11-2023 12:00 pm',
-    status: 'Pending',
-    type: "personal request"
-  },
-  {
-    owner: "John A",
-    label: 'Request Leave',
-    datetime: '30-11-2023 12:00 pm',
-    status: 'Pending',
-    type: "personal request"
-  },
-  {
-    owner: "John A",
-    label: 'Request Leave',
-    datetime: '30-11-2023 12:00 pm',
-    status: 'Pending',
-    type: "personal request"
-  },
-  {
-    owner: "John A",
-    label: 'Request Leave',
-    datetime: '30-11-2023 12:00 pm',
-    status: 'Pending',
-    type: "personal request"
-  },
-  {
-    owner: "John A",
-    label: 'Request Leave',
-    datetime: '30-11-2023 12:00 pm',
-    status: 'Pending',
-    type: "personal request"
-  },
-  {
-    owner: "John A",
-    label: 'Request Leave',
-    datetime: '30-11-2023 12:00 pm',
-    status: 'Pending',
-    type: "personal request"
-  },
-  {
-    owner: "John A",
-    label: 'Request Leave',
-    datetime: '30-11-2023 12:00 pm',
-    status: 'Pending',
-    type: "personal request"
-  },
-  {
-    owner: "John A",
-    label: 'Request Leave',
-    datetime: '30-11-2023 12:00 pm',
-    status: 'Pending',
-    type: "personal request"
-  },
-];
+import { useGetIssuesByStatsusQuery } from "@/app/redux/features/issues/issueApiSlice";
+import { selectIssuesList } from "@/app/redux/features/issues/issueSlice";
+import { useAppSelector } from "@/app/redux/hooks";
+import { Issue } from "@/app/lib/types";
 
 const IssueListDashboard = () => {
+  const { data, error, isLoading } = useGetIssuesByStatsusQuery(0);
+  const issueList = useAppSelector((state) => selectIssuesList(state));
+
   return (
     <div className="flex flex-col items-center divide-y overflow-y-scroll scroll-y no-scrollbar">
-      {IssueLists.map((item, idx) => (
+      {issueList.map((item: Issue, idx: number) => (
         <IssueCard key={idx} {...item} />
       ))}
     </div>

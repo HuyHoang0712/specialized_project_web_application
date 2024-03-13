@@ -139,7 +139,7 @@ function NavBar() {
           <Link
             type="button"
             className={clsx(
-              "flex flex-row gap-3 items-center font-bold rounded-lg text-red px-4 py-4 hover:bg-red-20"
+              "flex flex-row gap-3 items-center font-bold rounded-lg text-red px-4 py-4 hover:bg-red/20"
             )}
             href={"/auth/login"}
             scroll={false}

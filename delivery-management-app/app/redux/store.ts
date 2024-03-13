@@ -2,12 +2,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/auth/authSlice";
 import { apiSlice } from "./apiSlice";
 import orderReducer from "./features/order/orderSlice";
-
+import issueReducer from "./features/issues/issueSlice";
+import planReducer from "./features/plan/planSlice";
 export const makeStore = () => {
   return configureStore({
     reducer: {
       auth: authReducer,
       order: orderReducer,
+      issue: issueReducer,
+      plan: planReducer,
       [apiSlice.reducerPath]: apiSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>

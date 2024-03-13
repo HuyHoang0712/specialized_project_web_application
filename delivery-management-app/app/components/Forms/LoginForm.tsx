@@ -1,14 +1,17 @@
 "use client";
 import React, { useState, useRef, FormEvent } from "react";
-import Image from "next/image";
-import { Icons } from "@/app/lib/assets";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useLoginMutation } from "@/app/redux/features/auth/authApiSlice";
 import { useAppDispatch } from "@/app/redux/hooks";
 import { setCredentials } from "@/app/redux/features/auth/authSlice";
-
+import {
+  EnvelopeIcon,
+  KeyIcon,
+  EyeIcon,
+  EyeSlashIcon,
+} from "@heroicons/react/24/outline";
 const ERROR_TOAST = 0;
 const SUCCESS_TOAST = 1;
 
@@ -49,7 +52,7 @@ function LoginForm() {
     >
       <div className="flex flex-col items-center justify-start gap-8 w-full">
         <div className="flex flex-row px-4 gap-2.5 relative rounded-[0.5rem] border-none bg-input-defaut-color shadow-sm w-full h-[3.35rem]">
-          <Image src={Icons.Mail} width={24} alt={""} />
+          <EnvelopeIcon className="w-6 icon-sw-2 text-black-20" />
           <input
             type="text"
             name="username"
@@ -60,7 +63,7 @@ function LoginForm() {
           />
         </div>
         <div className="flex flex-row px-4 gap-2.5 relative rounded-[0.5rem] border-none bg-input-defaut-color shadow-sm w-full h-[3.35rem]">
-          <Image src={Icons.Password} width={24} alt={""} />
+          <KeyIcon className="w-6 icon-sw-2 text-black-20" />
           <input
             type={showInput ? "text" : "password"}
             name="password"
@@ -69,13 +72,17 @@ function LoginForm() {
             ref={passRef}
             required
           />
-          <Image
-            src={showInput ? Icons.Eye : Icons.HideEye}
-            width={16}
-            alt={""}
+          <button
+            type="button"
             onClick={() => setShowInput(!showInput)}
             className="hover:scale-105"
-          />
+          >
+            {showInput ? (
+              <EyeIcon className="w-4 icon-sw-2" />
+            ) : (
+              <EyeSlashIcon className="w-4 icon-sw-2" />
+            )}
+          </button>
         </div>
       </div>
       <Link
@@ -89,7 +96,7 @@ function LoginForm() {
         type="submit"
         className="rounded-xl w-[11.25rem] bg-primary-100 p-3 font-normal text-white text-xl mt-12 hover:scale-110"
       >
-        Login
+        {isLoading ? "Loging..." : "Login"}
       </button>
     </form>
   );

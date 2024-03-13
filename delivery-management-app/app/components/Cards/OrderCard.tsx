@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
-import Image from "next/image";
-import { Icons, Themes } from "@/app/lib/assets";
 import StatusCard from "./StatusCard";
-
+import { TruckIcon, CubeTransparentIcon } from "@heroicons/react/24/solid";
 interface OrderCardProps {
   id: number;
   ship_code: string;
@@ -14,28 +12,30 @@ interface OrderCardProps {
   pickup_point: string;
   delivery_point: string;
   empleyee_id: string;
-  status: string;
+  status: number;
 }
 
 function OrderCard(props: OrderCardProps) {
-  const { ship_code, date, time_in, payload, vehicle, pickup_point, delivery_point, status } =
-    props;
+  const {
+    ship_code,
+    date,
+    time_in,
+    payload,
+    vehicle,
+    pickup_point,
+    delivery_point,
+    status,
+  } = props;
   return (
     <div className="flex flex-row w-full py-3 gap-[.625rem] items-start">
-      <Image
-        className="p-[.313rem] bg-primary-10 rounded-lg"
-        src={Icons.Package}
-        width={60}
-        height={60}
-        alt=""
-      />
+      <CubeTransparentIcon className="w-10 p-[.313rem] bg-primary-10 rounded-lg" />
       <div className="flex flex-col flex-1 gap-1">
         <div className="card-content">
           <span className="text-black-60 font-medium text-base">
             Depot: {pickup_point}
           </span>
           <span className="flex flex-row gap-2 text-black-100 text-base">
-            <Image src={Icons.Truck} width={20} height={20} alt="" />
+            <TruckIcon className="w-5" />
             {vehicle}
           </span>
         </div>

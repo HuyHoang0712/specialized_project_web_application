@@ -1,19 +1,16 @@
 "use client";
 
 import { apiSlice } from "../../apiSlice";
-import { setOrderList } from "./orderSlice";
+import { setPlanList } from "./planSlice";
 import URLS from "@/app/lib/urls";
-export const orderApiSlice = apiSlice.injectEndpoints({
+export const planApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getOrdersByDate: builder.query({
-      query: (data) => URLS.ORDER_URL + `get_orders_by_date?date=${data}`,
-
+    getAllPlan: builder.query({
+      query: () => URLS.PLAN_URL + "get_all_plans/",
       onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
         try {
           const res = await queryFulfilled;
-          console.log(res.data);
-
-          dispatch(setOrderList(res.data));
+          dispatch(setPlanList(res.data));
         } catch (error) {
           console.log(error);
         }
@@ -23,4 +20,4 @@ export const orderApiSlice = apiSlice.injectEndpoints({
   overrideExisting: true,
 });
 
-export const { useGetOrdersByDateQuery } = orderApiSlice;
+export const { useGetAllPlanQuery } = planApiSlice;
