@@ -1,5 +1,4 @@
 "use client";
-
 import { apiSlice } from "../../apiSlice";
 import { setOrderList, setCurOder } from "./orderSlice";
 import URLS from "@/app/lib/urls";
@@ -41,7 +40,7 @@ export const orderApiSlice = apiSlice.injectEndpoints({
           const res = await queryFulfilled;
           console.log(res.data[0]);
 
-          dispatch(setCurOder(res.data));
+          dispatch(setCurOder(res.data[0]));
         } catch (error) {
           console.log(error);
         }

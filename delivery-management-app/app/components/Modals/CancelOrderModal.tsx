@@ -17,7 +17,7 @@ const CancelOrderModal = () => {
     label: "Cancel Order",
     onClick: () => setActive(true),
     type: "Normal",
-    styles: "bg-red",
+    bg: "bg-red",
   };
   return (
     <>

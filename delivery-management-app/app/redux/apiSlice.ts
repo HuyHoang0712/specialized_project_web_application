@@ -37,7 +37,10 @@ const baseQuery = fetchBaseQuery({
         headers.set("x-refresh", `${token.refreshToken}`);
       }
     }
-    headers.set("Content-Type", "application/json");
+    headers.set(
+      "Content-Type",
+      "application/json, multipart/form-data; boundary=something"
+    );
     headers.set("Accept", "application/json");
     return headers;
   },

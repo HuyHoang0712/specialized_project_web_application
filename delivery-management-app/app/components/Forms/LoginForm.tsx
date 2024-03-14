@@ -20,8 +20,6 @@ function LoginForm() {
   const dispatch = useAppDispatch();
   const [showInput, setShowInput] = useState(false);
   const [login, { isLoading, data, error }] = useLoginMutation();
-  const usernameRef = useRef(null);
-  const passRef = useRef(null);
 
   const submitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -58,7 +56,6 @@ function LoginForm() {
             name="username"
             className="peer flex-1 h-[3.35rem] border-none placeholder-black-20 bg-transparent focus:border-transparent focus:outline-none focus:ring-0"
             placeholder="Username"
-            ref={usernameRef}
             required
           />
         </div>
@@ -69,7 +66,6 @@ function LoginForm() {
             name="password"
             className="peer flex-1 h-[3.35rem] border-none placeholder-black-20 bg-transparent focus:border-transparent focus:outline-none focus:ring-0"
             placeholder="Password"
-            ref={passRef}
             required
           />
           <button

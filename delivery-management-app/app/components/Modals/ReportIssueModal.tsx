@@ -22,7 +22,7 @@ const ReportIssueModal = () => {
     label: "Report Issue",
     onClick: () => setActive(true),
     type: "Normal",
-    styles: "bg-black-60",
+    bg: "bg-black-60",
   };
   return (
     <>
