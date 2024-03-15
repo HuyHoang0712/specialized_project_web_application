@@ -25,8 +25,6 @@ export const planApiSlice = apiSlice.injectEndpoints({
       }),
     }),
   }),
-
-  overrideExisting: true,
 });
 
 export const { useGetAllPlanQuery, useCreatePlanMutation } = planApiSlice;

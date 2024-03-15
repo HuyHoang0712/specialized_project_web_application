@@ -23,7 +23,6 @@ const getToken = () => {
   try {
     const accessToken = Cookie.get("access_token");
     const refreshToken = Cookie.get("refresh_token");
-
     if (accessToken && refreshToken) {
       const token = {
         accessToken,
@@ -48,7 +47,7 @@ const updateLocalAccessToken = (token) => {
 
     const accessTokenCokieOptions = {
       httpOnly: false,
-        expires: accessTokenExpiry,
+      expires: accessTokenExpiry,
       path: "/",
       sameSite: "strict",
       secure: process.env.NEXT_PUBLIC_NODE_ENV === "production",
@@ -56,7 +55,7 @@ const updateLocalAccessToken = (token) => {
 
     const refreshTokenCokieOptions = {
       httpOnly: false,
-        expires: refreshTokenExpiry,
+      expires: refreshTokenExpiry,
       path: "/",
       sameSite: "strict",
       secure: process.env.NEXT_PUBLIC_NODE_ENV === "production",

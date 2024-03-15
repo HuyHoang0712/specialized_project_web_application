@@ -29,8 +29,7 @@ function LoginForm() {
         username: formData.get("username"),
         password: formData.get("password"),
       };
-      const res = await login(JSON.stringify(data)).unwrap();
-      dispatch(setCredentials(res));
+      const res = await login(JSON.stringify(data));
       toast.success("Successfully logged in....", { toastId: SUCCESS_TOAST });
       router.push("/dashboard");
     } catch (error: any) {

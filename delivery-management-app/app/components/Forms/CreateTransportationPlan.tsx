@@ -44,11 +44,11 @@ const CreateTransportationPlan = () => {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("submitting");
 
     if (selectedFile) {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      console.log(formData.get("file"));
       createPlan(formData);
     } else {
       toast.error("Please input an excel file!", {

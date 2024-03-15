@@ -30,7 +30,7 @@ export const issueApiSlice = apiSlice.injectEndpoints({
       },
     }),
   }),
-  overrideExisting: true,
+
 });
 
 export const { useGetAllIssueQuery, useGetIssuesByStatsusQuery } =

@@ -7,7 +7,7 @@ import type {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query";
 import { logOut, setCredentials } from "./features/auth/authSlice";
-import TokenService from "@/utils/Token.service";
+import TokenService from "@/app/utils/Token.service";
 import { RootState } from "./store";
 import { HYDRATE } from "next-redux-wrapper";
 
@@ -36,10 +36,8 @@ const baseQuery = fetchBaseQuery({
         headers.set("authorization", `Bearer ${token.accessToken}`);
         headers.set("x-refresh", `${token.refreshToken}`);
       }
+      headers.set("Accept", "*/*");
     }
-    headers.set("Content-Type", "application/json");
-    headers.set("Content-Type", "multipart/form-data; boundary=something");
-    headers.set("Accept", "*/*");
     return headers;
   },
 });
@@ -51,7 +49,6 @@ const baseQueryWithReauth: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   // await mutex.waitForUnlock();
   let result = await baseQuery(args, api, extraOptions);
-
   if (result?.error?.status === 403) {
     console.log("sending refresh token");
     // send refresh token to get new access token
@@ -79,10 +76,10 @@ const baseQueryWithReauth: BaseQueryFn<
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  extractRehydrationInfo(action, { reducerPath }): any {
-    if (isHydrateAction(action)) {
-      return action.payload[reducerPath];
-    }
-  },
+  // extractRehydrationInfo(action, { reducerPath }): any {
+  //   if (isHydrateAction(action)) {
+  //     return action.payload[reducerPath];
+  //   }
+  // },
   endpoints: (builder) => ({}),
 });
