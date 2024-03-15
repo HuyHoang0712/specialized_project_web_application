@@ -45,6 +45,8 @@ const CreateTransportationPlan = () => {
     if (selectedFile) {
       const formData = new FormData();
       formData.append("file", selectedFile);
+      console.log(selectedFile);
+      
     } else {
       toast.error("Please input an excel file!", {
         toastId: ERROR_TOAST,
