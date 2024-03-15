@@ -1,5 +1,6 @@
 "use client";
 
+import { create } from "domain";
 import { apiSlice } from "../../apiSlice";
 import { setPlanList } from "./planSlice";
 import URLS from "@/app/lib/urls";
@@ -16,8 +17,16 @@ export const planApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+    createPlan: builder.mutation({
+      query: (data) => ({
+        url: URLS.PLAN_URL + "file_upload/",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
+
   overrideExisting: true,
 });
 
-export const { useGetAllPlanQuery } = planApiSlice;
+export const { useGetAllPlanQuery, useCreatePlanMutation } = planApiSlice;

@@ -2,6 +2,7 @@
 import React, { useRef, useState } from "react";
 import { DocumentCheckIcon } from "@heroicons/react/24/solid";
 import { toast } from "react-toastify";
+import { useCreatePlanMutation } from "@/app/redux/features/plan/planApiSlice";
 import SolidButton from "../Buttons/SolidButton";
 
 const ERROR_TOAST = 0;
@@ -9,6 +10,8 @@ const SUCCESS_TOAST = 1;
 const CreateTransportationPlan = () => {
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState<any>(null);
+  const [createPlan, { isLoading, data, error }] = useCreatePlanMutation();
+
   const dropHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
 
@@ -45,8 +48,8 @@ const CreateTransportationPlan = () => {
     if (selectedFile) {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      console.log(selectedFile);
-      
+      console.log(formData.get("file"));
+      createPlan(formData);
     } else {
       toast.error("Please input an excel file!", {
         toastId: ERROR_TOAST,
@@ -62,11 +65,7 @@ const CreateTransportationPlan = () => {
   };
 
   return (
-    <form
-      className="flex flex-col gap-3"
-      onSubmit={submitHandler}
-      encType="multipart/form-data"
-    >
+    <form className="flex flex-col gap-3" onSubmit={submitHandler}>
       <div
         className="flex flex-col items-center justify-center w-[30vw] h-72 border-dashed border-2 border-black-30 rounded-lg"
         onDrop={dropHandler}
