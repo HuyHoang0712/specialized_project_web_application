@@ -5,9 +5,10 @@ import SolidButton from "../Buttons/SolidButton";
 import Modal from "./Modal";
 
 const FormContent = dynamic(
-  () => import("@/app/components/Forms/ReportIssueForm"),
+  () => import("@/app/components/Forms/UpdateOrderForm"),
   { ssr: true, loading: () => <>Loading...</> }
 );
+
 
 const UpdateOrderModal = () => {
   const [active, setActive] = useState(false);

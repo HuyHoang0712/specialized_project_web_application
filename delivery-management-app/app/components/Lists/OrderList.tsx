@@ -19,7 +19,7 @@ const ORDER_LIST = [
 ];
 
 interface Props {
-  id: number;
+  id: string;
 }
 
 const OrderList = (props: Props) => {

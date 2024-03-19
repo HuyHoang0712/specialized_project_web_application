@@ -2,6 +2,7 @@
 
 import { apiSlice } from "../../apiSlice";
 import { setCredentials } from "./authSlice";
+import { toast } from "react-toastify";
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
@@ -15,7 +16,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
         try {
           const res = await queryFulfilled;
           dispatch(setCredentials(res.data));
+          toast.success("Login Success!!", { toastId: 1 });
         } catch (error: any) {
+          toast.error(error.error?.data.error_message, { toastId: 0 });
           throw error;
         }
       },

@@ -22,6 +22,11 @@ export const selectOrderList = createDraftSafeSelector(
   (order) => order.orderList
 );
 
+export const selectCurOrder = createDraftSafeSelector(
+  selectOrder,
+  (order) => order.curOrder
+);
+
 export const { setOrderList, setCurOder } = orderSlice.actions;
 
 export default orderSlice.reducer;

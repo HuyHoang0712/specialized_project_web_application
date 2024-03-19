@@ -13,7 +13,7 @@ const Modal = (props: Props) => {
 
   return (
     <div className="absolute w-full h-full top-0 left-0 flex justify-center items-center bg-blur-color">
-      <div className="bg-white p-5 space-y-3 rounded-lg">
+      <div className="bg-white px-5 py-8 space-y-3 rounded-lg">
         <div className="flex flex-row justify-between items-center gap-5">
           <span className="text-lg font-medium text-black-100">{title}</span>
           <XMarkIcon

@@ -46,12 +46,30 @@ export const orderApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
-  }),
+    updateOrderById: builder.mutation({
+      query: (data) => ({
+        headers: { "Content-Type": "application/json" },
+        url: URLS.ORDER_URL + `update_order/?id=${data.id}`,
+        method: "patch",
+        body: JSON.stringify(data),
+      }),
+      onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
+        try {
+          const res = await queryFulfilled;
+          console.log(res.data[0]);
 
+          dispatch(setCurOder(res.data[0]));
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    }),
+  }),
 });
 
 export const {
   useGetOrdersByDateQuery,
   useGetOrdersinPlanQuery,
   useGetOrderByIdQuery,
+  useUpdateOrderByIdMutation,
 } = orderApiSlice;

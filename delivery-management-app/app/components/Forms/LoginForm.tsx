@@ -4,8 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useLoginMutation } from "@/app/redux/features/auth/authApiSlice";
-import { useAppDispatch } from "@/app/redux/hooks";
-import { setCredentials } from "@/app/redux/features/auth/authSlice";
 import {
   EnvelopeIcon,
   KeyIcon,
@@ -17,30 +15,23 @@ const SUCCESS_TOAST = 1;
 
 function LoginForm() {
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const [showInput, setShowInput] = useState(false);
-  const [login, { isLoading, data, error }] = useLoginMutation();
+  const [login, { isLoading, data, error, isSuccess }] = useLoginMutation();
 
   const submitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      const formData = new FormData(event.currentTarget);
-      const data = {
-        username: formData.get("username"),
-        password: formData.get("password"),
-      };
-      const res = await login(JSON.stringify(data));
-      toast.success("Successfully logged in....", { toastId: SUCCESS_TOAST });
-      router.push("/dashboard");
-    } catch (error: any) {
-      if (error.data)
-        toast.error(error.data?.error_message, { toastId: ERROR_TOAST });
-      else
-        toast.error("Something went wrong! Please try again later!", {
-          toastId: ERROR_TOAST,
-        });
-    }
+
+    const formData = new FormData(event.currentTarget);
+    const data = {
+      username: formData.get("username"),
+      password: formData.get("password"),
+    };
+    login(JSON.stringify(data));
   };
+
+  if (isSuccess) {
+    return router.push("/dashboard");
+  }
 
   return (
     <form

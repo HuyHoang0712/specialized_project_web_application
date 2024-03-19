@@ -65,12 +65,12 @@ const baseQueryWithReauth: BaseQueryFn<
     } else {
       api.dispatch(logOut());
     }
-  } else {
-    // wait until the mutex is available without locking it
-    // await mutex.waitForUnlock();
-    result = await baseQuery(args, api, extraOptions);
+    // } else {
+    //   // wait until the mutex is available without locking it
+    //   // await mutex.waitForUnlock();
+    //   result = await baseQuery(args, api, extraOptions);
+    // }
   }
-  // }
   return result;
 };
 

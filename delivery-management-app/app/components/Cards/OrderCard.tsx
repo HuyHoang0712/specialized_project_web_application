@@ -28,25 +28,25 @@ function OrderCard(props: OrderCardProps) {
   } = props;
   return (
     <div className="flex flex-row w-full py-3 gap-[.625rem] items-start">
-      <CubeTransparentIcon className="w-10 p-[.313rem] bg-primary-10 rounded-lg" />
-      <div className="flex flex-col flex-1 gap-1">
-        <div className="card-content">
-          <span className="text-black-60 font-medium text-base">
-            Depot: {pickup_point}
-          </span>
-          <span className="flex flex-row gap-2 text-black-100 text-base">
-            <TruckIcon className="w-5" />
-            {vehicle}
+      <div className="flex flex-col flex-1 gap-2">
+        <div className="flex gap-2 items-center">
+          <CubeTransparentIcon className="w-6 p-1 bg-primary-10 rounded-lg" />
+          <span className="flex text-black-60 font-medium text-base">
+            Delivery Point: {delivery_point}
           </span>
         </div>
         <div className="card-content">
           <span className="text-black-60 font-medium text-sm">
-            To: {delivery_point}
+            Depot: {pickup_point}
           </span>
-          <StatusCard label={status} />
+          <span className="flex flex-row w-[120px] gap-2 text-black-100 text-base">
+            <TruckIcon className="w-5" />
+            {vehicle}
+          </span>
         </div>
-        <div className="text-black-80 font-medium text-sm">
+        <div className="text-black-80 font-medium text-sm card-content">
           Capacity: {payload} kg
+          <StatusCard label={status} />
         </div>
       </div>
     </div>
