@@ -9,8 +9,12 @@ import {
 } from "@heroicons/react/24/outline";
 import { useAppSelector } from "@/app/redux/hooks";
 import { selectCurOrder } from "@/app/redux/features/order/orderSlice";
-import { useUpdateOrderByIdMutation } from "@/app/redux/features/order/orderApiSlice";
+import {
+  useUpdateOrderByIdMutation,
+  useGetOrderByIdQuery,
+} from "@/app/redux/features/order/orderApiSlice";
 import SolidButton from "../Buttons/SolidButton";
+import { toast } from "react-toastify";
 
 const CONTENT_TITLE_CLASS =
   "flex items-center gap-1 text-sm font-medium text-black-30";
@@ -18,13 +22,18 @@ const CONTENT_CLASS =
   "font-medium text-black-40 bg-black-10/20 w-full rounded-lg cursor-pointer border-none focus:border-transparent focus:outline-none focus:ring-0";
 const ICON_CLASS = "w-4 icon-sw-2";
 
-const UpdateOrderForm = () => {
-  const [updateOrder, { isLoading, data, error }] =
-    useUpdateOrderByIdMutation();
-  const curOrder = useAppSelector((state) => selectCurOrder(state));
+interface Props {
+  id: string;
+}
+
+const UpdateOrderForm = (props: Props) => {
+  const { id } = props;
+  const { data, error, isLoading } = useGetOrderByIdQuery(id);
+  const [updateOrder, { isSuccess }] = useUpdateOrderByIdMutation();
+
   const [order, setOrder] = useState({
-    ...curOrder,
-    vehicle: curOrder.vehicle.license_plate,
+    ...data,
+    vehicle: data.vehicle.license_plate,
   });
 
   const btn_props = {
@@ -36,8 +45,13 @@ const UpdateOrderForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    updateOrder(order);
+    const { delivery_point, pickup_point, ...rest } = order;
+    updateOrder(rest);
   };
+
+  if (isSuccess) {
+    toast.success("Order updated successfully!", { toastId: 1 });
+  }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">

@@ -30,7 +30,8 @@ const OrderDetailContainer = (props: Props) => {
   const { data, error, isLoading } = useGetOrderByIdQuery(id);
 
   if (isLoading) return <div>Loading...</div>;
-  const order = data[0];
+  const order = data;
+
   const vehicle = order?.vehicle;
   const driver = vehicle?.driver;
   const driver_card_props = {
@@ -134,7 +135,7 @@ const OrderDetailContainer = (props: Props) => {
           </div>
         </div>
         <div className="flex flex-1 items-end justify-between gap-3">
-          <UpdateOrderModal />
+          <UpdateOrderModal {...props} />
           <div className="flex gap-3">
             <ReportIssueModal />
             <CancelOrderModal />

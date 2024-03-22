@@ -26,7 +26,7 @@ function LoginForm() {
       username: formData.get("username"),
       password: formData.get("password"),
     };
-    login(JSON.stringify(data));
+    await login(JSON.stringify(data));
   };
 
   if (isSuccess) {

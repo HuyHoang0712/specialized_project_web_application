@@ -9,14 +9,18 @@ const FormContent = dynamic(
   { ssr: true, loading: () => <>Loading...</> }
 );
 
+interface Props {
+  id: string;
+}
 
-const UpdateOrderModal = () => {
+const UpdateOrderModal = (props: Props) => {
   const [active, setActive] = useState(false);
 
   const MODAL_PROPS = {
     title: "Update Order Detail",
     FormContent: FormContent,
     setActive: setActive,
+    formProps: props,
   };
 
   const CANCEL_BTN_PROPS = {

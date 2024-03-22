@@ -6,10 +6,11 @@ interface Props {
   title: string;
   FormContent: any;
   setActive: any;
+  formProps?: any;
 }
 
 const Modal = (props: Props) => {
-  const { title, FormContent, setActive } = props;
+  const { title, FormContent, setActive, formProps } = props;
 
   return (
     <div className="absolute w-full h-full top-0 left-0 flex justify-center items-center bg-blur-color">
@@ -21,7 +22,7 @@ const Modal = (props: Props) => {
             onClick={() => setActive(false)}
           />
         </div>
-        <FormContent />
+        <FormContent {...formProps} />
       </div>
     </div>
   );

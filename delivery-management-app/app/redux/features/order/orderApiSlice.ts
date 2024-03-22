@@ -38,9 +38,9 @@ export const orderApiSlice = apiSlice.injectEndpoints({
       onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
         try {
           const res = await queryFulfilled;
-          console.log(res.data[0]);
+          console.log(res.data);
 
-          dispatch(setCurOder(res.data[0]));
+          dispatch(setCurOder(res.data));
         } catch (error) {
           console.log(error);
         }
@@ -48,17 +48,22 @@ export const orderApiSlice = apiSlice.injectEndpoints({
     }),
     updateOrderById: builder.mutation({
       query: (data) => ({
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         url: URLS.ORDER_URL + `update_order/?id=${data.id}`,
-        method: "patch",
+        method: "put",
         body: JSON.stringify(data),
       }),
-      onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
+      onQueryStarted: async ({ id, ...put }, { dispatch, queryFulfilled }) => {
         try {
           const res = await queryFulfilled;
-          console.log(res.data[0]);
-
-          dispatch(setCurOder(res.data[0]));
+          const putResult = dispatch(
+            orderApiSlice.util.updateQueryData("getOrderById", id, (draft) => {
+              Object.assign(draft, res.data);
+            })
+          );
+          dispatch(setCurOder(res.data));
         } catch (error) {
           console.log(error);
         }
