@@ -3,15 +3,11 @@ import React from "react";
 import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
 import List from "./List";
-import { useAppSelector } from "@/app/redux/hooks";
 import { useGetAllPlanQuery } from "@/app/redux/features/plan/planApiSlice";
-import { selectPlanList } from "@/app/redux/features/plan/planSlice";
-
 
 const TransportationPlanList = () => {
   const { data, error, isLoading } = useGetAllPlanQuery("");
-  // const planList = useAppSelector((state) => selectPlanList(state));
-  
+
   const LIST_PROPS = {
     headers: [
       { title: "#ID", key: "id" },

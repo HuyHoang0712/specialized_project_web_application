@@ -80,7 +80,7 @@ const List = (props: Props) => {
             {headers.map((item: any, index) => (
               <span
                 key={index}
-                className={clsx("flex flex-1", {
+                className={clsx("flex flex-1 truncate", {
                   "flex-none w-28": item.key === "id",
                   "flex-none w-40": ["status", "issue"].includes(item.key),
                 })}

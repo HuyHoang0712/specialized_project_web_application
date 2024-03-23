@@ -43,7 +43,7 @@ const navItems = [
     Active: ShoppingBagIconActive,
   },
   {
-    path: "/customer",
+    path: "/customers",
     name: "Customers",
     Unactive: UserGroupIcon,
     Active: UserGroupIconActive,
