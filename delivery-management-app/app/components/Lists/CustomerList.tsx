@@ -1,14 +1,13 @@
-"use client"
+"use client";
 import React from "react";
 import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
 import List from "./List";
 import { useGetAllCustomersQuery } from "@/app/redux/features/customer/customerApiSlice";
+import Skeleton from "@mui/material/Skeleton";
 
 const CustomerList = () => {
   const { data, error, isLoading } = useGetAllCustomersQuery("");
-  if (isLoading) return <div>Loading...</div>;
-
   const LIST_PROPS = {
     headers: [
       { title: "#ID", key: "id" },
@@ -27,7 +26,11 @@ const CustomerList = () => {
           <FilterModal />
         </div>
       </div>
-      <List {...LIST_PROPS} />
+      {isLoading ? (
+        <Skeleton variant="rounded" animation="wave" width={"full"} height={"90%"} />
+      ) : (
+        <List {...LIST_PROPS} />
+      )}
     </div>
   );
 };

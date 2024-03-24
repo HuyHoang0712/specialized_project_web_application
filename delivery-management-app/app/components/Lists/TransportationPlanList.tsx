@@ -4,7 +4,7 @@ import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
 import List from "./List";
 import { useGetAllPlanQuery } from "@/app/redux/features/plan/planApiSlice";
-
+import Skeleton from "@mui/material/Skeleton";
 const TransportationPlanList = () => {
   const { data, error, isLoading } = useGetAllPlanQuery("");
 
@@ -22,7 +22,7 @@ const TransportationPlanList = () => {
     data: data,
     type: "plan",
   };
-  if (isLoading) return <div>Loading...</div>;
+
   return (
     <div className="flex h-full w-full flex-col gap-3">
       <div className="flex flex-row w-full justify-between items-center">
@@ -34,7 +34,16 @@ const TransportationPlanList = () => {
           <FilterModal />
         </div>
       </div>
-      <List {...LIST_PROPS} />
+      {isLoading ? (
+        <Skeleton
+          variant="rounded"
+          animation="wave"
+          width={"full"}
+          height={"90%"}
+        />
+      ) : (
+        <List {...LIST_PROPS} />
+      )}
     </div>
   );
 };

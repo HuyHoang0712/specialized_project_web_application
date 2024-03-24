@@ -22,7 +22,8 @@ interface Props {
   id: string;
 }
 const CONTENT_TITLE_CLASS = "flex items-center gap-1 font-medium text-black-30";
-const CONTENT_CLASS = "font-medium text-black-60";
+const CONTENT_CLASS =
+  "font-medium text-black-60 bg-black-10/20 w-full rounded-lg cursor-pointer p-3";
 const ICON_CLASS = "w-5 icon-sw-2";
 
 const OrderDetailContainer = (props: Props) => {
