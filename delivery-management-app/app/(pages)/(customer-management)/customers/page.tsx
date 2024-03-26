@@ -3,7 +3,7 @@ import CreateModal from "@/app/components/Modals/CreateModal";
 import CustomerList from "@/app/components/Lists/CustomerList";
 const CustomersPage = () => {
   const create_customer_btn_props = {
-    title: "Create Customer",
+    title: "Add a New Customer",
     type: "Customer",
   };
 

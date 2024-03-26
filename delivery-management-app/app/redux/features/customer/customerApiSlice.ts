@@ -14,7 +14,16 @@ export const customerApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+    createCustomer: builder.mutation({
+      query: (data) => ({
+        headers: { "Content-Type": "application/json" },
+        url: URLS.CUSTOMER_URL + "create_customer/",
+        method: "POST",
+        body: JSON.stringify(data),
+      }),
+    }),
   }),
 });
 
-export const { useGetAllCustomersQuery } = customerApiSlice;
+export const { useGetAllCustomersQuery, useCreateCustomerMutation } =
+  customerApiSlice;

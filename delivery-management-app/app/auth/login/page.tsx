@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import logo from "../../../public/logo.svg";
 import LoginForm from "@/app/components/Forms/LoginForm";
-import { Bounce, ToastContainer } from "react-toastify";
 
 
 function LoginPage() {
