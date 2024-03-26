@@ -24,10 +24,11 @@ const ICON_CLASS = "w-4 icon-sw-2";
 
 interface Props {
   id: string;
+  setActive: any;
 }
 
 const UpdateOrderForm = (props: Props) => {
-  const { id } = props;
+  const { id, setActive } = props;
   const { data, error, isLoading } = useGetOrderByIdQuery(id);
   const [updateOrder, { isSuccess }] = useUpdateOrderByIdMutation();
 
@@ -43,15 +44,17 @@ const UpdateOrderForm = (props: Props) => {
     btn_type: "submit" as "submit" | "button" | "reset",
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { delivery_point, pickup_point, ...rest } = order;
-    updateOrder(rest);
+    try {
+      const res = await updateOrder(rest);
+      toast.success("Order updated successfully!", { toastId: 1 });
+      setActive(false);
+    } catch (error: any) {
+      throw error;
+    }
   };
-
-  if (isSuccess) {
-    toast.success("Order updated successfully!", { toastId: 1 });
-  }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">

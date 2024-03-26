@@ -16,7 +16,9 @@ import {
   PencilSquareIcon,
 } from "@heroicons/react/24/outline";
 import { useGetOrderByIdQuery } from "@/app/redux/features/order/orderApiSlice";
-const Map = dynamic(() => import("@/app/components/Map/Map"), { ssr: false });
+const MapBox = dynamic(() => import("@/app/components/Map/Map"), {
+  ssr: false,
+});
 
 interface Props {
   id: string;
@@ -63,7 +65,7 @@ const OrderDetailContainer = (props: Props) => {
           <span className="text-lg font-medium text-black-60">
             Order Tracking
           </span>
-          <Map mapWidth={"40vw"} />
+          <MapBox center={[10.772327943924136, 106.65794471075151]} />
         </div>
       </div>
       <div className="flex flex-1 flex-col bg-white rounded-lg gap-3 p-3">

@@ -1,5 +1,6 @@
 "use client";
 
+import { get } from "http";
 import { apiSlice } from "../../apiSlice";
 import URLS from "@/app/lib/urls";
 export const customerApiSlice = apiSlice.injectEndpoints({
@@ -14,6 +15,10 @@ export const customerApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+    getCustomerById: builder.query({
+      query: (id) => URLS.CUSTOMER_URL + `get_customer_by_id/?id=${id}`,
+    }),
+
     createCustomer: builder.mutation({
       query: (data) => ({
         headers: { "Content-Type": "application/json" },
@@ -25,5 +30,8 @@ export const customerApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAllCustomersQuery, useCreateCustomerMutation } =
-  customerApiSlice;
+export const {
+  useGetAllCustomersQuery,
+  useGetCustomerByIdQuery,
+  useCreateCustomerMutation,
+} = customerApiSlice;

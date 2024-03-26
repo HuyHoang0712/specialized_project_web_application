@@ -9,6 +9,7 @@ import {
   useLazyGetWardInDistrictQuery,
 } from "@/app/redux/features/address/addressApiSlice";
 import { useCreateCustomerMutation } from "@/app/redux/features/customer/customerApiSlice";
+import { toast } from "react-toastify";
 
 type Inputs = {
   name: string;
@@ -23,7 +24,12 @@ type Inputs = {
   };
 };
 
-const CreateCustomerForm = () => {
+interface Props {
+  setActive: any;
+}
+
+const CreateCustomerForm = (props: Props) => {
+  const { setActive } = props;
   const { data: provices } = useGetProvicesQuery("");
   const [getDistricts, resultDistrict] = useLazyGetDistrictsInProvinceQuery();
   const [getWard, resultWard] = useLazyGetWardInDistrictQuery();
@@ -35,7 +41,7 @@ const CreateCustomerForm = () => {
     formState: { errors },
     setValue,
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
     const combinedAddress =
       data.address.number +
@@ -48,8 +54,13 @@ const CreateCustomerForm = () => {
       "," +
       data.address.city;
     console.log({ ...data, address: combinedAddress });
-
-    createCustomer({ ...data, address: combinedAddress });
+    try {
+      const res = await createCustomer({ ...data, address: combinedAddress });
+      toast.success("Customer added successfully!", { toastId: 1 });
+      setActive(false);
+    } catch (error: any) {
+      throw error;
+    }
   };
 
   const onChooseProvince = (province: any) => {

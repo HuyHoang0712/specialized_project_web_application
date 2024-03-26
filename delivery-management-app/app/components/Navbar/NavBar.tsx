@@ -82,11 +82,14 @@ function NavBar() {
 
   const transformName = (curPath: string) => {
     const dashboard = ["dashboard"];
-    const orderManage = ["plans", "plan", "order"];
+    const orderManagement = ["plans", "plan", "order"];
+    const customerManagement = ["customers", "customer"];
     if (dashboard.includes(curPath)) {
       return "Dashboard";
-    } else if (orderManage.includes(curPath)) {
+    } else if (orderManagement.includes(curPath)) {
       return "Orders";
+    } else if (customerManagement.includes(curPath)) {
+      return "Customers";
     } else return curPath[0].toUpperCase() + curPath.slice(1);
   };
 

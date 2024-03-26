@@ -5,19 +5,6 @@ import FilterModal from "../Modals/FilterModal";
 import List from "./List";
 import { useGetOrdersinPlanQuery } from "@/app/redux/features/order/orderApiSlice";
 
-const ORDER_LIST = [
-  {
-    id: "981730",
-    customer: "Distributor A",
-    ship_code: "98173",
-    pick_up: "4:00 am",
-    demand: "9300",
-    assign_vehicle: "51C-123456",
-    status: "In-Progress",
-    issue: "None",
-  },
-];
-
 interface Props {
   id: string;
 }
