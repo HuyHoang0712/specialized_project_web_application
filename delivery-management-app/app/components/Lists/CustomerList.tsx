@@ -2,7 +2,7 @@
 import React from "react";
 import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
-import List from "./List";
+import List, { ListSkeleton } from "./List";
 import { useGetAllCustomersQuery } from "@/app/redux/features/customer/customerApiSlice";
 import Skeleton from "@mui/material/Skeleton";
 
@@ -27,7 +27,7 @@ const CustomerList = () => {
         </div>
       </div>
       {isLoading ? (
-        <Skeleton variant="rounded" animation="wave" width={"full"} height={"90%"} />
+        <ListSkeleton headers={LIST_PROPS.headers} />
       ) : (
         <List {...LIST_PROPS} />
       )}

@@ -7,8 +7,6 @@ import {
   CubeIcon,
   TruckIcon,
 } from "@heroicons/react/24/outline";
-import { useAppSelector } from "@/app/redux/hooks";
-import { selectCurOrder } from "@/app/redux/features/order/orderSlice";
 import {
   useUpdateOrderByIdMutation,
   useGetOrderByIdQuery,
@@ -17,10 +15,10 @@ import SolidButton from "../Buttons/SolidButton";
 import { toast } from "react-toastify";
 
 const CONTENT_TITLE_CLASS =
-  "flex items-center gap-1 text-sm font-medium text-black-30";
+  "flex items-center gap-1 text-sm text-black-30";
 const CONTENT_CLASS =
-  "font-medium text-black-40 bg-black-10/20 w-full rounded-lg cursor-pointer border-none focus:border-transparent focus:outline-none focus:ring-0";
-const ICON_CLASS = "w-4 icon-sw-2";
+  "font-medium shadow-inner text-black-100 border border-primary-10 w-full rounded-lg cursor-pointer";
+const ICON_CLASS = "w-4 icon-sw-2 text-primary-100";
 
 interface Props {
   id: string;

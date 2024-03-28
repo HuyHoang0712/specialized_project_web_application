@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import StatusCard from "../Cards/StatusCard";
+import { Skeleton } from "@mui/material";
 import clsx from "clsx";
 interface Props {
   headers: any[];
@@ -56,13 +57,14 @@ const List = (props: Props) => {
   return (
     <div className="flex h-[90%] flex-col">
       {/* Tittle */}
-      <div className="flex items-center p-3 border-y-2 font-medium text-black-90">
+      <div className="flex items-center p-3 gap-5 border-y-2 font-medium text-black-90">
         {headers.map((item, idx) => (
           <span
             key={idx}
             className={clsx("flex flex-1", {
-              "flex-none w-28": item.key === "id",
-              "flex-none w-40": ["status", "issue"].includes(item.key),
+              "flex-none w-32": ["id", "ship_code"].includes(item.key),
+              "flex-none w-40": item.key === "status",
+              "flex-none w-28": item.key === "issues_count",
             })}
           >
             {item.title}
@@ -72,27 +74,34 @@ const List = (props: Props) => {
       {/* Content */}
       <div className="flex flex-1 flex-col p-3 gap-6 text-black-50 overflow-auto no-scrollbar">
         {curData.map((content, idx) => (
-          <Link
-            href={`/${type}/${content.id}`}
-            key={idx}
-            className="flex items-center"
-          >
-            {headers.map((item: any, index) => (
-              <span
-                key={index}
-                className={clsx("flex flex-1 truncate", {
-                  "flex-none w-28": item.key === "id",
-                  "flex-none w-40": ["status", "issue"].includes(item.key),
-                })}
-              >
-                {item.key === "status" ? (
-                  <StatusCard label={content[item.key]} />
-                ) : (
-                  content[item.key]
-                )}
-              </span>
-            ))}
-          </Link>
+          <div key={idx} className="flex items-center gap-5">
+            {headers.map((item: any, index) =>
+              item.key === "id" ? (
+                <Link
+                  key={index}
+                  className="flex flex-none w-32 truncate hover:text-primary-100"
+                  href={`/${type}/${content.id}`}
+                >
+                  {content[item.key]}
+                </Link>
+              ) : (
+                <span
+                  key={index}
+                  className={clsx("flex flex-1 truncate", {
+                    "flex-none w-32": ["id", "ship_code"].includes(item.key),
+                    "flex-none w-40": item.key === "status",
+                    "flex-none w-28": item.key === "issues_count",
+                  })}
+                >
+                  {item.key === "status" ? (
+                    <StatusCard label={content[item.key]} />
+                  ) : (
+                    content[item.key]
+                  )}
+                </span>
+              )
+            )}
+          </div>
         ))}
       </div>
       {/* Bottom */}
@@ -144,3 +153,26 @@ const List = (props: Props) => {
 };
 
 export default List;
+
+export const ListSkeleton = ({ headers }: { headers: any[] }) => {
+  return (
+    <div className="flex h-[90%] flex-col">
+      {/* Tittle */}
+      <div className="flex items-center p-3 gap-5 border-y-2 font-medium text-black-90">
+        {headers.map((item, idx) => (
+          <span
+            key={idx}
+            className={clsx("flex flex-1", {
+              "flex-none w-32": ["id", "ship_code"].includes(item.key),
+              "flex-none w-40": item.key === "status",
+              "flex-none w-28": item.key === "issues_count",
+            })}
+          >
+            {item.title}
+          </span>
+        ))}
+      </div>
+      <Skeleton className="flex flex-1" variant="rectangular" />
+    </div>
+  );
+};

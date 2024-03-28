@@ -54,11 +54,12 @@ const SearchIuput = (props: SearchIuputProps) => {
           {...register}
           className="w-full border-none rounded-md bg-input-defaut-color shadow-sm py-2"
           placeholder="-----"
+          contextMenu="false"
           onFocus={() => setActive(true)}
           onChange={(e) => filterName(e.target.value)}
         />
         {active && (
-          <div className="flex flex-col gap-2 bottom-12 max-h-64 w-full overflow-auto rounded-lg px-2 py-3 bg-white shadow-inner absolute no-scrollbar">
+          <div className="flex flex-col gap-2 bottom-12 max-h-64 w-full overflow-auto rounded-lg px-2 py-3 bg-white shadow-sm shadow-black-10 absolute no-scrollbar">
             {curData.length > 0 ? (
               curData.map((item, index) => (
                 <p
@@ -72,7 +73,7 @@ const SearchIuput = (props: SearchIuputProps) => {
                 </p>
               ))
             ) : (
-              <span className="flex items-center gap-2">-- Empty --</span>
+              <span className="flex justify-center items-center gap-2">-- Empty --</span>
             )}
           </div>
         )}

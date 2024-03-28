@@ -98,7 +98,7 @@ function NavBar() {
   return (
     <div
       className={
-        "flex flex-col relative transition-[width] h-100vh px-3 py-3 " +
+        "flex flex-col relative transition-[width] h-100vh px-3 py-3 shadow-sm shadow-black-10/50 " +
         (full ? "w-[18.75rem]" : "w-[5.25rem]")
       }
       onMouseEnter={() => setToggle(true)}

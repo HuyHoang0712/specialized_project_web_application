@@ -17,7 +17,7 @@ const OrderInforCard = (props: Prosp) => {
         () => import("@heroicons/react/24/outline").then((res) => res.UserIcon),
         {
           ssr: false,
-          loading: () => <>Loading...</>,
+          loading: () => <IconLoadingSkeleton />,
         }
       );
       break;
@@ -27,7 +27,7 @@ const OrderInforCard = (props: Prosp) => {
           import("@heroicons/react/24/outline").then((res) => res.TruckIcon),
         {
           ssr: false,
-          loading: () => <>Loading...</>,
+          loading: () => <IconLoadingSkeleton />,
         }
       );
       break;
@@ -40,7 +40,7 @@ const OrderInforCard = (props: Prosp) => {
           ),
         {
           ssr: false,
-          loading: () => <>Loading...</>,
+          loading: () => <IconLoadingSkeleton />,
         }
       );
       break;
@@ -117,3 +117,9 @@ const OrderInforCard = (props: Prosp) => {
 };
 
 export default OrderInforCard;
+
+const IconLoadingSkeleton = ({ type }: { type?: string }) => {
+  return (
+    <div className="w-10 h-10 bg-secondary-20 rounded-lg animate-pulse"></div>
+  );
+};

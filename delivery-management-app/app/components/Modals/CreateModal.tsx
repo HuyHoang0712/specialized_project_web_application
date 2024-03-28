@@ -5,26 +5,32 @@ import dynamic from "next/dynamic";
 import SolidButton from "../Buttons/SolidButton";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
-const CreateModal = ({ title, type }: any) => {
+
+interface CreateModalProps {
+  title: string;
+  type: string;
+}
+
+const CreateModal = ({ title, type }: CreateModalProps) => {
   let FormContent: any;
   const [active, setActive] = useState(false);
   switch (type) {
     case "Plan":
       FormContent = dynamic(
         () => import("@/app/components/Forms/CreateTransportationPlan"),
-        { ssr: true, loading: () => <>Loading...</> }
+        { ssr: false, loading: () => <>Loading...</> }
       );
       break;
     case "Order":
       FormContent = dynamic(
         () => import("@/app/components/Forms/CreateOrderForm"),
-        { ssr: true, loading: () => <>Loading...</> }
+        { ssr: false, loading: () => <>Loading...</> }
       );
       break;
     case "Customer":
       FormContent = dynamic(
         () => import("@/app/components/Forms/CreateCustomerForm"),
-        { ssr: true, loading: () => <>Loading...</> }
+        { ssr: false, loading: () => <>Loading...</> }
       );
       break;
   }
