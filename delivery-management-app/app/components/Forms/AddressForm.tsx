@@ -11,6 +11,7 @@ interface AddressFormProps {
   setValue: any;
   getValues: any;
   errors: any;
+  required?: boolean;
 }
 
 const AddressForm = ({
@@ -18,6 +19,7 @@ const AddressForm = ({
   setValue,
   getValues,
   errors,
+  required = true,
 }: AddressFormProps) => {
   const { data: provices } = useGetProvicesQuery("");
   const [getDistricts, resultDistrict] = useLazyGetDistrictsInProvinceQuery();
@@ -35,21 +37,21 @@ const AddressForm = ({
   };
   const province_search_props = {
     label: "City / Province:",
-    register: register("address.city", { required: true }),
+    register: register("address.city", { required: required }),
     data: provices ? provices.results : [],
     name_key: "province_name",
     onClick: onChooseProvince,
   };
   const district_search_props = {
     label: "District:",
-    register: register("address.district", { required: true }),
+    register: register("address.district", { required: required }),
     data: resultDistrict.data ? resultDistrict.data.results : [],
     name_key: "district_name",
     onClick: onChooseDistrict,
   };
   const ward_search_props = {
     label: "Ward:",
-    register: register("address.ward", { required: true }),
+    register: register("address.ward", { required: required }),
     data: resultWard.data ? resultWard.data.results : [],
     name_key: "ward_name",
     onClick: onChooseWard,
@@ -60,7 +62,7 @@ const AddressForm = ({
         <FormInput
           label="Address Number*:"
           register={register("address.number", {
-            required: true,
+            required: required,
           })}
           type="text"
           placeholder="Number"
@@ -69,7 +71,7 @@ const AddressForm = ({
         <FormInput
           label="Street*:"
           register={register("address.street", {
-            required: true,
+            required: required,
           })}
           type="text"
           placeholder="Street"
