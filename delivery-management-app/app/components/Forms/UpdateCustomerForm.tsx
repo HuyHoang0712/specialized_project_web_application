@@ -101,6 +101,7 @@ const UpdateCustomerForm = ({ id, setActive }: Props) => {
             type="text"
             placeholder="Customer Name"
             error={errors.name?.message}
+            disabled={true}
           />
           <FormInput
             Icon={PhoneIcon}

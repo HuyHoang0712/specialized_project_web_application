@@ -25,17 +25,14 @@ const List = (props: Props) => {
     if (move > 0 && curPage < totalPage) {
       setCurData(
         data.slice(
-          itemsPerPage * move,
-          curPage === totalPage ? lenData : itemsPerPage * (move + 1)
+          itemsPerPage * curPage,
+          curPage === totalPage - 1 ? lenData : itemsPerPage * (curPage + 1)
         )
       );
       setCurPage(curPage + 1);
     } else if (move < 0 && curPage > 1) {
       setCurData(
-        data.slice(
-          itemsPerPage * (curPage - 1 + move),
-          itemsPerPage * (curPage + move)
-        )
+        data.slice(itemsPerPage * (curPage - 2), itemsPerPage * (curPage - 1))
       );
       setCurPage(curPage - 1);
     }
@@ -44,12 +41,12 @@ const List = (props: Props) => {
   const updateItemsPerPage = (items: number) => {
     let newTotalPage = Math.ceil(lenData / items);
     if (curPage >= newTotalPage) {
-      setCurData(data.slice(itemsPerPage * (newTotalPage - 1), lenData));
+      setCurData(data.slice(items * (newTotalPage - 1), lenData));
       setCurPage(newTotalPage);
-    } else
-      setCurData(
-        data.slice(itemsPerPage * (curPage - 1), itemsPerPage * curPage)
-      );
+    } else {
+      setCurData(data.slice(items * (curPage - 1), items * curPage));
+    }
+
     setTotalPage(newTotalPage);
     setItemsPerPage(items);
   };
