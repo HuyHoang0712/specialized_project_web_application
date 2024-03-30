@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/auth/authSlice";
 import { apiSlice } from "./apiSlice";
+import { addressApiSlice } from "./features/address/addressApiSlice";
 import orderReducer from "./features/order/orderSlice";
 import issueReducer from "./features/issues/issueSlice";
 import planReducer from "./features/plan/planSlice";
@@ -12,9 +13,12 @@ export const makeStore = () => {
       issue: issueReducer,
       plan: planReducer,
       [apiSlice.reducerPath]: apiSlice.reducer,
+      [addressApiSlice.reducerPath]: addressApiSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(apiSlice.middleware),
+      getDefaultMiddleware()
+        .concat(apiSlice.middleware)
+        .concat(addressApiSlice.middleware),
     devTools: process.env.NODE_ENV !== "production",
   });
 };

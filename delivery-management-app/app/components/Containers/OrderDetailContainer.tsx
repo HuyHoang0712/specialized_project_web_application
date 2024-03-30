@@ -4,7 +4,7 @@ import StatusCard from "../Cards/StatusCard";
 import dynamic from "next/dynamic";
 
 import OrderInforCard from "@/app/components/Cards/OrderInforCard";
-import UpdateOrderModal from "../Modals/UpdateOrderModal";
+import UpdateModal from "../Modals/UpdateModal";
 import CancelOrderModal from "../Modals/CancelOrderModal";
 import ReportIssueModal from "../Modals/ReportIssueModal";
 import {
@@ -14,16 +14,19 @@ import {
   CubeIcon,
   ExclamationCircleIcon,
   PencilSquareIcon,
-} from "@heroicons/react/24/outline";
+} from "@heroicons/react/24/solid";
 import { useGetOrderByIdQuery } from "@/app/redux/features/order/orderApiSlice";
-const Map = dynamic(() => import("@/app/components/Map/Map"), { ssr: false });
+const MapBox = dynamic(() => import("@/app/components/Map/Map"), {
+  ssr: false,
+});
 
 interface Props {
   id: string;
 }
-const CONTENT_TITLE_CLASS = "flex items-center gap-1 font-medium text-black-30";
-const CONTENT_CLASS = "font-medium text-black-60";
-const ICON_CLASS = "w-5 icon-sw-2";
+const CONTENT_TITLE_CLASS = "flex items-center gap-1 text-sm text-black-40";
+const CONTENT_CLASS =
+  "text-black-100 shadow-sm shadow-inner border border-primary-10 w-full rounded-lg cursor-pointer px-3 py-2 truncate";
+const ICON_CLASS = "w-4 text-black-40";
 
 const OrderDetailContainer = (props: Props) => {
   const id = props.id;
@@ -51,6 +54,12 @@ const OrderDetailContainer = (props: Props) => {
     content: { "Current Parking": "No. 15 Adekunle Street, Yaba, Lagos State" },
   };
 
+  const update_order_modal_props = {
+    id: id,
+    title: "Update Order",
+    type: "order",
+  };
+
   return (
     <>
       <div className="flex flex-col gap-3 w-1/2">
@@ -62,12 +71,12 @@ const OrderDetailContainer = (props: Props) => {
           <span className="text-lg font-medium text-black-60">
             Order Tracking
           </span>
-          <Map mapWidth={"40vw"} />
+          <MapBox center={[10.772327943924136, 106.65794471075151]} />
         </div>
       </div>
       <div className="flex flex-1 flex-col bg-white rounded-lg gap-3 p-3">
         <div className="flex items-center justify-between">
-          <span className="text-lg font-medium text-black-60">Order</span>
+          <span className="text-lg font-medium text-primary-100">Order</span>
           <StatusCard label={order.status} />
         </div>
         <div className="grid grid-cols-2 gap-5">
@@ -135,7 +144,7 @@ const OrderDetailContainer = (props: Props) => {
           </div>
         </div>
         <div className="flex flex-1 items-end justify-between gap-3">
-          <UpdateOrderModal {...props} />
+          <UpdateModal {...update_order_modal_props} />
           <div className="flex gap-3">
             <ReportIssueModal />
             <CancelOrderModal />

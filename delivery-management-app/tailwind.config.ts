@@ -1,18 +1,16 @@
 import type { Config } from "tailwindcss";
 
-
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-
   ],
   theme: {
     extend: {
       spacing: {
         "36": "36.063rem",
-        "header": "var(--height-header)"
+        header: "var(--height-header)",
       },
       colors: {
         primary: {
@@ -40,16 +38,16 @@ const config: Config = {
           10: "rgba(254, 249, 242)",
         },
         black: {
-          100: "rgba(28, 29, 34, 1)",
-          90: "rgba(44, 45, 51, 1)",
-          80: "rgba(51, 52, 58, 1)",
-          70: "rgba(55, 57, 63, 1)",
-          60: "rgba(69, 70, 78, 1)",
-          50: "rgba(83, 84, 92, 1)",
-          40: "rgba(110, 112, 121, 1)",
-          30: "rgba(139, 141, 151, 1)",
-          20: "rgba(166, 168, 177, 1)",
-          10: "rgba(190, 192, 202, 1)",
+          100: "rgba(28, 29, 34)",
+          90: "rgba(44, 45, 51)",
+          80: "rgba(51, 52, 58)",
+          70: "rgba(55, 57, 63)",
+          60: "rgba(69, 70, 78)",
+          50: "rgba(83, 84, 92)",
+          40: "rgba(110, 112, 121)",
+          30: "rgba(139, 141, 151)",
+          20: "rgba(166, 168, 177)",
+          10: "rgba(190, 192, 202)",
         },
         green: "rgba(81, 156, 102)",
         red: "rgba(204, 95, 95)",
@@ -60,7 +58,7 @@ const config: Config = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
+    require("@tailwindcss/forms"),
     // require("daisyui")
   ],
   // daisyui: {

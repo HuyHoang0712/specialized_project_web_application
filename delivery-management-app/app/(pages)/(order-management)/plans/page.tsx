@@ -10,7 +10,7 @@ const TransportationPlanList = dynamic(
 function PlansPage() {
   return (
     <div className="content-container">
-      <div className="flex flex-row justify-end w-full gap-3">
+      <div className="flex flex-row self-end gap-3">
         <CreateModal title={"Create Transportation Plan"} type={"Plan"} />
         <CreateModal title={"Create Order"} type={"Order"} />
       </div>

@@ -26,12 +26,13 @@ function LoginForm() {
       username: formData.get("username"),
       password: formData.get("password"),
     };
-    await login(JSON.stringify(data));
+    try {
+      const res = await login(JSON.stringify(data)).unwrap();
+      router.push("/dashboard");
+    } catch (error: any) {
+      throw error;
+    }
   };
-
-  if (isSuccess) {
-    return router.push("/dashboard");
-  }
 
   return (
     <form

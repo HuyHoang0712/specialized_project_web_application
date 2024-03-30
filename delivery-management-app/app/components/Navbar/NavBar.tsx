@@ -43,7 +43,7 @@ const navItems = [
     Active: ShoppingBagIconActive,
   },
   {
-    path: "/customer",
+    path: "/customers",
     name: "Customers",
     Unactive: UserGroupIcon,
     Active: UserGroupIconActive,
@@ -82,11 +82,14 @@ function NavBar() {
 
   const transformName = (curPath: string) => {
     const dashboard = ["dashboard"];
-    const orderManage = ["plans", "plan", "order"];
+    const orderManagement = ["plans", "plan", "order"];
+    const customerManagement = ["customers", "customer"];
     if (dashboard.includes(curPath)) {
       return "Dashboard";
-    } else if (orderManage.includes(curPath)) {
+    } else if (orderManagement.includes(curPath)) {
       return "Orders";
+    } else if (customerManagement.includes(curPath)) {
+      return "Customers";
     } else return curPath[0].toUpperCase() + curPath.slice(1);
   };
 
@@ -95,7 +98,7 @@ function NavBar() {
   return (
     <div
       className={
-        "flex flex-col relative transition-[width] h-100vh px-3 py-3 " +
+        "flex flex-col relative transition-[width] h-100vh px-3 py-3 shadow-sm shadow-black-10/50 " +
         (full ? "w-[18.75rem]" : "w-[5.25rem]")
       }
       onMouseEnter={() => setToggle(true)}

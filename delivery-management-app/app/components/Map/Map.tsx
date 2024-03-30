@@ -1,43 +1,27 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
 import mapboxgl from "mapbox-gl";
-
+import Map, { Marker } from "react-map-gl";
 interface Props {
-  mapWidth?: string;
+  center: [number, number];
 }
 
-function Map(props: Props) {
-  const { mapWidth } = props;
-
-  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN as string;
-  const mapContainerRef = useRef<any | null>(null);
-  const mapRef = useRef<any | null>(null);
-  const [position, setPosition] = useState({
-    longtitude: 106.716651,
-    latitude: 10.774413,
-    zoom: 9,
-  });
-  useEffect(() => {
-    if (mapRef.current) return;
-    mapRef.current = new mapboxgl.Map({
-      container: mapContainerRef.current,
-      style: process.env.NEXT_PUBLIC_MAPBOX_STYLE,
-      center: [position.longtitude, position.latitude],
-      zoom: position.zoom,
-    });
-    mapRef.current.on("load", () => {
-      console.log("Map loaded");
-
-      mapRef.current.resize();
-    });
-  }, []);
-
+function Mapbox(props: Props) {
+  const { center } = props;
   return (
-    <div
-      className={`h-full w-full overflow-hidden`}
-      ref={mapContainerRef}
-    ></div>
+    <Map
+      mapStyle="mapbox://styles/mapbox/streets-v11"
+      mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
+      initialViewState={{
+        latitude: center[0],
+        longitude: center[1],
+        zoom: 15,
+      }}
+      style={{ width: "100%", overflow: "hidden" }}
+    >
+      <Marker latitude={center[0]} longitude={center[1]} />
+    </Map>
   );
 }
 
-export default Map;
+export default Mapbox;
