@@ -12,7 +12,7 @@ const CustomersPage = () => {
       <div className="self-end">
         <CreateModal {...create_customer_btn_props} />
       </div>
-      <div className="flex h-[90%] bg-white p-3 rounded-xl">
+      <div className="flex h-[90%] bg-white p-3 rounded-lg">
         <CustomerList />
       </div>
     </div>

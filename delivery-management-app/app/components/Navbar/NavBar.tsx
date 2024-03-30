@@ -49,7 +49,7 @@ const navItems = [
     Active: UserGroupIconActive,
   },
   {
-    path: "/employee",
+    path: "/employees",
     name: "Employees",
     Unactive: UsersIcon,
     Active: UsersIconActive,
@@ -84,12 +84,15 @@ function NavBar() {
     const dashboard = ["dashboard"];
     const orderManagement = ["plans", "plan", "order"];
     const customerManagement = ["customers", "customer"];
+    const employeesManagement = ["employees", "employee"];
     if (dashboard.includes(curPath)) {
       return "Dashboard";
     } else if (orderManagement.includes(curPath)) {
       return "Orders";
     } else if (customerManagement.includes(curPath)) {
       return "Customers";
+    } else if (employeesManagement.includes(curPath)) {
+      return "Employees";
     } else return curPath[0].toUpperCase() + curPath.slice(1);
   };
 

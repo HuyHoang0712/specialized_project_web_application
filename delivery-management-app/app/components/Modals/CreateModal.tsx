@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import SolidButton from "../Buttons/SolidButton";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
-
 interface CreateModalProps {
   title: string;
   type: string;
@@ -30,6 +29,12 @@ const CreateModal = ({ title, type }: CreateModalProps) => {
     case "Customer":
       FormContent = dynamic(
         () => import("@/app/components/Forms/CreateCustomerForm"),
+        { ssr: false, loading: () => <>Loading...</> }
+      );
+      break;
+    case "Employee":
+      FormContent = dynamic(
+        () => import("@/app/components/Forms/CreateEmployeeForm"),
         { ssr: false, loading: () => <>Loading...</> }
       );
       break;
