@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import dynamic from "next/dynamic";
+import { Skeleton } from "@mui/material";
 interface Prosp {
   type: string;
   title: string;
@@ -17,7 +18,6 @@ const OrderInforCard = (props: Prosp) => {
         () => import("@heroicons/react/24/outline").then((res) => res.UserIcon),
         {
           ssr: false,
-          loading: () => <IconLoadingSkeleton />,
         }
       );
       break;
@@ -27,7 +27,6 @@ const OrderInforCard = (props: Prosp) => {
           import("@heroicons/react/24/outline").then((res) => res.TruckIcon),
         {
           ssr: false,
-          loading: () => <IconLoadingSkeleton />,
         }
       );
       break;
@@ -40,7 +39,6 @@ const OrderInforCard = (props: Prosp) => {
           ),
         {
           ssr: false,
-          loading: () => <IconLoadingSkeleton />,
         }
       );
       break;
@@ -54,7 +52,6 @@ const OrderInforCard = (props: Prosp) => {
             import("@heroicons/react/24/solid").then((res) => res.PhoneIcon),
           {
             ssr: false,
-            loading: () => <>Loading...</>,
           }
         );
       case "Email":
@@ -63,7 +60,6 @@ const OrderInforCard = (props: Prosp) => {
             import("@heroicons/react/24/solid").then((res) => res.EnvelopeIcon),
           {
             ssr: false,
-            loading: () => <>Loading...</>,
           }
         );
 
@@ -75,7 +71,6 @@ const OrderInforCard = (props: Prosp) => {
             ),
           {
             ssr: false,
-            loading: () => <>Loading...</>,
           }
         );
     }
@@ -118,8 +113,26 @@ const OrderInforCard = (props: Prosp) => {
 
 export default OrderInforCard;
 
-const IconLoadingSkeleton = ({ type }: { type?: string }) => {
+export const OrderInforCardSkeleton = () => {
   return (
-    <div className="w-10 h-10 bg-secondary-20 rounded-lg animate-pulse"></div>
+    <div className="flex flex-1 flex-col bg-white rounded-lg p-3 gap-6">
+      <div className="flex items-start gap-6">
+        <Skeleton variant="circular" width={40} height={40} />
+        <div className="flex flex-col">
+          <Skeleton variant="text" width={100} />
+          <Skeleton variant="text" width={100} />
+        </div>
+      </div>
+      <div className="flex items-center justify-between gap-3">
+        <div className="text-sm font-medium text-black-60 truncate">
+          <Skeleton variant="circular" width={14} height={14} />
+          <Skeleton variant="text" width={100} />
+        </div>
+        <div className="text-sm font-medium text-black-60 truncate">
+          <Skeleton variant="circular" width={14} height={14} />
+          <Skeleton variant="text" width={100} />
+        </div>
+      </div>
+    </div>
   );
 };
