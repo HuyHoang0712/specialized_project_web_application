@@ -1,9 +1,10 @@
 "use client";
 
-import { create } from "domain";
 import { apiSlice } from "../../apiSlice";
 import { setPlanList } from "./planSlice";
 import URLS from "@/app/lib/urls";
+
+
 export const planApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllPlan: builder.query({

@@ -13,7 +13,6 @@ interface Props {
 
 const List = (props: Props) => {
   const { headers, data, type } = props;
-
   const lenData = data.length;
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [totalPage, setTotalPage] = useState(Math.ceil(lenData / itemsPerPage));
@@ -91,7 +90,7 @@ const List = (props: Props) => {
                   })}
                 >
                   {item.key === "status" ? (
-                    <StatusCard label={content[item.key]} />
+                    <StatusCard label={content[item.key]} type={type} />
                   ) : (
                     content[item.key]
                   )}

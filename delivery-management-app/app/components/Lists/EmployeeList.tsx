@@ -15,7 +15,7 @@ const EmployeeList = () => {
       { title: "Status ", key: "status" },
     ],
     data: data,
-    type: "customer",
+    type: "employee",
   };
   return (
     <div className="flex h-full w-full flex-col gap-3">

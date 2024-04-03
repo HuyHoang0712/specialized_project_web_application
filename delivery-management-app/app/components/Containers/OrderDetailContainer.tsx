@@ -76,7 +76,7 @@ const OrderDetailContainer = (props: Props) => {
       <div className="flex flex-1 flex-col bg-white rounded-lg gap-3 p-3">
         <div className="flex items-center justify-between">
           <span className="text-lg font-medium text-primary-100">Order</span>
-          <StatusCard label={order.status} />
+          <StatusCard label={order.status} type="order" />
         </div>
         <div className="grid grid-cols-2 gap-5">
           <InforCard Icon={HashtagIcon} title="Order Id:" content={order.id} />
