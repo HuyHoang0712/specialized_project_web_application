@@ -21,6 +21,7 @@ const FormInput = (props: InputItemProps) => {
         <input
           type={type}
           {...register}
+          autoComplete="off"
           placeholder={placeholder}
           className={`w-full border border-primary-30 rounded-md shadow-inner py-2 ${
             Icon ? "pl-8" : ""

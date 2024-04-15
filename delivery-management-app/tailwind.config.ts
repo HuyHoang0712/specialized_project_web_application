@@ -9,7 +9,6 @@ const config: Config = {
   theme: {
     extend: {
       spacing: {
-        "36": "36.063rem",
         header: "var(--height-header)",
       },
       colors: {

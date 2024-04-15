@@ -14,7 +14,7 @@ export const employeeApiSlice = apiSlice.injectEndpoints({
     createEmployee: builder.mutation({
       query: (data) => ({
         headers: { "Content-Type": "application/json" },
-        url: URLS.EMPLOYEE_URL + "create_Employee/",
+        url: URLS.EMPLOYEE_URL + "create_user/",
         method: "POST",
         body: JSON.stringify(data),
       }),
@@ -43,6 +43,9 @@ export const employeeApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+    getStatusSummary: builder.query({
+      query: () => URLS.EMPLOYEE_URL + "get_employee_summary/",
+    }),
   }),
 });
 
@@ -51,4 +54,5 @@ export const {
   useGetEmployeeByIdQuery,
   useCreateEmployeeMutation,
   useUpdateEmployeeByIdMutation,
+  useGetStatusSummaryQuery
 } = employeeApiSlice;

@@ -4,17 +4,17 @@ import EmployeeSumaryContainer from "@/app/components/Containers/EmployeeSumaryC
 import EmployeeList from "@/app/components/Lists/EmployeeList";
 const EmployeeManagementPage = () => {
   const modalProps = {
-    title: "Create Employee",
+    title: "Add Employee",
     type: "Employee",
   };
 
   return (
     <div className="content-container">
       <div className="flex items-center justify-between">
-        <h1 className="text-lg font-medium text-black-60">Manage Employee</h1>
+        <h1 className="text-xl font-medium text-black-60">Manage Employee</h1>
         <CreateModal {...modalProps} />
       </div>
-      {/* <EmployeeSumaryContainer /> */}
+      <EmployeeSumaryContainer />
       <div className="flex flex-1 h-[40%] bg-white p-3 rounded-lg">
         <EmployeeList />
       </div>
