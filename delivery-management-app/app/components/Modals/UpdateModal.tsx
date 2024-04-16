@@ -25,6 +25,12 @@ const UpdateModal = ({ id, title, type }: Props) => {
         { ssr: false, loading: () => <>Loading...</> }
       );
       break;
+    case "employee":
+      FormContent = dynamic(
+        () => import("@/app/components/Forms/UpdateEmployeeForm"),
+        { ssr: false, loading: () => <>Loading...</> }
+      );
+      break;
   }
 
   const modal_props = {

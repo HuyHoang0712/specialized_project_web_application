@@ -3,18 +3,23 @@ import React, { useState } from "react";
 import SolidButton from "../Buttons/SolidButton";
 import Modal from "./Modal";
 
-const CancelOrderModal = () => {
-  let FormContent: any;
+interface Props {
+  id: string;
+  title: string;
+  type: string;
+}
+
+const CancelModal = ({ id, title, type }: Props) => {
   const [active, setActive] = useState(false);
 
   const MODAL_PROPS = {
-    title: "Cancel Order",
-    FormContent: CancelOrderConfirm,
+    title: title,
+    FormContent: CancelConfirm,
     setActive: setActive,
   };
 
   const CANCEL_BTN_PROPS = {
-    label: "Cancel Order",
+    label: title,
     onClick: () => setActive(true),
     type: "Normal",
     bg: "bg-red hover:bg-red/50",
@@ -27,8 +32,8 @@ const CancelOrderModal = () => {
   );
 };
 
-const CancelOrderConfirm = () => {
-  return <div>CancelOrderConfirm</div>;
+const CancelConfirm = () => {
+  return <div>CancelConfirm</div>;
 };
 
-export default CancelOrderModal;
+export default CancelModal;

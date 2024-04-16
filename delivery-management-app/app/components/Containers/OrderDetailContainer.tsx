@@ -8,7 +8,7 @@ import OrderInforCard, {
 } from "@/app/components/Cards/OrderInforCard";
 import { Skeleton } from "@mui/material";
 import UpdateModal from "../Modals/UpdateModal";
-import CancelOrderModal from "../Modals/CancelOrderModal";
+import CancelModal from "../Modals/CancelModal";
 import ReportIssueModal from "../Modals/ReportIssueModal";
 import {
   HashtagIcon,
@@ -56,6 +56,12 @@ const OrderDetailContainer = (props: Props) => {
   const update_order_modal_props = {
     id: id,
     title: "Update Order",
+    type: "order",
+  };
+
+  const cancel_order_modal_props = {
+    id: id,
+    title: "Cancel Order",
     type: "order",
   };
 
@@ -128,7 +134,7 @@ const OrderDetailContainer = (props: Props) => {
           <UpdateModal {...update_order_modal_props} />
           <div className="flex gap-3">
             <ReportIssueModal />
-            <CancelOrderModal />
+            <CancelModal {...cancel_order_modal_props} />
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ const FormInput = (props: InputItemProps) => {
           {...register}
           autoComplete="off"
           placeholder={placeholder}
-          className={`w-full border border-primary-30 rounded-md shadow-inner py-2 ${
+          className={`w-full border border-primary-30 rounded-md shadow-sm  py-2 ${
             Icon ? "pl-8" : ""
           }`}
           disabled={disabled}
