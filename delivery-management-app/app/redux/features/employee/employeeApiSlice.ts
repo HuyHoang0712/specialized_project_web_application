@@ -1,6 +1,5 @@
 "use client";
 
-
 import { apiSlice } from "../../apiSlice";
 import URLS from "@/app/lib/urls";
 export const employeeApiSlice = apiSlice.injectEndpoints({
@@ -46,6 +45,9 @@ export const employeeApiSlice = apiSlice.injectEndpoints({
     getStatusSummary: builder.query({
       query: () => URLS.EMPLOYEE_URL + "get_employee_summary/",
     }),
+    getGroups: builder.query({
+      query: () => URLS.EMPLOYEE_URL + "get_groups/",
+    }),
   }),
 });
 
@@ -54,5 +56,6 @@ export const {
   useGetEmployeeByIdQuery,
   useCreateEmployeeMutation,
   useUpdateEmployeeByIdMutation,
-  useGetStatusSummaryQuery
+  useGetStatusSummaryQuery,
+  useGetGroupsQuery,
 } = employeeApiSlice;

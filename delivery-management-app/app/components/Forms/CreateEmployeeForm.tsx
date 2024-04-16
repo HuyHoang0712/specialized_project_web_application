@@ -9,12 +9,16 @@ import {
 } from "@heroicons/react/24/solid";
 import FormInput from "../Input/FormInput";
 import SearchIuput from "../Input/SearchIuput";
-import { useCreateEmployeeMutation } from "@/app/redux/features/employee/employeeApiSlice";
+import SolidButton from "../Buttons/SolidButton";
+import {
+  useCreateEmployeeMutation,
+  useGetGroupsQuery,
+} from "@/app/redux/features/employee/employeeApiSlice";
 type Inputs = {
   first_name: string;
   last_name: string;
   email: string;
-  phone_number: string;
+  phone: string;
   dob: string;
   username: string;
   password: string;
@@ -25,8 +29,15 @@ interface Props {
   setActive: any;
 }
 
+function generateCredentials(first_name: string, last_name: string) {
+  const username = `${first_name}.${last_name}`.toLowerCase();
+  const password = Math.random().toString(36).slice(-8);
+  return { username, password };
+}
+
 const CreateEmployeeForm = (props: Props) => {
   const { setActive } = props;
+  const { data: groups } = useGetGroupsQuery("");
   const [createEmployee, { data: newEmp, isSuccess, isLoading }] =
     useCreateEmployeeMutation();
   const {
@@ -37,7 +48,23 @@ const CreateEmployeeForm = (props: Props) => {
     getValues,
   } = useForm<Inputs>({ mode: "all" });
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {};
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    console.log(data);
+    const { username, password } = generateCredentials(
+      data.first_name,
+      data.last_name
+    );
+    const res = await createEmployee({
+      ...data,
+      username: username,
+      password: password,
+    });
+  };
+
+  if (isSuccess) {
+    toast.success("Employee added successfully!", { toastId: 1 });
+    setActive(false);
+  }
 
   const onChooseRole = (role: any) => {
     setValue("group", role.name);
@@ -46,9 +73,16 @@ const CreateEmployeeForm = (props: Props) => {
   const role_input_props = {
     label: "Role*:",
     register: register("group", { required: true }),
-    data: [],
+    data: groups ? groups : [],
     name_key: "name",
     onClick: onChooseRole,
+  };
+
+  const btn_props = {
+    label: "Add Employee",
+    type: "Normal",
+    styles: "mt-4 justify-center",
+    btn_type: "submit" as "submit" | "button" | "reset",
   };
 
   return (
@@ -89,13 +123,13 @@ const CreateEmployeeForm = (props: Props) => {
           <FormInput
             Icon={PhoneIcon}
             label="Contact Number*:"
-            register={register("phone_number", {
+            register={register("phone", {
               required: true,
               pattern: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
             })}
             type="tel"
             placeholder="Customer Name"
-            error={errors.phone_number ? "Invalid phone number!" : undefined}
+            error={errors.phone ? "Invalid phone number!" : undefined}
           />
         </div>
         <FormInput
@@ -120,6 +154,7 @@ const CreateEmployeeForm = (props: Props) => {
           <SearchIuput {...role_input_props} />
         </div>
       </div>
+      <SolidButton {...btn_props} />
     </form>
   );
 };

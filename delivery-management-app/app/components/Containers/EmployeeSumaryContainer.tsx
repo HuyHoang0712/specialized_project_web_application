@@ -90,9 +90,9 @@ const RequestList = () => {
         </span>
       </div>
       <div className="h-[8.5rem] overflow-y-scroll no-scrollbar">
-        {requests.map((request) => (
+        {requests.map((request, idx) => (
           <div
-            key={request.id}
+            key={idx}
             className="flex items-center justify-between py-2"
           >
             <span className="flex items-center gap-2 text-sm font-medium text-black-60">
