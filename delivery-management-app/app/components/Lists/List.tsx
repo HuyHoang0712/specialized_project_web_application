@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import StatusCard from "../Cards/StatusCard";
@@ -13,6 +13,7 @@ interface Props {
 
 const List = (props: Props) => {
   const { headers, data, type } = props;
+
   const lenData = data.length;
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [totalPage, setTotalPage] = useState(Math.ceil(lenData / itemsPerPage));
@@ -49,6 +50,13 @@ const List = (props: Props) => {
     setTotalPage(newTotalPage);
     setItemsPerPage(items);
   };
+
+  useEffect(() => {
+    setCurData(data.slice(0, lenData > itemsPerPage ? itemsPerPage : lenData));
+    setItemsPerPage(10);
+    setTotalPage(Math.ceil(lenData / itemsPerPage));
+    setCurPage(1);
+  }, [data]);
 
   return (
     <div className="flex h-[90%] flex-col">
