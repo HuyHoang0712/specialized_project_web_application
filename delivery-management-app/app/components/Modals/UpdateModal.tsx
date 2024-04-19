@@ -5,29 +5,29 @@ import SolidButton from "../Buttons/SolidButton";
 import Modal from "./Modal";
 
 interface Props {
-  id: string;
   title: string;
   type: string;
+  data: any;
 }
-const UpdateModal = ({ id, title, type }: Props) => {
+const UpdateModal = ({ data, title, type }: Props) => {
   const [active, setActive] = useState(false);
   let FormContent: any;
   switch (type) {
     case "order":
       FormContent = dynamic(
-        () => import("@/app/components/Forms/UpdateOrderForm"),
+        () => import("@/app/components/Forms/OrderPlanForm/UpdateOrderForm"),
         { ssr: false, loading: () => <>Loading...</> }
       );
       break;
     case "customer":
       FormContent = dynamic(
-        () => import("@/app/components/Forms/UpdateCustomerForm"),
+        () => import("@/app/components/Forms/CustomerForm/UpdateCustomerForm"),
         { ssr: false, loading: () => <>Loading...</> }
       );
       break;
     case "employee":
       FormContent = dynamic(
-        () => import("@/app/components/Forms/UpdateEmployeeForm"),
+        () => import("@/app/components/Forms/EmployeeForm/UpdateEmployeeForm"),
         { ssr: false, loading: () => <>Loading...</> }
       );
       break;
@@ -37,7 +37,7 @@ const UpdateModal = ({ id, title, type }: Props) => {
     title: title,
     FormContent: FormContent,
     setActive: setActive,
-    formProps: { id: id },
+    formProps: data,
   };
 
   const btn_props = {

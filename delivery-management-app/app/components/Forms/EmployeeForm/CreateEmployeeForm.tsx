@@ -7,9 +7,9 @@ import {
   PhoneIcon,
   IdentificationIcon,
 } from "@heroicons/react/24/solid";
-import FormInput from "../Input/FormInput";
-import SearchIuput from "../Input/SearchIuput";
-import SolidButton from "../Buttons/SolidButton";
+import FormInput from "../../Input/FormInput";
+import SearchIuput from "../../Input/SearchIuput";
+import SolidButton from "../../Buttons/SolidButton";
 import {
   useCreateEmployeeMutation,
   useGetGroupsQuery,
@@ -73,7 +73,7 @@ const CreateEmployeeForm = (props: Props) => {
   const role_input_props = {
     label: "Role*:",
     register: register("group", { required: true }),
-    data: groups ? groups : [],
+    data: groups ?? [],
     name_key: "name",
     onClick: onChooseRole,
   };

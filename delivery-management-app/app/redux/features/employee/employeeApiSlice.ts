@@ -21,13 +21,14 @@ export const employeeApiSlice = apiSlice.injectEndpoints({
     updateEmployeeById: builder.mutation({
       query: (data) => ({
         headers: { "Content-Type": "application/json" },
-        url: URLS.EMPLOYEE_URL + `update_Employee/?id=${data.id}`,
+        url: URLS.EMPLOYEE_URL + `update_employee/?id=${data.id}`,
         method: "PUT",
         body: JSON.stringify(data),
       }),
       onQueryStarted: async ({ id, ...put }, { dispatch, queryFulfilled }) => {
         try {
           const res = await queryFulfilled;
+          console.log(res);
           const putResult = dispatch(
             employeeApiSlice.util.updateQueryData(
               "getEmployeeById",

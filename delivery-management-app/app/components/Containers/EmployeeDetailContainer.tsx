@@ -10,7 +10,6 @@ import InforCard, { InforCardSkeleton } from "../Cards/InforCard";
 
 import {
   HashtagIcon,
-  MapPinIcon,
   PhoneIcon,
   UserIcon,
   EnvelopeIcon,
@@ -29,7 +28,7 @@ const EmployeeDetailContainer = ({ id }: EmployeeDetailContainerProps) => {
   }
 
   const update_btn_props = {
-    id: id,
+    data: data,
     title: "Update Employee",
     type: "employee",
   };
@@ -50,7 +49,7 @@ const EmployeeDetailContainer = ({ id }: EmployeeDetailContainerProps) => {
       </div>
       <div className="flex gap-10">
         <div className="grid gap-3">
-          <span className="font-medium text-primary-100/60">
+          <span className="font-medium text-primary-100">
             EMPLOYEE PICTURE
           </span>
           <div className="">
@@ -58,6 +57,7 @@ const EmployeeDetailContainer = ({ id }: EmployeeDetailContainerProps) => {
               src={Images.ExampleAva}
               width={250}
               height={250}
+              style={{ borderRadius: "0.5rem" }}
               alt="employee picture"
             />
             <span className="text-xs mt-2 text-primary-100 underline underline-offset-1">
@@ -70,7 +70,7 @@ const EmployeeDetailContainer = ({ id }: EmployeeDetailContainerProps) => {
           </div>
         </div>
         <div className="flex flex-col flex-1 gap-3">
-          <span className="font-medium text-primary-100/60">
+          <span className="font-medium text-primary-100">
             EMPLOYEE DETAILS
           </span>
           <div className="grid grid-cols-2 gap-x-8 gap-y-5">

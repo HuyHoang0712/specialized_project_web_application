@@ -11,7 +11,7 @@ import {
   useUpdateOrderByIdMutation,
   useGetOrderByIdQuery,
 } from "@/app/redux/features/order/orderApiSlice";
-import SolidButton from "../Buttons/SolidButton";
+import SolidButton from "../../Buttons/SolidButton";
 import { toast } from "react-toastify";
 
 const CONTENT_TITLE_CLASS =

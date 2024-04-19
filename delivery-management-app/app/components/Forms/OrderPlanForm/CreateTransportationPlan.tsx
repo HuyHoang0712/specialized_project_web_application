@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import { DocumentCheckIcon } from "@heroicons/react/24/solid";
 import { toast } from "react-toastify";
 import { useCreatePlanMutation } from "@/app/redux/features/plan/planApiSlice";
-import SolidButton from "../Buttons/SolidButton";
+import SolidButton from "../../Buttons/SolidButton";
 import { useRouter } from "next/navigation";
 
 const ERROR_TOAST = 0;

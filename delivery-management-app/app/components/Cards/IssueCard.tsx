@@ -19,7 +19,7 @@ const IssueCard = (props: Issue) => {
       <div className="flex flex-col flex-1 gap-1">
         <div className="card-content">
           <span className="text-black-80 font-bold text-base">{creator}</span>
-          <StatusCard label={status} />
+          <StatusCard label={status} type={"order"} />
         </div>
         <div className="card-content text-sm">
           <span className="text-black-50 font-medium">Label: {label}</span>

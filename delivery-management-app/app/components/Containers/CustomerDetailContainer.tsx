@@ -26,7 +26,7 @@ const CustomerDetailContainer = (props: CustomerDetailContainerProps) => {
   const { data, error, isLoading } = useGetCustomerByIdQuery(id);
   return (
     <div className="flex flex-1 flex-col bg-white rounded-lg p-3">
-      <h1 className="text-lg font-medium text-primary-100">Customer</h1>
+      <h1 className="text-lg font-medium text-primary-100">Customer Details</h1>
       {isLoading ? (
         <CustomerDetailContainerSkeleton />
       ) : (
