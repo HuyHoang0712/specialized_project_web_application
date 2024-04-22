@@ -1,9 +1,6 @@
 import dynamic from "next/dynamic";
 
-const OrderSummaryCard = dynamic(
-  () => import("../../components/Cards/OrderSummaryCard"),
-  { ssr: false, loading: () => <>Loading...</> }
-);
+import OrderSummaryCard from "@/app/components/Cards/OrderSummaryCard";
 
 const DashboardSummaryCards = dynamic(
   () => import("../../components/Cards/DashboardSummaryCards"),

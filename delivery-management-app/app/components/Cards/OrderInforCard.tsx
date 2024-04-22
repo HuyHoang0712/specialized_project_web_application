@@ -84,9 +84,9 @@ const OrderInforCard = (props: Prosp) => {
   return (
     <div className="flex flex-1 flex-col bg-white rounded-lg p-3 gap-6">
       <div className="flex items-start gap-6">
-        <Icon className="w-10 p-2 bg-secondary-20 rounded-lg" />
+        <Icon className="w-10 p-2 bg-secondary-20 rounded-lg text-primary-100 icon-sw-2" />
         <div className="flex flex-col">
-          <span className="text-base font-medium text-black-60">{title}</span>
+          <span className="text-base font-medium text-primary-100">{title}</span>
           {Object.entries(titleContent).map(
             ([key, value]: [string, any], idx) => (
               <span className="text-sm font-medium text-black-60" key={idx}>

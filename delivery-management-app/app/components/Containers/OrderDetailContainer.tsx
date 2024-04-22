@@ -29,10 +29,9 @@ interface Props {
 
 const OrderDetailContainer = (props: Props) => {
   const id = props.id;
-  const { data, error, isLoading } = useGetOrderByIdQuery(id);
+  const { data: order, error, isLoading } = useGetOrderByIdQuery(id);
 
   if (isLoading) return <OrderDetailContainerSkeleton />;
-  const order = data;
 
   const vehicle = order?.vehicle;
   const driver = vehicle?.driver;
@@ -54,7 +53,7 @@ const OrderDetailContainer = (props: Props) => {
   };
 
   const update_order_modal_props = {
-    id: id,
+    data: order,
     title: "Update Order",
     type: "order",
   };
@@ -81,7 +80,7 @@ const OrderDetailContainer = (props: Props) => {
       </div>
       <div className="flex flex-1 flex-col bg-white rounded-lg gap-3 p-3">
         <div className="flex items-center justify-between">
-          <span className="text-lg font-medium text-primary-100">Order</span>
+          <span className="text-lg font-medium text-primary-100">ORDER DETAILS</span>
           <StatusCard label={order.status} type="order" />
         </div>
         <div className="grid grid-cols-2 gap-5">

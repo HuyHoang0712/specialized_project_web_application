@@ -1,12 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import SolidButton from "../../Buttons/SolidButton";
 import { UserIcon, EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import FormInput from "../../Input/FormInput";
 import AddressForm from "../AddressForm";
 import { toast } from "react-toastify";
-import { useGetCustomerByIdQuery } from "@/app/redux/features/customer/customerApiSlice";
 import { useUpdateCustomerByIdMutation } from "@/app/redux/features/customer/customerApiSlice";
 
 type Inputs = {
@@ -23,12 +22,10 @@ type Inputs = {
 };
 
 interface Props {
-  id: string;
+  formProps: any;
   setActive: any;
 }
-const UpdateCustomerForm = ({ id, setActive }: Props) => {
-  const { data, error, isLoading, isSuccess } = useGetCustomerByIdQuery(id);
-
+const UpdateCustomerForm = ({ formProps: customer, setActive }: Props) => {
   const [updateCustomer] = useUpdateCustomerByIdMutation();
   const {
     register,
@@ -52,7 +49,7 @@ const UpdateCustomerForm = ({ id, setActive }: Props) => {
         "," +
         data.address.city;
     }
-    updateData.id = id;
+    updateData.id = customer.id;
     console.log(updateData);
 
     try {
@@ -63,12 +60,11 @@ const UpdateCustomerForm = ({ id, setActive }: Props) => {
       throw error;
     }
   };
-
-  if (isSuccess) {
-    setValue("name", data.name);
+  useEffect(() => {
+    setValue("name", customer.name);
     setValue("email", "example@mail.com");
     setValue("phone_number", "0911226340");
-  }
+  }, [customer]);
 
   const btn_props = {
     label: "Update Customer",

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   HashtagIcon,
   MapPinIcon,
@@ -7,44 +7,69 @@ import {
   CubeIcon,
   TruckIcon,
 } from "@heroicons/react/24/outline";
-import {
-  useUpdateOrderByIdMutation,
-  useGetOrderByIdQuery,
-} from "@/app/redux/features/order/orderApiSlice";
+import { useUpdateOrderByIdMutation } from "@/app/redux/features/order/orderApiSlice";
 import SolidButton from "../../Buttons/SolidButton";
+import { useForm, SubmitHandler } from "react-hook-form";
+import FormInput from "../../Input/FormInput";
 import { toast } from "react-toastify";
 
-const CONTENT_TITLE_CLASS =
-  "flex items-center gap-1 text-sm text-black-30";
+const CONTENT_TITLE_CLASS = "flex items-center gap-1 text-sm text-black-30";
 const CONTENT_CLASS =
   "font-medium shadow-inner text-black-100 border border-primary-10 w-full rounded-lg cursor-pointer";
 const ICON_CLASS = "w-4 icon-sw-2 text-primary-100";
 
+type Inputs = {
+  id: string;
+  ship_code: string;
+  time_in: string;
+  payload: string;
+  pickup_point: string;
+  delivery_point: string;
+  vehicle: string;
+};
+
 interface Props {
-  formProps: string;
+  formProps: any;
   setActive: any;
 }
 
 const UpdateOrderForm = (props: Props) => {
-  const { formProps: id, setActive } = props;
-  const { data, error, isLoading } = useGetOrderByIdQuery(id);
+  const { formProps: order, setActive } = props;
+
   const [updateOrder, { isSuccess }] = useUpdateOrderByIdMutation();
 
-  const [order, setOrder] = useState({
-    ...data,
-    vehicle: data.vehicle.license_plate,
-  });
+  // const [order, setOrder] = useState({
+  //   ...data,
+  //   vehicle: data.vehicle.license_plate,
+  // });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    getValues,
+  } = useForm<Inputs>({ mode: "all" });
 
   const btn_props = {
     label: "Update Order",
     type: "Normal",
-    styles: "w-fit justify-self-end self-end",
+    styles: "mt-4 justify-center",
     btn_type: "submit" as "submit" | "button" | "reset",
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const { delivery_point, pickup_point, ...rest } = order;
+  useEffect(() => {
+    setValue("id", order.id);
+    setValue("ship_code", order.ship_code);
+    setValue("time_in", order.time_in);
+    setValue("payload", order.payload);
+    setValue("pickup_point", order.pickup_point);
+    setValue("delivery_point", order.delivery_point);
+    setValue("vehicle", order.vehicle.license_plate);
+  }, [order]);
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const { pickup_point, delivery_point, ...rest } = data;
     try {
       const res = await updateOrder(rest);
       toast.success("Order updated successfully!", { toastId: 1 });
@@ -55,114 +80,72 @@ const UpdateOrderForm = (props: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col">
-      <div className="grid grid-cols-2 gap-3">
-        <span className="col-span-2 font-medium text-black-80">
-          Order Information
-        </span>
-        <div className="space-y-1">
-          <label htmlFor="order-id" className={CONTENT_TITLE_CLASS}>
-            <HashtagIcon className={ICON_CLASS} />
-            Order ID:
-          </label>
-          <input
-            id="order-id"
-            className={CONTENT_CLASS}
-            disabled
-            value={order.id}
-            onChange={(e) => setOrder({ ...order, id: e.target.value })}
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col lg:w-[30vw] sm:w-[35vw] gap-4"
+    >
+      <h1 className="text-lg font-medium text-black-100">Order Information</h1>
+      <div className="flex flex-col gap-4 w-full">
+        <div className="flex items-center gap-4">
+          <FormInput
+            Icon={HashtagIcon}
+            label="Order ID:"
+            register={register("id")}
+            type="text"
+            error={errors.id?.message}
+            disabled={true}
+          />
+          <FormInput
+            Icon={HashtagIcon}
+            label="Ship Code:"
+            register={register("ship_code")}
+            type="text"
+            error={errors.ship_code?.message}
+            disabled={true}
           />
         </div>
-        <div className="space-y-1">
-          <label htmlFor="order-shipping-code" className={CONTENT_TITLE_CLASS}>
-            <HashtagIcon className={ICON_CLASS} />
-            Ship Code:
-          </label>
-          <input
-            id="order-shipping-code"
-            className={CONTENT_CLASS}
-            disabled
-            value={order.ship_code}
-            onChange={(e) => setOrder({ ...order, ship_code: e.target.value })}
-          />
-        </div>
-        <div className="space-y-1">
-          <label htmlFor="order-time-in" className={CONTENT_TITLE_CLASS}>
-            <ClockIcon className={ICON_CLASS} />
-            Pick-up Time:
-          </label>
-          <input
-            id="order-time-in"
+        <div className="flex items-center gap-4">
+          <FormInput
+            label="Pick-up Time:"
+            register={register("time_in")}
             type="time"
-            className={CONTENT_CLASS}
-            value={order.time_in}
-            onChange={(e) => setOrder({ ...order, time_in: e.target.value })}
+            error={errors.time_in?.message}
+          />
+          <FormInput
+            Icon={CubeIcon}
+            label="Payload(kg):"
+            register={register("payload")}
+            type="text"
+            error={errors.payload?.message}
+            disabled={true}
           />
         </div>
-        <div className="space-y-1">
-          <label htmlFor="order-payload" className={CONTENT_TITLE_CLASS}>
-            <CubeIcon className={ICON_CLASS} />
-            Payload(kg):
-          </label>
-          <input
-            id="order-payload"
-            className={CONTENT_CLASS}
-            disabled
-            value={order.payload}
-            onChange={(e) => setOrder({ ...order, payload: e.target.value })}
-          />
-        </div>
-        <div className="space-y-1 col-span-2">
-          <label
-            htmlFor="order-pick-up-address"
-            className={CONTENT_TITLE_CLASS}
-          >
-            <MapPinIcon className={ICON_CLASS} />
-            Pick-up Address:
-          </label>
-          <input
-            id="order-pick-up-address"
-            className={CONTENT_CLASS}
-            disabled
-            value={order.pickup_point}
-            onChange={(e) =>
-              setOrder({ ...order, pickup_point: e.target.value })
-            }
-          />
-        </div>
-        <div className="space-y-1 col-span-2">
-          <label
-            htmlFor="order-delivery-address"
-            className={CONTENT_TITLE_CLASS}
-          >
-            <MapPinIcon className={ICON_CLASS} />
-            Delivery Address:
-          </label>
-          <input
-            id="order-delivery-address"
-            className={CONTENT_CLASS}
-            disabled
-            value={order.delivery_point}
-            onChange={(e) =>
-              setOrder({ ...order, delivery_point: e.target.value })
-            }
-          />
-        </div>
-
-        <div className="space-y-1">
-          <label htmlFor="order-vehicle" className={CONTENT_TITLE_CLASS}>
-            <TruckIcon className={ICON_CLASS} />
-            Vehicle:
-          </label>
-          <input
-            id="order-vehicle"
-            className={CONTENT_CLASS}
-            value={order.vehicle}
-            onChange={(e) => setOrder({ ...order, vehicle: e.target.value })}
-          />
-        </div>
-        <SolidButton {...btn_props} />
+        <FormInput
+          Icon={MapPinIcon}
+          label="Pick-up Address:"
+          register={register("pickup_point")}
+          type="text"
+          error={errors.pickup_point?.message}
+          disabled={true}
+        />
+        <FormInput
+          Icon={MapPinIcon}
+          label="Delivery Address:"
+          register={register("delivery_point")}
+          type="text"
+          error={errors.delivery_point?.message}
+          disabled={true}
+        />
+        <FormInput
+          Icon={TruckIcon}
+          label="Vehicle:"
+          register={register("vehicle")}
+          type="text"
+          error={errors.vehicle?.message}
+        />
       </div>
+
+      <SolidButton {...btn_props} />
     </form>
   );
 };
