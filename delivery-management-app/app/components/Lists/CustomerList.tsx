@@ -29,7 +29,7 @@ const CustomerList = () => {
         <span className="text-lg text-black-60 font-medium">Customers</span>
         <div className="flex flex-row gap-3">
           <Search setSearchKey={setSearchKey} />
-          <FilterModal />
+          {/* <FilterModal /> */}
         </div>
       </div>
       {isLoading ? (

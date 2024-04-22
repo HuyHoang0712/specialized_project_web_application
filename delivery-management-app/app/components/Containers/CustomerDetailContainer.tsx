@@ -58,7 +58,7 @@ const CustomerDetailContainer = (props: CustomerDetailContainerProps) => {
 
 export default CustomerDetailContainer;
 
-const CustomerDetailContainerSkeleton = () => {
+export const CustomerDetailContainerSkeleton = () => {
   return (
     <div className="grid grid-cols-2 mt-3 gap-5">
       <InforCardSkeleton />
