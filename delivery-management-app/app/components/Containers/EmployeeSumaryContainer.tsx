@@ -17,7 +17,7 @@ const EmployeeSumaryContainer = () => {
   if (isLoading) return <EmployeeSumaryContainerSkeleton />;
 
   return (
-    <div className="grid grid-rows-2 grid-flow-col gap-4">
+    <div className="h-full flex-1 grid grid-cols-2 grid-rows-6 grid-flow-row gap-4">
       <SummaryCard
         Icon={UsersIcon}
         title="Total Employee"
@@ -76,11 +76,41 @@ const requests = [
     name: "John Doe",
     label: "Leave Request",
   },
+  {
+    id: 3,
+    name: "John Doe",
+    label: "Leave Request",
+  },
+  {
+    id: 3,
+    name: "John Doe",
+    label: "Leave Request",
+  },
+  {
+    id: 3,
+    name: "John Doe",
+    label: "Leave Request",
+  },
+  {
+    id: 3,
+    name: "John Doe",
+    label: "Leave Request",
+  },
+  {
+    id: 3,
+    name: "John Doe",
+    label: "Leave Request",
+  },
+  {
+    id: 3,
+    name: "John Doe",
+    label: "Leave Request",
+  },
 ];
 
 const RequestList = () => {
   return (
-    <div className="flex flex-col py-2 px-3 gap-2 row-span-2 bg-white rounded-lg">
+    <div className="flex flex-col p-3 gap-2 col-span-2 row-span-4 bg-white rounded-lg">
       <div className="flex justify-between">
         <span className="text-lg font-medium text-black-60">
           Pending Approvals
@@ -89,11 +119,11 @@ const RequestList = () => {
           {requests.length} Requests
         </span>
       </div>
-      <div className="h-[8rem] overflow-y-scroll no-scrollbar">
+      <div className="overflow-y-scroll no-scrollbar">
         {requests.map((request, idx) => (
           <div
             key={idx}
-            className="flex items-center justify-between py-1"
+            className="flex items-center justify-between py-2"
           >
             <span className="flex items-center gap-2 text-sm font-medium text-black-60">
               <UserCircleIcon className="w-8 bg-black-10/30 rounded-full p-1" />
@@ -120,7 +150,7 @@ interface SummaryCardProps {
 
 const SummaryCard = ({ Icon, title, value }: SummaryCardProps) => {
   return (
-    <div className="flex bg-white py-2 px-3 gap-3 rounded-lg shadow-sm items-center">
+    <div className="flex bg-white p-3 gap-3 rounded-lg shadow-sm items-center">
       <Icon className="w-14 icon-sw-2 text-primary-100 bg-primary-100/10 rounded-lg p-3" />
       <div className="flex flex-col">
         <span className="font-medium text-black-40">{title}</span>

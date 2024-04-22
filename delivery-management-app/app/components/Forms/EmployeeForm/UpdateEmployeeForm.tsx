@@ -23,11 +23,11 @@ type Inputs = {
 };
 
 interface Props {
-  data: any;
+  formProps: any;
   setActive: any;
 }
 
-const UpdateEmployeeForm = ({ data, setActive }: Props) => {
+const UpdateEmployeeForm = ({ formProps: data, setActive }: Props) => {
   const { data: groups } = useGetGroupsQuery("");
   const [updateEmployee] = useUpdateEmployeeByIdMutation();
   const {

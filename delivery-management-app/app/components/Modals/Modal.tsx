@@ -21,7 +21,7 @@ const Modal = (props: Props) => {
             onClick={() => setActive(false)}
           />
         </div>
-        <FormContent data={formProps} setActive={setActive} />
+        <FormContent formProps={formProps} setActive={setActive} />
       </div>
     </div>
   );

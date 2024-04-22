@@ -14,9 +14,11 @@ const EmployeeManagementPage = () => {
         <h1 className="text-xl font-medium text-black-60">Manage Employee</h1>
         <CreateModal {...modalProps} />
       </div>
-      <EmployeeSumaryContainer />
-      <div className="flex flex-1 h-[40%] bg-white p-3 rounded-lg">
-        <EmployeeList />
+      <div className="flex gap-4 h-[90%]">
+        <div className="flex w-[60%] bg-white p-3 rounded-lg">
+          <EmployeeList />
+        </div>
+        <EmployeeSumaryContainer />
       </div>
     </div>
   );

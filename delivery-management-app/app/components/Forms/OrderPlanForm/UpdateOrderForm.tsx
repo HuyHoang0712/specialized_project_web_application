@@ -21,12 +21,12 @@ const CONTENT_CLASS =
 const ICON_CLASS = "w-4 icon-sw-2 text-primary-100";
 
 interface Props {
-  id: string;
+  formProps: string;
   setActive: any;
 }
 
 const UpdateOrderForm = (props: Props) => {
-  const { id, setActive } = props;
+  const { formProps: id, setActive } = props;
   const { data, error, isLoading } = useGetOrderByIdQuery(id);
   const [updateOrder, { isSuccess }] = useUpdateOrderByIdMutation();
 

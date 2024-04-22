@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 interface Props {
@@ -8,7 +7,6 @@ interface Props {
 }
 
 const Search = ({ setSearchKey }: Props) => {
-  const searchParams = useSearchParams();
   const [search, setSearch] = useState("");
   const handleSearch = (term: string) => {
     setSearchKey(term);
