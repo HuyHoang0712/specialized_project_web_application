@@ -1,17 +1,19 @@
 import React from "react";
-
+import clsx from "clsx";
 interface InputItemProps {
   Icon?: any;
   label: string;
-  register: any;
+  register?: any;
   type: string;
-  placeholder: string;
+  placeholder?: string;
   error?: string;
+  value?: string;
   disabled?: boolean;
 }
 
 const FormInput = (props: InputItemProps) => {
-  const { Icon, label, register, type, placeholder, error, disabled } = props;
+  const { Icon, label, register, type, placeholder, error, disabled, value } =
+    props;
 
   return (
     <div className="flex flex-col gap-2 flex-1 relative">
@@ -21,10 +23,14 @@ const FormInput = (props: InputItemProps) => {
         <input
           type={type}
           {...register}
+          autoComplete="off"
+          value={value}
           placeholder={placeholder}
-          className={`w-full border border-primary-30 rounded-md shadow-inner py-2 ${
-            Icon ? "pl-8" : ""
-          }`}
+          className={clsx(
+            "w-full border border-primary-30 rounded-md shadow-sm py-2",
+            { "pl-8": Icon },
+            { "bg-primary-10/50": disabled }
+          )}
           disabled={disabled}
         />
         {error && (

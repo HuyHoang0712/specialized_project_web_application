@@ -7,31 +7,18 @@ export const issueApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllIssue: builder.query({
       query: () => URLS.ISSUE_URL,
-      onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
-        try {
-          const res = await queryFulfilled;
-          dispatch(setIssues(res.data));
-        } catch (error) {
-          console.log(error);
-        }
-      },
     }),
     getIssuesByStatsus: builder.query({
       query: (data: number) =>
         URLS.ISSUE_URL + `get_issues_by_status?status=${data}`,
-
-      onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
-        try {
-          const res = await queryFulfilled;
-          dispatch(setIssues(res.data));
-        } catch (error) {
-          console.log(error);
-        }
-      },
+    }),
+    getIssuesByEmployeeId: builder.query({
+      query: (data: string) =>
+        URLS.ISSUE_URL + `get_issues_by_employee_id?employee_id=${data}`,
     }),
   }),
 
 });
 
-export const { useGetAllIssueQuery, useGetIssuesByStatsusQuery } =
+export const { useGetAllIssueQuery, useGetIssuesByStatsusQuery, useGetIssuesByEmployeeIdQuery } =
   issueApiSlice;

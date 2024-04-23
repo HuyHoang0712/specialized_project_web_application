@@ -4,11 +4,11 @@ import dynamic from "next/dynamic";
 import clsx from "clsx";
 const MapBox = dynamic(() => import("../Map/Map"), { ssr: false });
 const OrderListDashboard = dynamic(
-  () => import("../Lists/OrderListDashboard"),
+  () => import("../Lists/DashboardList/OrderListDashboard"),
   { ssr: false }
 );
 const IssueListDashboard = dynamic(
-  () => import("../Lists/IssueListDashboard"),
+  () => import("../Lists/DashboardList/IssueListDashboard"),
   { ssr: false }
 );
 

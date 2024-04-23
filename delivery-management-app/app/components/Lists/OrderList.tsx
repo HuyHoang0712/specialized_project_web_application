@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
 import List, { ListSkeleton } from "./List";
@@ -9,9 +9,16 @@ interface Props {
   id: string;
 }
 
+function filterDataByName(data: any[], searchKey: string) {
+  return data.filter((item) =>
+    item.delivery_point.toLowerCase().includes(searchKey.toLowerCase())
+  );
+}
+
 const OrderList = (props: Props) => {
   const { id } = props;
   const { data, isLoading, isError } = useGetOrdersinPlanQuery(id);
+  const [searchKey, setSearchKey] = useState("");
   const LIST_PROPS = {
     headers: [
       { title: "#ID", key: "id" },
@@ -23,7 +30,7 @@ const OrderList = (props: Props) => {
       { title: "Status", key: "status" },
       { title: "Issue", key: "issues_count" },
     ],
-    data: data,
+    data: data && filterDataByName(data, searchKey),
     type: "order",
   };
   return (
@@ -33,7 +40,7 @@ const OrderList = (props: Props) => {
           Transportation Plan {}
         </span>
         <div className="flex flex-row gap-3">
-          <Search />
+          <Search setSearchKey={setSearchKey} />
           <FilterModal />
         </div>
       </div>

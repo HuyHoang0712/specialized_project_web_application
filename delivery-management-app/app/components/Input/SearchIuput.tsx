@@ -52,9 +52,10 @@ const SearchIuput = (props: SearchIuputProps) => {
         <input
           type="text"
           {...register}
-          className="w-full border-none rounded-md bg-input-defaut-color shadow-sm py-2"
+          className="w-full order border-primary-30 rounded-md shadow-sm py-2"
           placeholder="-----"
           contextMenu="false"
+          autoComplete="off"
           onFocus={() => setActive(true)}
           onChange={(e) => filterName(e.target.value)}
         />
@@ -73,7 +74,9 @@ const SearchIuput = (props: SearchIuputProps) => {
                 </p>
               ))
             ) : (
-              <span className="flex justify-center items-center gap-2">-- Empty --</span>
+              <span className="flex justify-center items-center gap-2">
+                -- Empty --
+              </span>
             )}
           </div>
         )}
