@@ -3,13 +3,21 @@ import React, { useRef, useState } from "react";
 import { DocumentCheckIcon } from "@heroicons/react/24/solid";
 import { toast } from "react-toastify";
 import { useCreatePlanMutation } from "@/app/redux/features/plan/planApiSlice";
-import SolidButton from "../Buttons/SolidButton";
+import SolidButton from "../../Buttons/SolidButton";
+import { useRouter } from "next/navigation";
 
 const ERROR_TOAST = 0;
 const SUCCESS_TOAST = 1;
-const CreateTransportationPlan = () => {
+
+interface CreateTransportationPlanProps {
+  setActive: any;
+}
+
+const CreateTransportationPlan = (props: CreateTransportationPlanProps) => {
+  const { setActive } = props;
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState<any>(null);
+  const router = useRouter();
   const [createPlan, { isLoading, data, error }] = useCreatePlanMutation();
 
   const dropHandler = (e: React.DragEvent<HTMLDivElement>) => {
@@ -42,14 +50,22 @@ const CreateTransportationPlan = () => {
     }
   };
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submitting");
 
     if (selectedFile) {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      createPlan(formData);
+      const res = await createPlan(formData).unwrap();
+      console.log(res);
+
+      if (res) {
+        toast.success("Plan created successfully!", {
+          toastId: SUCCESS_TOAST,
+        });
+        setActive(false);
+        router.push(`/plan/${res}`);
+      }
     } else {
       toast.error("Please input an excel file!", {
         toastId: ERROR_TOAST,

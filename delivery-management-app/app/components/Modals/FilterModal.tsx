@@ -1,25 +1,31 @@
 "use client";
 import React, { useState } from "react";
 import { FunnelIcon } from "@heroicons/react/24/outline";
-import Filter from "../Filter/Filter";
 import Modal from "./Modal";
 import OutlineButton from "../Buttons/OutlineButton";
-const FilterModal = () => {
+
+interface Props {
+  filterForm: any;
+  formProps: any;
+}
+
+const FilterModal = ({ filterForm, formProps }: Props) => {
   const [active, setActive] = useState(false);
   const modalProps = {
     title: "Filter",
-    FormContent: Filter,
+    FormContent: filterForm,
+    formProps: formProps,
     setActive: setActive,
   };
   const buttonProps = {
     label: "Filter",
     onClick: () => setActive(true),
     Icon: FunnelIcon,
-    type: "Small"
+    type: "Small",
   };
   return (
     <>
-      <OutlineButton {...buttonProps}/>
+      <OutlineButton {...buttonProps} />
       {active && <Modal {...modalProps} />}
     </>
   );

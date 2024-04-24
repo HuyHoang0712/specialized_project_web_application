@@ -1,11 +1,12 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import SolidButton from "../Buttons/SolidButton";
+import SolidButton from "../../Buttons/SolidButton";
 import { UserIcon, EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
-import FormInput from "../Input/FormInput";
-import AddressForm from "./AddressForm";
-import { useCreateCustomerMutation } from "@/app/redux/features/customer/customerApiSlice";
+import FormInput from "../../Input/FormInput";
+import AddressForm from "../AddressForm";
 import { toast } from "react-toastify";
+import { useUpdateCustomerByIdMutation } from "@/app/redux/features/customer/customerApiSlice";
 
 type Inputs = {
   name: string;
@@ -21,13 +22,11 @@ type Inputs = {
 };
 
 interface Props {
+  formProps: any;
   setActive: any;
 }
-
-const CreateCustomerForm = (props: Props) => {
-  const { setActive } = props;
-  const [createCustomer, { data: newCus, isSuccess, isLoading }] =
-    useCreateCustomerMutation();
+const UpdateCustomerForm = ({ formProps: customer, setActive }: Props) => {
+  const [updateCustomer] = useUpdateCustomerByIdMutation();
   const {
     register,
     handleSubmit,
@@ -35,31 +34,40 @@ const CreateCustomerForm = (props: Props) => {
     setValue,
     getValues,
   } = useForm<Inputs>({ mode: "all" });
-
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
-    const combinedAddress =
-      data.address.number +
-      " " +
-      data.address.street +
-      "," +
-      data.address.ward +
-      "," +
-      data.address.district +
-      "," +
-      data.address.city;
-    console.log({ ...data, address: combinedAddress });
+    const { address, ...rest } = data;
+    let updateData: { [key: string]: any } = rest;
+    if (address.city) {
+      updateData.address =
+        data.address.number +
+        " " +
+        data.address.street +
+        "," +
+        data.address.ward +
+        "," +
+        data.address.district +
+        "," +
+        data.address.city;
+    }
+    updateData.id = customer.id;
+    console.log(updateData);
+
     try {
-      const res = await createCustomer({ ...data, address: combinedAddress });
+      const res = await updateCustomer(updateData);
       toast.success("Customer added successfully!", { toastId: 1 });
       setActive(false);
     } catch (error: any) {
       throw error;
     }
   };
+  useEffect(() => {
+    setValue("name", customer.name);
+    setValue("email", "example@mail.com");
+    setValue("phone_number", "0911226340");
+  }, [customer]);
 
   const btn_props = {
-    label: "Add Customer",
+    label: "Update Customer",
     type: "Normal",
     styles: "mt-4 justify-center",
     btn_type: "submit" as "submit" | "button" | "reset",
@@ -70,8 +78,8 @@ const CreateCustomerForm = (props: Props) => {
     errors: errors,
     setValue: setValue,
     getValues: getValues,
+    required: false,
   };
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -84,15 +92,16 @@ const CreateCustomerForm = (props: Props) => {
         <div className="flex items-center gap-4">
           <FormInput
             Icon={UserIcon}
-            label="Customer Name*:"
+            label="Customer Name:"
             register={register("name", { required: true })}
             type="text"
             placeholder="Customer Name"
             error={errors.name?.message}
+            disabled={true}
           />
           <FormInput
             Icon={PhoneIcon}
-            label="Contact Number*:"
+            label="Contact Number:"
             register={register("phone_number", {
               required: true,
               pattern: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
@@ -104,7 +113,7 @@ const CreateCustomerForm = (props: Props) => {
         </div>
         <FormInput
           Icon={EnvelopeIcon}
-          label="Email*:"
+          label="Email:"
           register={register("email", {
             required: true,
           })}
@@ -120,4 +129,4 @@ const CreateCustomerForm = (props: Props) => {
   );
 };
 
-export default CreateCustomerForm;
+export default UpdateCustomerForm;

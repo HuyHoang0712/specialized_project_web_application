@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import StatusCard from "../Cards/StatusCard";
@@ -51,6 +51,13 @@ const List = (props: Props) => {
     setItemsPerPage(items);
   };
 
+  useEffect(() => {
+    setCurData(data.slice(0, lenData > itemsPerPage ? itemsPerPage : lenData));
+    setItemsPerPage(10);
+    setTotalPage(Math.ceil(lenData / itemsPerPage));
+    setCurPage(1);
+  }, [data]);
+
   return (
     <div className="flex h-[90%] flex-col">
       {/* Tittle */}
@@ -91,7 +98,7 @@ const List = (props: Props) => {
                   })}
                 >
                   {item.key === "status" ? (
-                    <StatusCard label={content[item.key]} />
+                    <StatusCard label={content[item.key]} type={type} />
                   ) : (
                     content[item.key]
                   )}

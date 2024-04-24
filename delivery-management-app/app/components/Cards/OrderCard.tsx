@@ -46,7 +46,7 @@ function OrderCard(props: OrderCardProps) {
         </div>
         <div className="text-black-80 font-medium text-sm card-content">
           Capacity: {payload} kg
-          <StatusCard label={status} />
+          <StatusCard label={status} type="order" />
         </div>
       </div>
     </div>

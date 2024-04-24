@@ -1,13 +1,18 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
 import List from "./List";
 import { useGetAllPlanQuery } from "@/app/redux/features/plan/planApiSlice";
 import Skeleton from "@mui/material/Skeleton";
+
+function filterDataByDate(data: any[], searchKey: string) {
+  return data.filter((item) => item.date.includes(searchKey));
+}
+
 const TransportationPlanList = () => {
   const { data, error, isLoading } = useGetAllPlanQuery("");
-
+  const [searchKey, setSearchKey] = useState("");
   const LIST_PROPS = {
     headers: [
       { title: "#ID", key: "id" },
@@ -19,7 +24,7 @@ const TransportationPlanList = () => {
       { title: "Canceled", key: "cancel_order" },
       { title: "Issue", key: "issue_count" },
     ],
-    data: data,
+    data: data && filterDataByDate(data, searchKey),
     type: "plan",
   };
 
@@ -30,7 +35,7 @@ const TransportationPlanList = () => {
           Transportation Plans
         </span>
         <div className="flex flex-row gap-3">
-          <Search />
+          <Search setSearchKey={setSearchKey} />
           <FilterModal />
         </div>
       </div>

@@ -18,7 +18,7 @@ const SolidButton = (props: Props) => {
     <button
       type={btn_type ? btn_type : "button"}
       className={clsx(
-        `flex flex-row items-center gap-2 px-3 py-2 text-white font-normal rounded-lg shadow-sm ${styles}`,
+        `flex flex-row items-center justify-center gap-2 px-3 py-2 text-white font-normal rounded-lg shadow-sm ${styles}`,
         {
           "text-base": type === "Normal",
           "text-sm": type === "Small",

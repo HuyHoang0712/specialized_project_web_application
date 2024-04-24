@@ -29,10 +29,10 @@ const LineChart = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg p-3 flex flex-col items-center h-[80%] w-full">
-      <div className="flex items-start gap-2 text-lg font-medium text-primary-100 self-start">
+    <div className="bg-white rounded-lg p-3 flex flex-col items-center h-[50%] w-full">
+      <div className="flex items-start gap-2 font-medium text-primary-100 self-start">
         <PresentationChartLineIcon className="w-10 p-2 bg-secondary-20 rounded-lg" />
-        Order Summary
+        ORDER SUMMARY
       </div>
       <Chart
         xAxis={[{ data: getSixMonth().reverse(), scaleType: "point" }]}
