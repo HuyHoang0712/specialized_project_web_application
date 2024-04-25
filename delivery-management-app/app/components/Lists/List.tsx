@@ -66,7 +66,7 @@ const List = (props: Props) => {
           <span
             key={idx}
             className={clsx("flex flex-1", {
-              "flex-none w-32": ["id", "ship_code"].includes(item.key),
+              "flex-none w-32": ["id", "ship_code", "license_plate"].includes(item.key),
               "flex-none w-40": item.key === "status",
               "flex-none w-28": item.key === "issues_count",
             })}
@@ -80,7 +80,7 @@ const List = (props: Props) => {
         {curData.map((content, idx) => (
           <div key={idx} className="flex items-center gap-5">
             {headers.map((item: any, index) =>
-              item.key === "id" ? (
+              ["id", "license_plate"].includes(item.key) ? (
                 <Link
                   key={index}
                   className="flex flex-none w-32 truncate hover:text-primary-100"
