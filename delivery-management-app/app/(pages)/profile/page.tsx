@@ -1,4 +1,5 @@
-import { Profile, Request } from "@/app/components/Containers/ProfileContainer";
+import { Profile } from "@/app/components/Containers/ProfileContainer";
+import { Request } from "@/app/components/Containers/RequestContainer";
 
 function ProfilePage() {
   return (
