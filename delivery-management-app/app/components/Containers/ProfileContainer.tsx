@@ -19,7 +19,7 @@ export const Profile = () => {
   const update_btn_props = {
     data: data,
     title: "Update Profile",
-    type: "employee",
+    type: "profile",
   };
   return (
     <div className="flex flex-1 flex-col bg-white p-3">
