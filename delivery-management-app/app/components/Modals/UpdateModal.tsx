@@ -14,22 +14,16 @@ const UpdateModal = ({ data, title, type }: Props) => {
   let FormContent: any;
   switch (type) {
     case "order":
-      FormContent = dynamic(
-        () => import("@/app/components/Forms/OrderPlanForm/UpdateOrderForm"),
-        { ssr: false, loading: () => <>Loading...</> }
-      );
+      FormContent = dynamic(() => import("@/app/components/Forms/OrderPlanForm/UpdateOrderForm"), { ssr: false, loading: () => <>Loading...</> });
       break;
     case "customer":
-      FormContent = dynamic(
-        () => import("@/app/components/Forms/CustomerForm/UpdateCustomerForm"),
-        { ssr: false, loading: () => <>Loading...</> }
-      );
+      FormContent = dynamic(() => import("@/app/components/Forms/CustomerForm/UpdateCustomerForm"), { ssr: false, loading: () => <>Loading...</> });
       break;
     case "employee":
-      FormContent = dynamic(
-        () => import("@/app/components/Forms/EmployeeForm/UpdateEmployeeForm"),
-        { ssr: false, loading: () => <>Loading...</> }
-      );
+      FormContent = dynamic(() => import("@/app/components/Forms/EmployeeForm/UpdateEmployeeForm"), { ssr: false, loading: () => <>Loading...</> });
+      break;
+    case "profile":
+      FormContent = dynamic(() => import("@/app/components/Forms/EmployeeForm/UpdateProfileForm"), { ssr: false, loading: () => <>Loading...</> });
       break;
   }
 
