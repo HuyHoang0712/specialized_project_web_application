@@ -1,5 +1,3 @@
-"use client";
-
 import { apiSlice } from "../../apiSlice";
 import { setPlanList } from "./planSlice";
 import URLS from "@/app/lib/urls";
