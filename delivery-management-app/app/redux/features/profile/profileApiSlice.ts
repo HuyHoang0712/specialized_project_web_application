@@ -1,5 +1,3 @@
-"use client";
-
 import { apiSlice } from "../../apiSlice";
 import URLS from "@/app/lib/urls";
 export const profileApiSlice = apiSlice.injectEndpoints({
@@ -7,7 +5,27 @@ export const profileApiSlice = apiSlice.injectEndpoints({
     getUserProfile: builder.query({
       query: (data) => URLS.PROFILE_URL + `get_user_profile/`,
     }),
+    updateProfileById: builder.mutation({
+      query: (data) => ({
+        headers: { "Content-Type": "application/json" },
+        url: URLS.EMPLOYEE_URL + `update_employee/?id=${data.id}`,
+        method: "PUT",
+        body: JSON.stringify(data),
+      }),
+      onQueryStarted: async ({ id, ...put }, { dispatch, queryFulfilled }) => {
+        try {
+          const res = await queryFulfilled;
+          const putResult = dispatch(
+            profileApiSlice.util.updateQueryData("getUserProfile", id, (draft) => {
+              Object.assign(draft, res.data);
+            })
+          );
+        } catch (error) {
+          throw error;
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetUserProfileQuery } = profileApiSlice;
+export const { useGetUserProfileQuery, useUpdateProfileByIdMutation } = profileApiSlice;

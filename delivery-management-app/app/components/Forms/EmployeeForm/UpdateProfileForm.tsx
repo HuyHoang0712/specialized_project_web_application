@@ -1,15 +1,15 @@
 "use client";
 import React, { useEffect } from "react";
-import { useForm, SubmitHandler, set } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import FormInput from "../../Input/FormInput";
-import SearchIuput from "../../Input/SearchIuput";
 import SolidButton from "../../Buttons/SolidButton";
 import { UserIcon, EnvelopeIcon, PhoneIcon, HashtagIcon, CakeIcon, ChevronDoubleDownIcon } from "@heroicons/react/24/solid";
-import { useUpdateEmployeeByIdMutation, useGetGroupsQuery } from "@/app/redux/features/employee/employeeApiSlice";
+import { useUpdateProfileByIdMutation } from "@/app/redux/features/profile/profileApiSlice";
 type Inputs = {
   first_name: string;
   last_name: string;
+  date_of_birth: string;
   email: string;
   phone: string;
 };
@@ -19,9 +19,8 @@ interface Props {
   setActive: any;
 }
 
-const UpdateEmployeeForm = ({ formProps: data, setActive }: Props) => {
-  const { data: groups } = useGetGroupsQuery("");
-  const [updateEmployee] = useUpdateEmployeeByIdMutation();
+const UpdateProfileForm = ({ formProps: data, setActive }: Props) => {
+  const [updateProfile] = useUpdateProfileByIdMutation();
   const {
     register,
     handleSubmit,
@@ -29,19 +28,18 @@ const UpdateEmployeeForm = ({ formProps: data, setActive }: Props) => {
     setValue,
     getValues,
   } = useForm<Inputs>({ mode: "all" });
-  data = data[0];
   useEffect(() => {
     setValue("first_name", data.first_name);
     setValue("last_name", data.last_name);
+    setValue("date_of_birth", data.date_of_birth);
     setValue("email", data.email);
     setValue("phone", data.phone);
   }, [data]);
 
   const onSubmit: SubmitHandler<Inputs> = async (inputData) => {
-    console.log(inputData);
     const updateData = { ...inputData, id: data.id };
     try {
-      const res = await updateEmployee(updateData);
+      const res = await updateProfile(updateData);
       toast.success("Profile updated successfully!", { toastId: 1 });
       setActive(false);
     } catch (error) {
@@ -95,7 +93,7 @@ const UpdateEmployeeForm = ({ formProps: data, setActive }: Props) => {
           />
         </div>
         <div className="flex items-center gap-4">
-          <FormInput Icon={CakeIcon} label="Date of Birth:" type="text" value={data.date_of_birth} disabled={true} />
+          <FormInput Icon={CakeIcon} label="Date of Birth:" register={register("date_of_birth", { required: true })} type="date" error={errors.date_of_birth?.message} />
           <FormInput
             Icon={PhoneIcon}
             label="Phone Number:"
@@ -124,4 +122,4 @@ const UpdateEmployeeForm = ({ formProps: data, setActive }: Props) => {
   );
 };
 
-export default UpdateEmployeeForm;
+export default UpdateProfileForm;
