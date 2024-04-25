@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import OrderCard from "../../Cards/OrderCard";
+import OrderCard from "../../Cards/DashboardCards/OrderCard";
 import { useAppSelector } from "@/app/redux/hooks";
 import { selectOrderList } from "@/app/redux/features/order/orderSlice";
 

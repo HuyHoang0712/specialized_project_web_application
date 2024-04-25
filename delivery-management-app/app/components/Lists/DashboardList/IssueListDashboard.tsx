@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import IssueCard from "../../Cards/IssueCard";
+import IssueCard from "../../Cards/DashboardCards/IssueCard";
 import { useGetIssuesByStatsusQuery } from "@/app/redux/features/issues/issueApiSlice";
 import { Issue } from "@/app/lib/types";
 

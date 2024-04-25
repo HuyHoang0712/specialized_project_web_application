@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { removeVietnameseTones } from "@/app/utils/TransformVNtoEng.service";
 interface SearchIuputProps {
   label: string;
@@ -12,10 +12,34 @@ const SearchIuput = (props: SearchIuputProps) => {
   const { label, register, data, name_key, onClick } = props;
   const [active, setActive] = useState(false);
   const [curData, setCurData] = useState(data);
+  const searchBoxRef = useRef(null);
+  const [filterBoxPosition, setFilterBoxPosition] = useState("bottom-12");
 
   useEffect(() => {
     setCurData(data);
   }, [data]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (searchBoxRef.current) {
+        const rect = (
+          searchBoxRef.current as HTMLElement
+        ).getBoundingClientRect();
+        console.log(rect.top, window.innerHeight / 2);
+        
+        setFilterBoxPosition(
+          rect.top < window.innerHeight / 2 ? "top-12" : "bottom-12"
+        );
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const handlerBlur = (e: any) => {
@@ -48,7 +72,10 @@ const SearchIuput = (props: SearchIuputProps) => {
   return (
     <div className="flex flex-col gap-2 flex-1">
       <h3 className="text-black-100">{label}</h3>
-      <div className={`flex items-center relative ${name_key}`}>
+      <div
+        ref={searchBoxRef}
+        className={`flex items-center relative ${name_key}`}
+      >
         <input
           type="text"
           {...register}
@@ -60,7 +87,9 @@ const SearchIuput = (props: SearchIuputProps) => {
           onChange={(e) => filterName(e.target.value)}
         />
         {active && (
-          <div className="flex flex-col gap-2 bottom-12 max-h-64 w-full overflow-auto rounded-lg px-2 py-3 bg-white shadow-sm shadow-black-10 absolute no-scrollbar">
+          <div
+            className={`flex flex-col gap-2 z-10 ${filterBoxPosition} max-h-64 w-full overflow-auto rounded-lg px-2 py-3 bg-white shadow-sm shadow-black-10 absolute no-scrollbar`}
+          >
             {curData.length > 0 ? (
               curData.map((item, index) => (
                 <p
