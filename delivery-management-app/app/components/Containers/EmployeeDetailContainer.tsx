@@ -52,7 +52,7 @@ const EmployeeDetailContainer = ({ id }: EmployeeDetailContainerProps) => {
           <span className="font-medium text-primary-100">
             EMPLOYEE PICTURE
           </span>
-          <div className="">
+          <div>
             <Image
               src={Images.ExampleAva}
               width={250}

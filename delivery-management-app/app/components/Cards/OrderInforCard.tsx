@@ -82,7 +82,7 @@ const OrderInforCard = (props: Prosp) => {
   };
 
   return (
-    <div className="flex flex-1 flex-col bg-white rounded-lg p-3 gap-6">
+    <div className="flex flex-1 h-fit flex-col bg-white rounded-lg p-3 gap-6">
       <div className="flex items-start gap-6">
         <Icon className="w-10 p-2 bg-secondary-20 rounded-lg text-primary-100 icon-sw-2" />
         <div className="flex flex-col">

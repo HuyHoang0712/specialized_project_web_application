@@ -34,17 +34,9 @@ export const orderApiSlice = apiSlice.injectEndpoints({
     }),
     getOrderById: builder.query({
       query: (data) => URLS.ORDER_URL + `get_order_by_id/?id=${data}`,
-
-      onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
-        try {
-          const res = await queryFulfilled;
-          console.log(res.data);
-
-          dispatch(setCurOder(res.data));
-        } catch (error) {
-          console.log(error);
-        }
-      },
+    }),
+    getOrderOfVehicle: builder.query({
+      query: (data) => URLS.ORDER_URL + `get_order_of_vehicle/?vehicle=${data}`,
     }),
     updateOrderById: builder.mutation({
       query: (data) => ({
@@ -75,6 +67,7 @@ export const orderApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetOrdersByDateQuery,
   useGetOrdersinPlanQuery,
+  useGetOrderOfVehicleQuery,
   useGetOrderByIdQuery,
   useUpdateOrderByIdMutation,
 } = orderApiSlice;
