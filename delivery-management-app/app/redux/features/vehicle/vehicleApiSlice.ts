@@ -17,6 +17,10 @@ export const vehicleApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    getVehicleById: builder.query({
+      query: (id: string) =>
+        URLS.VEHICLE_URL + "get_vehicle_by_license/?license_plate=" + id,
+    }),
   }),
 });
 
@@ -24,4 +28,5 @@ export const {
   useGetVehiclesQuery,
   useGetVehicleBrandsQuery,
   useCreateVehicleMutation,
+  useGetVehicleByIdQuery,
 } = vehicleApiSlice;

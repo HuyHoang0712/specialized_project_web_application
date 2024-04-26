@@ -39,7 +39,7 @@ const OrderDetailContainer = (props: Props) => {
     type: "driver",
     title: "Driver",
     titleContent: { Name: driver.name, "Driver ID": driver.id },
-    content: { Phone: "+8490099129", Email: driver.email },
+    content: { Phone: driver.phone ?? "", Email: driver.email },
   };
 
   const vehicle_card_props = {
@@ -80,7 +80,9 @@ const OrderDetailContainer = (props: Props) => {
       </div>
       <div className="flex flex-1 flex-col bg-white rounded-lg gap-3 p-3">
         <div className="flex items-center justify-between">
-          <span className="text-lg font-medium text-primary-100">ORDER DETAILS</span>
+          <span className="text-lg font-medium text-primary-100">
+            ORDER DETAILS
+          </span>
           <StatusCard label={order.status} type="order" />
         </div>
         <div className="grid grid-cols-2 gap-5">

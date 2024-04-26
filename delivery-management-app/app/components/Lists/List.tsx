@@ -66,7 +66,9 @@ const List = (props: Props) => {
           <span
             key={idx}
             className={clsx("flex flex-1", {
-              "flex-none w-32": ["id", "ship_code", "license_plate"].includes(item.key),
+              "flex-none w-32": ["id", "ship_code", "license_plate"].includes(
+                item.key
+              ),
               "flex-none w-40": item.key === "status",
               "flex-none w-28": item.key === "issues_count",
             })}
@@ -84,7 +86,7 @@ const List = (props: Props) => {
                 <Link
                   key={index}
                   className="flex flex-none w-32 truncate hover:text-primary-100"
-                  href={`/${type}/${content.id}`}
+                  href={`/${type}/${content.id ?? content.license_plate}`}
                 >
                   {content[item.key]}
                 </Link>

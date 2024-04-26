@@ -28,7 +28,6 @@ export const employeeApiSlice = apiSlice.injectEndpoints({
       onQueryStarted: async ({ id, ...put }, { dispatch, queryFulfilled }) => {
         try {
           const res = await queryFulfilled;
-          console.log(res);
           const putResult = dispatch(
             employeeApiSlice.util.updateQueryData(
               "getEmployeeById",
