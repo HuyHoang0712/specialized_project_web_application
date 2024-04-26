@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { UserIcon } from "@heroicons/react/24/solid";
 import { CreditCardIcon } from "@heroicons/react/24/solid";
-import { useGetUserProfileQuery } from "@/app/redux/features/profile/profileApiSlice";
+import { useGetUserProfileQuery, useGetEmployeeIdQuery } from "@/app/redux/features/profile/profileApiSlice";
 import InfoItem, { InforItemSkeleton } from "../Input/InfoItem";
 import Image from "next/image";
 import { Images } from "@/app/lib/assets";
@@ -14,8 +14,14 @@ import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
 import { Skeleton } from "@mui/material";
 
+const getProfileId = () => {
+  const { data, error, isLoading } = useGetEmployeeIdQuery("");
+  return data;
+};
+
 export const Profile = () => {
-  const { data, error, isLoading } = useGetUserProfileQuery("");
+  const id = getProfileId();
+  const { data, error, isLoading } = useGetUserProfileQuery(id);
   console.log(data);
   const update_btn_props = {
     data: data,

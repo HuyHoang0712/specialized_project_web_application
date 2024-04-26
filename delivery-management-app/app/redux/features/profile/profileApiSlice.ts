@@ -1,9 +1,18 @@
+import { type } from "os";
 import { apiSlice } from "../../apiSlice";
 import URLS from "@/app/lib/urls";
+import { types } from "util";
+
 export const profileApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getEmployeeId: builder.query({
+      query: () => URLS.PROFILE_URL + `get_employee_id/`,
+    }),
+    // getUserProfile: builder.query({
+    //   query: () => URLS.PROFILE_URL + `get_user_profile/`,
+    // }),
     getUserProfile: builder.query({
-      query: (data) => URLS.PROFILE_URL + `get_user_profile/`,
+      query: (id) => URLS.EMPLOYEE_URL + `get_employee_by_id/?id=${id}`,
     }),
     updateProfileById: builder.mutation({
       query: (data) => ({
@@ -12,7 +21,7 @@ export const profileApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: JSON.stringify(data),
       }),
-      onQueryStarted: async ({ id, ...put }, { dispatch, queryFulfilled }) => {
+      onQueryStarted: async ({ id, ...put }, { dispatch, getState, queryFulfilled }) => {
         try {
           const res = await queryFulfilled;
           const putResult = dispatch(
@@ -20,6 +29,7 @@ export const profileApiSlice = apiSlice.injectEndpoints({
               Object.assign(draft, res.data);
             })
           );
+          console.log(putResult);
         } catch (error) {
           throw error;
         }
@@ -28,4 +38,4 @@ export const profileApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetUserProfileQuery, useUpdateProfileByIdMutation } = profileApiSlice;
+export const { useGetUserProfileQuery, useUpdateProfileByIdMutation, useGetEmployeeIdQuery } = profileApiSlice;

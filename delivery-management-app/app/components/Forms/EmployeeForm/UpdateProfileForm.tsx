@@ -47,18 +47,6 @@ const UpdateProfileForm = ({ formProps: data, setActive }: Props) => {
     }
   };
 
-  //   const onChooseRole = (role: any) => {
-  //     setValue("group", role.name);
-  //   };
-
-  //   const role_input_props = {
-  //     label: "Role*:",
-  //     register: register("group", { required: true }),
-  //     data: groups ?? [],
-  //     name_key: "name",
-  //     onClick: onChooseRole,
-  //   };
-
   const btn_props = {
     label: "Update Profile",
     type: "Normal",
