@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { UserIcon } from "@heroicons/react/24/solid";
 import { CreditCardIcon } from "@heroicons/react/24/solid";
-import { useGetUserProfileQuery, useGetEmployeeIdQuery } from "@/app/redux/features/profile/profileApiSlice";
+import { useGetUserProfileQuery, useGetEmployeeIdQuery, useGetUserProfileNoIdQuery } from "@/app/redux/features/profile/profileApiSlice";
 import InfoItem, { InforItemSkeleton } from "../Input/InfoItem";
+import InforCard, { InforCardSkeleton } from "../Cards/InforCard";
 import Image from "next/image";
 import { Images } from "@/app/lib/assets";
 import { CakeIcon, EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
@@ -13,15 +14,13 @@ import UpdateModal from "../Modals/UpdateModal";
 import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
 import { Skeleton } from "@mui/material";
+interface ProfileDetailContainerProps {
+  id: string;
+}
 
-const getProfileId = () => {
-  const { data, error, isLoading } = useGetEmployeeIdQuery("");
-  return data;
-};
-
-export const Profile = () => {
-  const id = getProfileId();
+export const Profile = ({ id }: ProfileDetailContainerProps) => {
   const { data, error, isLoading } = useGetUserProfileQuery(id);
+
   console.log(data);
   const update_btn_props = {
     data: data,
@@ -39,11 +38,11 @@ export const Profile = () => {
       ) : (
         <div className="flex flex-1 gap-3">
           <div className="flex flex-1 flex-col gap-3">
-            <InfoItem Icon={UserIcon} title="Full name" content={data.name} />
-            <InfoItem Icon={CreditCardIcon} title="ID" content={data.id} />
-            <InfoItem Icon={CakeIcon} title="Birthday" content={data.date_of_birth} />
-            <InfoItem Icon={PhoneIcon} title="Phone" content={data.phone} />
-            <InfoItem Icon={EnvelopeIcon} title="E-mail" content={data.email} />
+            <InforCard Icon={UserIcon} title="Full name" content={data.name} />
+            <InforCard Icon={CreditCardIcon} title="ID" content={data.id} />
+            <InforCard Icon={CakeIcon} title="Birthday" content={data.date_of_birth} />
+            <InforCard Icon={PhoneIcon} title="Phone" content={data.phone} />
+            <InforCard Icon={EnvelopeIcon} title="E-mail" content={data.email} />
           </div>
 
           <Image className="w-[30%] h-[40%] rounded-lg p-3" src={Images.ExampleAva} alt="" />
@@ -58,10 +57,10 @@ const ProfileSkeleton = () => {
     <div className="flex flex-1 gap-3">
       <div className="flex flex-1 gap-3">
         <div className="flex flex-1 flex-col gap-3">
-          <InforItemSkeleton />
-          <InforItemSkeleton />
-          <InforItemSkeleton />
-          <InforItemSkeleton />
+          <InforCardSkeleton />
+          <InforCardSkeleton />
+          <InforCardSkeleton />
+          <InforCardSkeleton />
         </div>
       </div>
       <Skeleton variant="rectangular" width={"30%"} height={"40%"} />

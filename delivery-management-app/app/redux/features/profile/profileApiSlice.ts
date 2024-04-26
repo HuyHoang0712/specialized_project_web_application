@@ -8,9 +8,9 @@ export const profileApiSlice = apiSlice.injectEndpoints({
     getEmployeeId: builder.query({
       query: () => URLS.PROFILE_URL + `get_employee_id/`,
     }),
-    // getUserProfile: builder.query({
-    //   query: () => URLS.PROFILE_URL + `get_user_profile/`,
-    // }),
+    getUserProfileNoId: builder.query({
+      query: () => URLS.PROFILE_URL + `get_user_profile/`,
+    }),
     getUserProfile: builder.query({
       query: (id) => URLS.EMPLOYEE_URL + `get_employee_by_id/?id=${id}`,
     }),
@@ -38,4 +38,4 @@ export const profileApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetUserProfileQuery, useUpdateProfileByIdMutation, useGetEmployeeIdQuery } = profileApiSlice;
+export const { useGetUserProfileQuery, useUpdateProfileByIdMutation, useGetEmployeeIdQuery, useGetUserProfileNoIdQuery } = profileApiSlice;
