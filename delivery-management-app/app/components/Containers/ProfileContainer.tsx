@@ -1,9 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { UserIcon } from "@heroicons/react/24/solid";
 import { CreditCardIcon } from "@heroicons/react/24/solid";
-import { useGetUserProfileQuery, useGetEmployeeIdQuery, useGetUserProfileNoIdQuery } from "@/app/redux/features/profile/profileApiSlice";
-import InfoItem, { InforItemSkeleton } from "../Input/InfoItem";
+import { useGetUserProfileQuery } from "@/app/redux/features/profile/profileApiSlice";
 import InforCard, { InforCardSkeleton } from "../Cards/InforCard";
 import Image from "next/image";
 import { Images } from "@/app/lib/assets";
@@ -15,18 +14,20 @@ import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
 import { Skeleton } from "@mui/material";
 interface ProfileDetailContainerProps {
-  id: string;
+  id?: string;
 }
 
 export const Profile = ({ id }: ProfileDetailContainerProps) => {
-  const { data, error, isLoading } = useGetUserProfileQuery(id);
+  const { data, error, isLoading } = useGetUserProfileQuery(undefined);
 
   console.log(data);
+  
   const update_btn_props = {
     data: data,
     title: "Update Profile",
     type: "profile",
   };
+
   return (
     <div className="flex flex-1 flex-col bg-white p-3">
       <div className="flex items-center justify-between p-3" aria-label="Global">

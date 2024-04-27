@@ -1,20 +1,16 @@
-"use client";
 import { Profile } from "@/app/components/Containers/ProfileContainer";
 import { Request } from "@/app/components/Containers/RequestContainer";
-import { useGetEmployeeIdQuery } from "@/app/redux/features/profile/profileApiSlice";
+import { cookies } from "next/headers";
 
 function ProfilePage() {
-  const { data, error, isLoading } = useGetEmployeeIdQuery("");
+  const cookieStore = cookies();
+  const id = cookieStore.get("user_id");
   return (
     <div>
-      {isLoading ? (
-        <span>Loading...</span>
-      ) : (
-        <div className="content-container flex-row">
-          <Profile id={data} />
-          <Request />
-        </div>
-      )}
+      <div className="content-container flex-row">
+        <Profile id={id?.value} />
+        <Request />
+      </div>
     </div>
   );
 }

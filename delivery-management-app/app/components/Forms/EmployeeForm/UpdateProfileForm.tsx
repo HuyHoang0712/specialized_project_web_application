@@ -28,6 +28,7 @@ const UpdateProfileForm = ({ formProps: data, setActive }: Props) => {
     setValue,
     getValues,
   } = useForm<Inputs>({ mode: "all" });
+  
   useEffect(() => {
     setValue("first_name", data.first_name);
     setValue("last_name", data.last_name);
