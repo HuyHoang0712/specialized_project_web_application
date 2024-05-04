@@ -55,8 +55,8 @@ const navItems = [
     Active: UsersIconActive,
   },
   {
-    path: "/facilities",
-    name: "Facilities",
+    path: "/vehicles",
+    name: "Vehicles",
     Unactive: TruckIcon,
     Active: TruckIconActive,
   },
@@ -84,6 +84,7 @@ function NavBar() {
     const dashboard = ["dashboard"];
     const orderManagement = ["plans", "plan", "order"];
     const customerManagement = ["customers", "customer"];
+    const VehicleManagement = ["vehicles", "vehicle"];
     const employeesManagement = ["employees", "employee"];
     if (dashboard.includes(curPath)) {
       return "Dashboard";
@@ -91,6 +92,8 @@ function NavBar() {
       return "Orders";
     } else if (customerManagement.includes(curPath)) {
       return "Customers";
+    } else if (VehicleManagement.includes(curPath)) {
+      return "Vehicles";
     } else if (employeesManagement.includes(curPath)) {
       return "Employees";
     } else return curPath[0].toUpperCase() + curPath.slice(1);

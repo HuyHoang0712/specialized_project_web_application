@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import StatusCard from "./StatusCard";
+import StatusCard from "../StatusCard";
 import { TruckIcon, CubeTransparentIcon } from "@heroicons/react/24/solid";
 interface OrderCardProps {
   id: number;

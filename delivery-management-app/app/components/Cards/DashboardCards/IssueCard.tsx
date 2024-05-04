@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { Images } from "@/app/lib/assets";
 import { Issue } from "@/app/lib/types";
-import StatusCard from "./StatusCard";
+import StatusCard from "../StatusCard";
 
 const IssueCard = (props: Issue) => {
   const { date_time, status, label, creator } = props;

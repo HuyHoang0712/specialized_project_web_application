@@ -16,9 +16,16 @@ export const issueApiSlice = apiSlice.injectEndpoints({
       query: (data: string) =>
         URLS.ISSUE_URL + `get_issues_by_employee_id?employee_id=${data}`,
     }),
+    getIssuesOfVehicle: builder.query({
+      query: (data: string) =>
+        URLS.ISSUE_URL + `get_issues_of_vehicle?vehicle=${data}`,
+    }),
   }),
-
 });
 
-export const { useGetAllIssueQuery, useGetIssuesByStatsusQuery, useGetIssuesByEmployeeIdQuery } =
-  issueApiSlice;
+export const {
+  useGetAllIssueQuery,
+  useGetIssuesByStatsusQuery,
+  useGetIssuesByEmployeeIdQuery,
+  useGetIssuesOfVehicleQuery,
+} = issueApiSlice;

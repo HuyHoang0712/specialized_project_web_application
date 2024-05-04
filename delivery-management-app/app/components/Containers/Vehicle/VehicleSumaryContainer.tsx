@@ -1,46 +1,44 @@
 "use client";
 import React from "react";
-import { useGetStatusSummaryQuery } from "@/app/redux/features/employee/employeeApiSlice";
-import SummaryCard, { SummaryCardSkeleton } from "../Cards/SummaryCard";
+import { useGetVehiclesQuery } from "@/app/redux/features/vehicle/vehicleApiSlice";
+import SummaryCard, { SummaryCardSkeleton } from "../../Cards/SummaryCard";
+import { Skeleton } from "@mui/material";
 import Link from "next/link";
 import {
-  UserCircleIcon,
-  UsersIcon,
-  UserMinusIcon,
+  TruckIcon,
   CheckCircleIcon,
   RocketLaunchIcon,
+  WrenchScrewdriverIcon,
+  UserCircleIcon,
   ChevronRightIcon,
 } from "@heroicons/react/24/outline";
-import { Skeleton } from "@mui/material";
-const EmployeeSumaryContainer = () => {
-  const { data, error, isLoading } = useGetStatusSummaryQuery("");
-
-  if (isLoading) return <EmployeeSumaryContainerSkeleton />;
-
+const VehicleSumaryContainer = () => {
+  const { data: vehicles, error, isLoading } = useGetVehiclesQuery("");
+  if (isLoading) return <VehicleSumaryContainerSkeleton />;
   return (
     <div className="h-full flex-1 grid grid-cols-2 grid-rows-6 grid-flow-row gap-4">
       <SummaryCard
-        Icon={UsersIcon}
-        title="Total Employee"
-        value={data?.total}
+        Icon={TruckIcon}
+        title="Total"
+        value={vehicles?.length}
         type="default"
       />
       <SummaryCard
         Icon={CheckCircleIcon}
-        title="Available Employee"
-        value={data?.available}
+        title="Available"
+        value={vehicles?.filter((vehicle: any) => vehicle.status === 0).length}
         type="available"
       />
       <SummaryCard
         Icon={RocketLaunchIcon}
-        title="Busy Employee"
-        value={data?.busy}
+        title="Delivering"
+        value={vehicles?.filter((vehicle: any) => vehicle.status === 1).length}
         type="busy"
       />
       <SummaryCard
-        Icon={UserMinusIcon}
-        title="On Leave Employee"
-        value={data?.on_break}
+        Icon={WrenchScrewdriverIcon}
+        title="On Break"
+        value={vehicles?.filter((vehicle: any) => vehicle.status === 2).length}
         type="on_break"
       />
       <RequestList />
@@ -48,7 +46,7 @@ const EmployeeSumaryContainer = () => {
   );
 };
 
-export default EmployeeSumaryContainer;
+export default VehicleSumaryContainer;
 
 const requests = [
   {
@@ -143,7 +141,6 @@ const RequestList = () => {
     </div>
   );
 };
-
 const RequestListSkeleton = () => {
   return (
     <div className="flex flex-col p-3 gap-2 col-span-2 row-span-4 bg-white rounded-lg">
@@ -157,7 +154,7 @@ const RequestListSkeleton = () => {
     </div>
   );
 };
-const EmployeeSumaryContainerSkeleton = () => {
+const VehicleSumaryContainerSkeleton = () => {
   return (
     <div className="h-full flex-1 grid grid-cols-2 grid-rows-6 grid-flow-row gap-4">
       <SummaryCardSkeleton />

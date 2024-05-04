@@ -6,6 +6,8 @@ import FormInput from "../../Input/FormInput";
 import SearchIuput from "../../Input/SearchIuput";
 import SolidButton from "../../Buttons/SolidButton";
 
+
+
 type Inputs = {
   email: string;
   phone: string;

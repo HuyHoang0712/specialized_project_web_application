@@ -16,7 +16,10 @@ const CreateModal = ({ title, type }: CreateModalProps) => {
   switch (type) {
     case "Plan":
       FormContent = dynamic(
-        () => import("@/app/components/Forms/OrderPlanForm/CreateTransportationPlan"),
+        () =>
+          import(
+            "@/app/components/Forms/OrderPlanForm/CreateTransportationPlan"
+          ),
         { ssr: false, loading: () => <>Loading...</> }
       );
       break;
@@ -35,6 +38,12 @@ const CreateModal = ({ title, type }: CreateModalProps) => {
     case "Employee":
       FormContent = dynamic(
         () => import("@/app/components/Forms/EmployeeForm/CreateEmployeeForm"),
+        { ssr: false, loading: () => <>Loading...</> }
+      );
+      break;
+    case "Vehicle":
+      FormContent = dynamic(
+        () => import("@/app/components/Forms/VehicleForm/CreateVehicleForm"),
         { ssr: false, loading: () => <>Loading...</> }
       );
       break;
