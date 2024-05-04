@@ -13,6 +13,9 @@ const OrderListDashboard = () => {
     error,
     isLoading,
   } = useGetOrdersByDateQuery(formattedDate);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="flex flex-col items-center divide-y overflow-y-scroll scroll-y no-scrollbar">
       {orderList.map((item: any, idx: number) => (
