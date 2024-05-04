@@ -7,7 +7,7 @@ import OrderInforCard, {
   OrderInforCardSkeleton,
 } from "../../Cards/OrderInforCard";
 import LineChart from "../../Chart/LineChart";
-import RequestList, { ListSkeleton } from "../../Lists/SubLists/RequestList";
+import RequestList, { ListSkeleton } from "../../Lists/SubLists/RequestSubList";
 import OrderSubList from "../../Lists/SubLists/OrderSubList";
 const VehicleDetailSummaryContainer = ({ id }: { id: string }) => {
   const {
