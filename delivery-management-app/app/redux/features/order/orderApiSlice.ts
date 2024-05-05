@@ -69,12 +69,10 @@ export const orderApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+    getRecentOrdersCoordinates: builder.query({
+      query: (data) => URLS.ORDER_URL + `get_recent_orders_coordinates/?date=${data}`,
+    }),
   }),
 });
 
-export const {
-  useGetOrdersByDateQuery,
-  useGetOrdersinPlanQuery,
-  useGetOrderByIdQuery,
-  useUpdateOrderByIdMutation,
-} = orderApiSlice;
+export const { useGetOrdersByDateQuery, useGetOrdersinPlanQuery, useGetOrderByIdQuery, useUpdateOrderByIdMutation, useGetRecentOrdersCoordinatesQuery } = orderApiSlice;
