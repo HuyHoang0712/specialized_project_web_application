@@ -16,7 +16,6 @@ function DashboardSummaryCards(props: Props) {
 
   return (
     <div
-      id="mapbox"
       // className={clsx(
       //   "flex flex-col rounded-lg p-3 gap-3 bg-white overflow-hidden",
       //   { " flex-1": type != "tracking", "w-[40%]": type == "tracking" }
@@ -31,7 +30,11 @@ function DashboardSummaryCards(props: Props) {
           case "order":
             return <OrderListDashboard />;
           case "tracking":
-            return <MapBox center={[10.772327943924136, 106.65794471075151]} />;
+            return (
+              <div id="mapbox" className="h-full">
+                <MapBox />;
+              </div>
+            );
           default:
             return null;
         }
