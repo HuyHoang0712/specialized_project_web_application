@@ -3,7 +3,7 @@ import React from "react";
 import mapboxgl from "mapbox-gl";
 import { useRef, useEffect, useState } from "react";
 import Map, { Marker } from "react-map-gl";
-import { useGetRecentOrdersCoordinatesQuery } from "@/app/redux/features/order/orderApiSlice";
+// import { useGetRecentOrdersCoordinatesQuery } from "@/app/redux/features/order/orderApiSlice";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 interface Props {
