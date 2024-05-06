@@ -23,7 +23,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 //   );
 // }
 
-export function Mapbox() {
+function Mapbox() {
   var utc = new Date().toJSON().slice(0, 10).replace("/", "-");
   const { data, error, isLoading } = useGetRecentOrdersCoordinatesQuery(utc);
 
