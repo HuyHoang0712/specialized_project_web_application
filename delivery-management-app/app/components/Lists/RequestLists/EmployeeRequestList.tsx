@@ -46,7 +46,6 @@ const EmployeeRequestList = () => {
       { title: "#ID", key: "id" },
       { title: "Title", key: "title" },
       { title: "Label", key: "label" },
-      { title: "Created Date", key: "date_time" },
       { title: "Creator", key: "creator" },
       { title: "Status", key: "status" },
     ],
