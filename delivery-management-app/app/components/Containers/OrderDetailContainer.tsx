@@ -10,7 +10,7 @@ import CancelModal from "../Modals/CancelModal";
 import ReportIssueModal from "../Modals/ReportIssueModal";
 import { HashtagIcon, MapPinIcon, ClockIcon, CubeIcon, ExclamationCircleIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import { useGetOrderByIdQuery } from "@/app/redux/features/order/orderApiSlice";
-const MapBox = dynamic(() => import("@/app/components/Map/Map"), {
+const OrderRoute = dynamic(() => import("@/app/components/Map/OrderRoute"), {
   ssr: false,
 });
 
@@ -65,7 +65,7 @@ const OrderDetailContainer = (props: Props) => {
         <div className="flex flex-col flex-1 rounded-lg p-3 gap-2 bg-white overflow-hidden">
           <span className="text-lg font-medium text-black-60">Order Tracking</span>
           <div id="mapbox" className="h-full">
-            <MapBox />
+            <OrderRoute id={id} />
           </div>
         </div>
       </div>
