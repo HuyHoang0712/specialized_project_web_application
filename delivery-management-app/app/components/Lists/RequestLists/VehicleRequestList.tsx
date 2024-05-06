@@ -2,9 +2,13 @@
 import React, { useState } from "react";
 import Search from "../../Search/Search";
 import List, { ListSkeleton } from "../List";
-import { useGetAllVehicleIssuesQuery } from "@/app/redux/features/issues/issueApiSlice";
+import { useGetAllIssueQuery } from "@/app/redux/features/issues/issueApiSlice";
 const VehicleRequestList = () => {
-  const { data: requests, error, isLoading } = useGetAllVehicleIssuesQuery("");
+  const {
+    data: requests,
+    error,
+    isLoading,
+  } = useGetAllIssueQuery("issue-vehicle");
   const [searchKey, setSearchKey] = useState("");
   const [filterKey, setFilterKey] = useState({
     role: "All",
@@ -20,7 +24,7 @@ const VehicleRequestList = () => {
       { title: "Status", key: "status" },
     ],
     data: requests,
-    type: "issue",
+    type: "issue-vehicle",
   };
   return (
     <div className="flex flex-1 flex-col gap-3">

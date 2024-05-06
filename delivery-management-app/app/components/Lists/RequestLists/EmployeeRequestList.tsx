@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Search from "../../Search/Search";
 import List, { ListSkeleton } from "../List";
-import { useGetAllEmployeeIssuesQuery } from "@/app/redux/features/issues/issueApiSlice";
+import { useGetAllIssueQuery } from "@/app/redux/features/issues/issueApiSlice";
 
 function filterDataByName(data: any[], searchKey: string) {
   return data.filter((item) =>
@@ -22,12 +22,12 @@ const applyFilterAndSearch = (
   //   data = data.filter((item) => item.role === filterKey.role);
   // }
   // if (filterKey.status != "All") {
-  //   const statusIdx = EMPLOYEE_VEHICLE_STATUS.findIndex(
+  //   const statusIdx = EMPLOYEE_STATUS.findIndex(
   //     (item) => item.label === filterKey.status
   //   );
 
   //   data = data.filter(
-  //     (item) => item.status === EMPLOYEE_VEHICLE_STATUS[statusIdx].value
+  //     (item) => item.status === EMPLOYEE_STATUS[statusIdx].value
   //   );
   // }
 
@@ -35,7 +35,7 @@ const applyFilterAndSearch = (
 };
 
 const EmployeeRequestList = () => {
-  const { data: requests, error, isLoading } = useGetAllEmployeeIssuesQuery("");
+  const { data: requests, error, isLoading } = useGetAllIssueQuery("issue-employee");
   const [searchKey, setSearchKey] = useState("");
   const [filterKey, setFilterKey] = useState({
     role: "All",
@@ -50,7 +50,7 @@ const EmployeeRequestList = () => {
       { title: "Status", key: "status" },
     ],
     data: requests,
-    type: "issue",
+    type: "issue-employee",
   };
   return (
     <div className="flex flex-1 flex-col gap-3">

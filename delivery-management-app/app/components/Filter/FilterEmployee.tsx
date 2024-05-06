@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import SearchIuput from "../Input/SearchIuput";
 import SolidButton from "../Buttons/SolidButton";
-import { EMPLOYEE_VEHICLE_STATUS } from "@/app/lib/constances";
+import { EMPLOYEE_STATUS } from "@/app/lib/constances";
 import { useGetGroupsQuery } from "@/app/redux/features/employee/employeeApiSlice";
 
 type Inputs = {
@@ -58,7 +58,7 @@ const FilterEmployee = ({
   const status_filter_input = {
     label: "Status:",
     register: register("status"),
-    data: EMPLOYEE_VEHICLE_STATUS.concat({ label: "All", value: -1 }),
+    data: EMPLOYEE_STATUS.concat({ label: "All", value: -1 }),
     name_key: "label",
     onClick: onChooseStatus,
   };

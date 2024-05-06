@@ -5,7 +5,7 @@ import FilterModal from "../Modals/FilterModal";
 import FilterEmployee from "../Filter/FilterEmployee";
 import List, { ListSkeleton } from "./List";
 import { useGetAllEmployeesQuery } from "@/app/redux/features/employee/employeeApiSlice";
-import { EMPLOYEE_VEHICLE_STATUS } from "@/app/lib/constances";
+import { EMPLOYEE_STATUS } from "@/app/lib/constances";
 function filterDataByName(data: any[], searchKey: string) {
   return data.filter((item) =>
     item.name.toLowerCase().includes(searchKey.toLowerCase())
@@ -24,12 +24,12 @@ const applyFilterAndSearch = (
     data = data.filter((item) => item.role === filterKey.role);
   }
   if (filterKey.status != "All") {
-    const statusIdx = EMPLOYEE_VEHICLE_STATUS.findIndex(
+    const statusIdx = EMPLOYEE_STATUS.findIndex(
       (item) => item.label === filterKey.status
     );
 
     data = data.filter(
-      (item) => item.status === EMPLOYEE_VEHICLE_STATUS[statusIdx].value
+      (item) => item.status === EMPLOYEE_STATUS[statusIdx].value
     );
   }
 
