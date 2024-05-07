@@ -61,7 +61,7 @@ const navItems = [
     Active: TruckIconActive,
   },
   {
-    path: "/issue",
+    path: "/issues",
     name: "Issues",
     Unactive: InformationCircleIcon,
     Active: InformationCircleIconActive,

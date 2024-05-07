@@ -13,7 +13,7 @@ const Modal = (props: Props) => {
   const { title, FormContent, setActive, formProps } = props;
   return (
     <div className="z-10 absolute w-full h-full top-0 left-0 flex justify-center items-center bg-blur-color">
-      <div className="bg-white p-4 space-y-3 rounded-lg">
+      <div className="bg-white p-4 space-y-4 rounded-lg">
         <div className="flex flex-row justify-between items-center gap-5">
           <span className="text-xl font-medium text-primary-100">{title}</span>
           <XMarkIcon

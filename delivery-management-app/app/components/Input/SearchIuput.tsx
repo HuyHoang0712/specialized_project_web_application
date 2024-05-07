@@ -25,8 +25,7 @@ const SearchIuput = (props: SearchIuputProps) => {
         const rect = (
           searchBoxRef.current as HTMLElement
         ).getBoundingClientRect();
-        console.log(rect.top, window.innerHeight / 2);
-        
+
         setFilterBoxPosition(
           rect.top < window.innerHeight / 2 ? "top-12" : "bottom-12"
         );

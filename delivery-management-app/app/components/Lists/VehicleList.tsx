@@ -5,7 +5,7 @@ import FilterModal from "../Modals/FilterModal";
 import FilterVehicle from "../Filter/FilterVehicle";
 import List, { ListSkeleton } from "./List";
 import { useGetVehiclesQuery } from "@/app/redux/features/vehicle/vehicleApiSlice";
-import { EMPLOYEE_VEHICLE_STATUS } from "@/app/lib/constances";
+import { EMPLOYEE_STATUS } from "@/app/lib/constances";
 function filterDataByLicense(data: any[], searchKey: string) {
   return data.filter((item) =>
     item.license_plate.toLowerCase().includes(searchKey.toLowerCase())
@@ -39,11 +39,11 @@ const applyFilterAndSearch = (
     }
   }
   if (filterKey.status != "All") {
-    const statusIdx = EMPLOYEE_VEHICLE_STATUS.findIndex(
+    const statusIdx = EMPLOYEE_STATUS.findIndex(
       (item) => item.label === filterKey.status
     );
     data = data.filter(
-      (item) => item.status === EMPLOYEE_VEHICLE_STATUS[statusIdx].value
+      (item) => item.status === EMPLOYEE_STATUS[statusIdx].value
     );
   }
 

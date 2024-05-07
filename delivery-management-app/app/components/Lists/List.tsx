@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import IssueDetailsModal from "../Modals/IssueDetailsModal";
 import StatusCard from "../Cards/StatusCard";
 import { Skeleton } from "@mui/material";
+import dynamic from "next/dynamic";
 import clsx from "clsx";
 interface Props {
   headers: any[];
@@ -82,14 +84,22 @@ const List = (props: Props) => {
         {curData.map((content, idx) => (
           <div key={idx} className="flex items-center gap-5">
             {headers.map((item: any, index) =>
-              ["id", "license_plate"].includes(item.key) ? (
-                <Link
-                  key={index}
-                  className="flex flex-none w-32 truncate hover:text-primary-100"
-                  href={`/${type}/${content.id ?? content.license_plate}`}
-                >
-                  {content[item.key]}
-                </Link>
+              index === 0 ? (
+                ["issue-vehicle", "issue-employee"].includes(type) ? (
+                  <IssueDetailsModal
+                    key={index}
+                    id={content[item.key]}
+                    type={type}
+                  />
+                ) : (
+                  <Link
+                    key={index}
+                    className="flex flex-none w-32 truncate hover:text-primary-100"
+                    href={`/${type}/${content.id ?? content.license_plate}`}
+                  >
+                    {content[item.key]}
+                  </Link>
+                )
               ) : (
                 <span
                   key={index}

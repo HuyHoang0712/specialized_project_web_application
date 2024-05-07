@@ -7,7 +7,7 @@ import OrderInforCard, {
   OrderInforCardSkeleton,
 } from "../../Cards/OrderInforCard";
 import LineChart from "../../Chart/LineChart";
-import RequestList, { ListSkeleton } from "../../Lists/SubLists/RequestList";
+import RequestList, { ListSkeleton } from "../../Lists/SubLists/RequestSubList";
 import OrderSubList from "../../Lists/SubLists/OrderSubList";
 const VehicleDetailSummaryContainer = ({ id }: { id: string }) => {
   const {
@@ -46,7 +46,7 @@ const VehicleDetailSummaryContainer = ({ id }: { id: string }) => {
         {issueLoading ? (
           <ListSkeleton />
         ) : (
-          <RequestList title="VEHICLE REQUESTS" data={issues} />
+          <RequestList title="VEHICLE REQUESTS" data={issues ?? []} />
         )}
       </div>
       <div className="flex flex-col gap-4 h-full w-[60%]">
