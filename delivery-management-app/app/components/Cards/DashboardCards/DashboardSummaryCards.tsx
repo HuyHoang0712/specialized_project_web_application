@@ -2,15 +2,9 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import clsx from "clsx";
-const MapBox = dynamic(() => import("../../Map/Map"), { ssr: false });
-const OrderListDashboard = dynamic(
-  () => import("../../Lists/DashboardList/OrderListDashboard"),
-  { ssr: false }
-);
-const IssueListDashboard = dynamic(
-  () => import("../../Lists/DashboardList/IssueListDashboard"),
-  { ssr: false }
-);
+const MapBox = dynamic(() => import("../Map/Map"), { ssr: false });
+const OrderListDashboard = dynamic(() => import("../Lists/DashboardList/OrderListDashboard"), { ssr: false });
+const IssueListDashboard = dynamic(() => import("../Lists/DashboardList/IssueListDashboard"), { ssr: false });
 
 interface Props {
   title: string;
@@ -36,7 +30,11 @@ function DashboardSummaryCards(props: Props) {
           case "order":
             return <OrderListDashboard />;
           case "tracking":
-            return <MapBox center={[10.772327943924136, 106.65794471075151]}/>;
+            return (
+              <div id="mapbox" className="h-full">
+                <MapBox />;
+              </div>
+            );
           default:
             return null;
         }
