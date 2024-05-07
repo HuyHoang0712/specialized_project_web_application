@@ -2,9 +2,9 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import clsx from "clsx";
-const MapBox = dynamic(() => import("../Map/Map"), { ssr: false });
-const OrderListDashboard = dynamic(() => import("../Lists/DashboardList/OrderListDashboard"), { ssr: false });
-const IssueListDashboard = dynamic(() => import("../Lists/DashboardList/IssueListDashboard"), { ssr: false });
+const MapBox = dynamic(() => import("../../Map/Map"), { ssr: false });
+const OrderListDashboard = dynamic(() => import("../../Lists/DashboardList/OrderListDashboard"), { ssr: false });
+const IssueListDashboard = dynamic(() => import("../../Lists/DashboardList/IssueListDashboard"), { ssr: false });
 
 interface Props {
   title: string;
