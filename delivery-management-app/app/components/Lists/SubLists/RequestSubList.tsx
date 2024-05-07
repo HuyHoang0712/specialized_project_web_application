@@ -19,7 +19,7 @@ const RequestList = ({ title, data }: RequestListProps) => {
             <div key={idx} className="space-y-2 py-1">
               <div className="flex justify-between items-center">
                 <span className="font-medium text-black-60">{issue.title}</span>
-                <StatusCard label={issue.status} type="order" />
+                <StatusCard label={issue.status} type="issue-vehicle" />
               </div>
               <div className="flex justify-between items-center text-black-40">
                 <span className="text-sm font-medium ">

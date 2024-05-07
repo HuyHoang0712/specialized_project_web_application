@@ -1,7 +1,7 @@
 const EMPLOYEE_STATUS = [
   {
     label: "Inactive",
-    value: 4,
+    value: 0,
   },
   {
     label: "Available",

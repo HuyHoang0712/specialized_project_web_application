@@ -46,7 +46,7 @@ const VehicleDetailSummaryContainer = ({ id }: { id: string }) => {
         {issueLoading ? (
           <ListSkeleton />
         ) : (
-          <RequestList title="VEHICLE REQUESTS" data={issues} />
+          <RequestList title="VEHICLE REQUESTS" data={issues ?? []} />
         )}
       </div>
       <div className="flex flex-col gap-4 h-full w-[60%]">
