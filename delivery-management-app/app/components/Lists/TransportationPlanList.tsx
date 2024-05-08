@@ -2,17 +2,19 @@
 import React, { useState } from "react";
 import Search from "../Search/Search";
 import FilterModal from "../Modals/FilterModal";
-import List from "./List";
+import FilterByDate from "../Filter/FilterByDate";
+import List, { ListSkeleton } from "./List";
 import { useGetAllPlanQuery } from "@/app/redux/features/plan/planApiSlice";
-import Skeleton from "@mui/material/Skeleton";
-
-function filterDataByDate(data: any[], searchKey: string) {
-  return data.filter((item) => item.date.includes(searchKey));
-}
-
+import SearchFilterService from "@/app/utils/SearchFilter.service";
+import dayjs, { Dayjs } from "dayjs";
+import { DateRange } from "@mui/x-date-pickers-pro/models";
 const TransportationPlanList = () => {
   const { data, error, isLoading } = useGetAllPlanQuery("");
   const [searchKey, setSearchKey] = useState("");
+  const [filterKey, setFilterKey] = useState<DateRange<Dayjs>>([
+    dayjs(),
+    dayjs(),
+  ]);
   const LIST_PROPS = {
     headers: [
       { title: "#ID", key: "id" },
@@ -22,9 +24,8 @@ const TransportationPlanList = () => {
       { title: "In-progress", key: "in_progress_order" },
       { title: "Completed", key: "completed_order" },
       { title: "Canceled", key: "cancel_order" },
-      { title: "Issue", key: "issue_count" },
     ],
-    data: data && filterDataByDate(data, searchKey),
+    data: data && SearchFilterService.searchByKey("date", searchKey, data),
     type: "plan",
   };
 
@@ -35,17 +36,15 @@ const TransportationPlanList = () => {
           Transportation Plans
         </span>
         <div className="flex flex-row gap-3">
-          <Search setSearchKey={setSearchKey} />
-          {/* <FilterModal /> */}
+          <Search setSearchKey={setSearchKey} placeholder="Search by date" />
+          <FilterModal
+            formProps={{ filterKey: filterKey, setFilterKey: setFilterKey }}
+            filterForm={FilterByDate}
+          />
         </div>
       </div>
       {isLoading ? (
-        <Skeleton
-          variant="rounded"
-          animation="wave"
-          width={"full"}
-          height={"90%"}
-        />
+        <ListSkeleton headers={LIST_PROPS.headers} />
       ) : (
         <List {...LIST_PROPS} />
       )}

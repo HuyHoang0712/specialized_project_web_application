@@ -70,4 +70,4 @@ export const orderApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetOrdersByDateQuery, useGetOrdersinPlanQuery, useGetOrderByIdQuery, useUpdateOrderByIdMutation, useGetRecentOrdersCoordinatesQuery, useGetOrderCoordinatesQuery } = orderApiSlice;
+export const { useGetOrdersByDateQuery, useGetOrdersinPlanQuery, useGetOrderByIdQuery, useUpdateOrderByIdMutation, useGetRecentOrdersCoordinatesQuery, useGetOrderCoordinatesQuery, useGetOrderOfVehicleQuery } = orderApiSlice;

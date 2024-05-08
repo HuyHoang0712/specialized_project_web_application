@@ -7,6 +7,7 @@ import StatusCard from "../Cards/StatusCard";
 import { Skeleton } from "@mui/material";
 import dynamic from "next/dynamic";
 import clsx from "clsx";
+import DateTimeService from "@/app/utils/DateTime.service";
 interface Props {
   headers: any[];
   data: any[];
@@ -111,6 +112,8 @@ const List = (props: Props) => {
                 >
                   {item.key === "status" ? (
                     <StatusCard label={content[item.key]} type={type} />
+                  ) : item.key === "date" ? (
+                    DateTimeService.transformDate(content[item.key])
                   ) : (
                     content[item.key]
                   )}

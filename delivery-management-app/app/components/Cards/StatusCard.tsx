@@ -15,7 +15,6 @@ interface Props {
 
 const StatusCard = (props: Props) => {
   const { label, type } = props;
-  console.log("label", label, "type", type);
   
   let STATUS: { label: string; value: number }[];
   switch (type) {
@@ -30,6 +29,7 @@ const StatusCard = (props: Props) => {
       break;
     case "issue-employee":
     case "issue-vehicle":
+    case "issue":
       STATUS = ISSUE_STATUS;
       break;
     default:

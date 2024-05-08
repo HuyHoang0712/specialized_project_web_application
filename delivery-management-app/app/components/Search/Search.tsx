@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 interface Props {
+  placeholder?: string;
   setSearchKey: (term: string) => void;
 }
 
-const Search = ({ setSearchKey }: Props) => {
+const Search = ({ placeholder, setSearchKey }: Props) => {
   const [search, setSearch] = useState("");
   const handleSearch = (term: string) => {
     setSearchKey(term);
@@ -22,7 +23,7 @@ const Search = ({ setSearchKey }: Props) => {
         id="search"
         type="text"
         title="search"
-        placeholder="Search"
+        placeholder={placeholder ?? "Search"}
         autoComplete="off"
         className="w-full text-sm border-none placeholder-black-20 bg-transparent focus:border-transparent focus:outline-none focus:ring-0"
         value={search}

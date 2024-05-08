@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import "mapbox-gl/dist/mapbox-gl.css";
-
+import MuiLicense from "./MuiLicense";
 import StoreProvider from "./StoreProvider";
 import { Bounce, ToastContainer } from "react-toastify";
 const inter = Poppins({
@@ -38,6 +38,7 @@ export default function RootLayout({
             theme="light"
             transition={Bounce}
           />
+          <MuiLicense />
         </StoreProvider>
       </body>
     </html>

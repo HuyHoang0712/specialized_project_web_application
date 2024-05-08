@@ -1,12 +1,8 @@
 import dynamic from "next/dynamic";
-
 import OrderSummaryCard from "@/app/components/Cards/DashboardCards/OrderSummaryCard";
-
-const DashboardSummaryCards = dynamic(
-  () => import("../../components/Cards/DashboardCards/DashboardSummaryCards"),
-  { ssr: false, loading: () => <>Loading...</> }
-);
-
+import Mapbox from "@/app/components/Map/Map";
+import OrderListDashboard from "@/app/components/Lists/DashboardList/OrderListDashboard";
+import IssueListDashboard from "@/app/components/Lists/DashboardList/IssueListDashboard";
 const CardInfors = [
   {
     title: "Recent Issues",
@@ -30,9 +26,27 @@ function DashboardPage() {
         className="flex flex-row gap-4"
         style={{ height: "calc(100vh - 16.275rem)" }}
       >
-        <DashboardSummaryCards {...CardInfors[2]} />
-        <DashboardSummaryCards {...CardInfors[0]} />
-        <DashboardSummaryCards {...CardInfors[1]} />
+        <div className="flex flex-col rounded-lg p-3 gap-3 bg-white overflow-hidden flex-1">
+          <span className="text-lg font-medium text-black-60">
+            Vehicle Tracking
+          </span>
+          <div id="mapbox" className="h-full">
+            <Mapbox />
+          </div>
+        </div>
+
+        <div className="flex flex-col rounded-lg p-3 gap-3 bg-white overflow-hidden flex-1">
+          <span className="text-lg font-medium text-black-60">
+            Recent Requests
+          </span>
+          <IssueListDashboard />
+        </div>
+        <div className="flex flex-col rounded-lg p-3 gap-3 bg-white overflow-hidden flex-1">
+          <span className="text-lg font-medium text-black-60">
+            Today Orders
+          </span>
+          <OrderListDashboard />
+        </div>
       </div>
     </div>
   );

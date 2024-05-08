@@ -28,6 +28,7 @@ function Mapbox() {
   const { data, error, isLoading } = useGetRecentOrdersCoordinatesQuery(utc);
 
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN as string;
+
   if (isLoading) {
     <div id="mapbox">Loading...</div>;
   }
@@ -44,7 +45,7 @@ function Mapbox() {
         const marker = new mapboxgl.Marker().setLngLat(data[idx]).addTo(mapbox);
       });
   }, [data]);
-  return null;
+  return <div id="mapbox" className="w-full h-full"></div>;
 }
 
 export default Mapbox;

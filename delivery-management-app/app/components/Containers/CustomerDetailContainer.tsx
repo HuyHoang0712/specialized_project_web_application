@@ -50,7 +50,7 @@ const CustomerDetailContainer = (props: CustomerDetailContainerProps) => {
           <span className="font-medium text-primary-100">
             CUSTOMER POSITION
           </span>
-          <MapBox center={[customer.latitude, customer.longitude]} />
+          <MapBox  />
         </div>
         <div className="flex flex-col flex-1 gap-3">
           <span className="font-medium text-primary-100">CUSTOMER DETAILS</span>
