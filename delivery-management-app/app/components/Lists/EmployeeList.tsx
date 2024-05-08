@@ -60,7 +60,7 @@ const EmployeeList = () => {
       <div className="flex flex-row w-full justify-between items-center">
         <span className="text-lg text-black-60 font-medium">Employees</span>
         <div className="flex flex-row gap-3">
-          <Search setSearchKey={setSearchKey} />
+          <Search setSearchKey={setSearchKey} placeholder="Search by name"/>
           <FilterModal
             filterForm={FilterEmployee}
             formProps={{ filterKey: filterKey, setFilterKey: setFilterKey }}

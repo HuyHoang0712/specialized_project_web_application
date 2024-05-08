@@ -17,7 +17,7 @@ const OrderListDashboard = () => {
   }
   return (
     <div className="flex flex-col flex-1 items-center divide-y overflow-y-scroll scroll-y no-scrollbar">
-      {orderList && orderList.lenth > 0 ? (
+      {orderList && orderList.length > 0 ? (
         orderList.map((item: any, idx: number) => (
           <OrderCard key={idx} {...item} />
         ))

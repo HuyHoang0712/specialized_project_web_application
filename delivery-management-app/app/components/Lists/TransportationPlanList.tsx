@@ -6,15 +6,14 @@ import FilterByDate from "../Filter/FilterByDate";
 import List, { ListSkeleton } from "./List";
 import { useGetAllPlanQuery } from "@/app/redux/features/plan/planApiSlice";
 import SearchFilterService from "@/app/utils/SearchFilter.service";
-import dayjs, { Dayjs } from "dayjs";
-import { DateRange } from "@mui/x-date-pickers-pro/models";
+
 const TransportationPlanList = () => {
   const { data, error, isLoading } = useGetAllPlanQuery("");
   const [searchKey, setSearchKey] = useState("");
-  const [filterKey, setFilterKey] = useState<DateRange<Dayjs>>([
-    dayjs(),
-    dayjs(),
-  ]);
+  const [filterKey, setFilterKey] = useState({
+    type: "all",
+    value: [],
+  });
   const LIST_PROPS = {
     headers: [
       { title: "#ID", key: "id" },
@@ -25,7 +24,12 @@ const TransportationPlanList = () => {
       { title: "Completed", key: "completed_order" },
       { title: "Canceled", key: "cancel_order" },
     ],
-    data: data && SearchFilterService.searchByKey("date", searchKey, data),
+    data:
+      data &&
+      SearchFilterService.filterByDate(
+        filterKey,
+        SearchFilterService.searchByKey("date", searchKey, data)
+      ),
     type: "plan",
   };
 

@@ -35,7 +35,7 @@ function OrderCard(props: OrderCardProps) {
             Delivery Point: {delivery_point}
           </span>
         </div>
-        <div className="card-content">
+        <div className="flex justify-between">
           <span className="text-black-60 font-medium text-sm">
             Depot: {pickup_point}
           </span>
@@ -44,7 +44,7 @@ function OrderCard(props: OrderCardProps) {
             {vehicle}
           </span>
         </div>
-        <div className="text-black-80 font-medium text-sm card-content">
+        <div className="text-black-80 font-medium text-sm flex justify-between">
           Capacity: {payload} kg
           <StatusCard label={status} type="order" />
         </div>

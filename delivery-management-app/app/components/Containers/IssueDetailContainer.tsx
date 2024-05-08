@@ -42,10 +42,9 @@ const IssueDetailContainer = ({ formProps, setActive }: Props) => {
         <label htmlFor="description" className="text-sm text-black-40">
           Description:
         </label>
-        <input
+        <textarea
           id="description"
-          type="text"
-          className="text-black-60 font-medium rounded-lg border-black-20"
+          className="text-black-60 font-medium rounded-lg border-black-20 text-wrap w-full"
           disabled
           value={issue.description}
         />

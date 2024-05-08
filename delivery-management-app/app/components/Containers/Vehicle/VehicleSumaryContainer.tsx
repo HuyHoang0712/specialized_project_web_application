@@ -21,25 +21,25 @@ const VehicleSumaryContainer = () => {
         Icon={TruckIcon}
         title="Total"
         value={vehicles?.length}
-        type="default"
+        type={4}
       />
       <SummaryCard
         Icon={CheckCircleIcon}
         title="Available"
-        value={vehicles?.filter((vehicle: any) => vehicle.status === 0).length}
-        type="available"
+        value={vehicles?.filter((vehicle: any) => vehicle.status === 2).length}
+        type={2}
       />
       <SummaryCard
         Icon={RocketLaunchIcon}
         title="Delivering"
         value={vehicles?.filter((vehicle: any) => vehicle.status === 1).length}
-        type="busy"
+        type={1}
       />
       <SummaryCard
         Icon={WrenchScrewdriverIcon}
-        title="On Break"
-        value={vehicles?.filter((vehicle: any) => vehicle.status === 2).length}
-        type="on_break"
+        title="Repairing"
+        value={vehicles?.filter((vehicle: any) => vehicle.status === 0).length}
+        type={0}
       />
       <RequestList />
     </div>

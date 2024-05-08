@@ -23,25 +23,25 @@ const EmployeeSumaryContainer = () => {
         Icon={UsersIcon}
         title="Total Employee"
         value={data?.total}
-        type="default"
+        type={4}
       />
       <SummaryCard
         Icon={CheckCircleIcon}
         title="Available Employee"
         value={data?.available}
-        type="available"
+        type={2}
       />
       <SummaryCard
         Icon={RocketLaunchIcon}
-        title="Busy Employee"
+        title="Inactive Employee"
         value={data?.busy}
-        type="busy"
+        type={0}
       />
       <SummaryCard
         Icon={UserMinusIcon}
         title="On Leave Employee"
         value={data?.on_break}
-        type="on_break"
+        type={3}
       />
       <RequestList />
     </div>

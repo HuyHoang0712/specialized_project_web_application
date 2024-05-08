@@ -6,6 +6,7 @@ import { Issue } from "@/app/lib/types";
 import StatusCard from "../StatusCard";
 import IssueDetailContainer from "@/app/components/Containers/IssueDetailContainer";
 import Modal from "../../Modals/Modal";
+import dayjs from "dayjs";
 const IssueCard = (props: Issue) => {
   const [active, setActive] = useState(false);
   const { id, date_time, status, label, creator } = props;
@@ -19,7 +20,7 @@ const IssueCard = (props: Issue) => {
   return (
     <>
       <div
-        className="flex flex-row w-full py-3 gap-[.625rem] items-start"
+        className="flex w-full py-3 gap-[.625rem] items-start"
         onClick={() => setActive(true)}
       >
         <Image
@@ -36,7 +37,7 @@ const IssueCard = (props: Issue) => {
           </div>
           <div className="flex flex-1 justify-between items-start text-sm">
             <span className="text-black-50 font-medium">Label: {label}</span>
-            <span className="text-black-20 font-normal">{date_time}</span>
+            <span className="text-black-20 font-normal">{dayjs(date_time).format("DD MMM YYYY - HH:MM")}</span>
           </div>
         </div>
       </div>

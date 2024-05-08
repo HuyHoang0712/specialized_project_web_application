@@ -1,17 +1,27 @@
 "use client";
 import React from "react";
-import StatusCard from "../Cards/StatusCard";
+import StatusCard from "../../Cards/StatusCard";
 import dynamic from "next/dynamic";
-import InforCard, { InforCardSkeleton } from "../Cards/InforCard";
-import OrderInforCard, { OrderInforCardSkeleton } from "@/app/components/Cards/OrderInforCard";
+import InforCard, { InforCardSkeleton } from "../../Cards/InforCard";
+import OrderInforCard, {
+  OrderInforCardSkeleton,
+} from "@/app/components/Cards/OrderInforCard";
 import { Skeleton } from "@mui/material";
-import UpdateModal from "../Modals/UpdateModal";
-import CancelModal from "../Modals/CancelModal";
-import ReportIssueModal from "../Modals/ReportIssueModal";
-import { HashtagIcon, MapPinIcon, ClockIcon, CubeIcon, ExclamationCircleIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import UpdateModal from "../../Modals/UpdateModal";
+import CancelModal from "../../Modals/CancelModal";
+import CancelOrderForm from "../../Forms/CancelOrderForm";
+import {
+  HashtagIcon,
+  MapPinIcon,
+  ClockIcon,
+  CubeIcon,
+  ExclamationCircleIcon,
+  PencilSquareIcon,
+} from "@heroicons/react/24/solid";
 import { useGetOrderByIdQuery } from "@/app/redux/features/order/orderApiSlice";
 const OrderRoute = dynamic(() => import("@/app/components/Map/OrderRoute"), {
   ssr: false,
+  loading: () => <Skeleton variant="rectangular" height={300} />,
 });
 
 interface Props {
@@ -52,7 +62,7 @@ const OrderDetailContainer = (props: Props) => {
   const cancel_order_modal_props = {
     id: id,
     title: "Cancel Order",
-    type: "order",
+    form: CancelOrderForm,
   };
 
   return (
@@ -63,7 +73,9 @@ const OrderDetailContainer = (props: Props) => {
           <OrderInforCard {...vehicle_card_props} />
         </div>
         <div className="flex flex-col flex-1 rounded-lg p-3 gap-2 bg-white overflow-hidden">
-          <span className="text-lg font-medium text-black-60">Order Tracking</span>
+          <span className="text-lg font-medium text-black-60">
+            Order Tracking
+          </span>
           <div id="mapbox" className="h-full">
             <OrderRoute id={id} />
           </div>
@@ -78,18 +90,37 @@ const OrderDetailContainer = (props: Props) => {
         </div>
         <div className="grid grid-cols-2 gap-5">
           <InforCard Icon={HashtagIcon} title="Order Id:" content={order.id} />
-          <InforCard Icon={HashtagIcon} title="Ship Code:" content={order.ship_code} />
-          <InforCard Icon={MapPinIcon} title="Pick-up Address:" content={order.pickup_point} />
-          <InforCard Icon={ClockIcon} title="Pick-up Time:" content={order.time_in} />
-          <InforCard Icon={MapPinIcon} title="Delivery Address:" content={order.delivery_point} />
-          <InforCard Icon={CubeIcon} title="Payload:" content={order.payload + " kg"} />
-          <InforCard Icon={ExclamationCircleIcon} title="Issues:" content="None" />
-          <InforCard Icon={PencilSquareIcon} title="Note:" content={<textarea name="message" rows={5} cols={30} title="Note" placeholder="Enter your note here"></textarea>} />
+          <InforCard
+            Icon={HashtagIcon}
+            title="Ship Code:"
+            content={order.ship_code}
+          />
+          <InforCard
+            Icon={MapPinIcon}
+            title="Pick-up Address:"
+            content={order.pickup_point}
+            styles="col-span-2"
+          />
+          <InforCard
+            Icon={MapPinIcon}
+            title="Delivery Address:"
+            content={order.delivery_point}
+            styles="col-span-2"
+          />
+          <InforCard
+            Icon={ClockIcon}
+            title="Pick-up Time:"
+            content={order.time_in}
+          />
+          <InforCard
+            Icon={CubeIcon}
+            title="Payload:"
+            content={order.payload + " kg"}
+          />
         </div>
         <div className="flex flex-1 items-end justify-between gap-3">
           <UpdateModal {...update_order_modal_props} />
           <div className="flex gap-3">
-            <ReportIssueModal />
             <CancelModal {...cancel_order_modal_props} />
           </div>
         </div>
@@ -109,7 +140,9 @@ const OrderDetailContainerSkeleton = () => {
           <OrderInforCardSkeleton />
         </div>
         <div className="flex flex-col flex-1 rounded-lg p-3 gap-2 bg-white overflow-hidden">
-          <span className="text-lg font-medium text-black-60">Order Tracking</span>
+          <span className="text-lg font-medium text-black-60">
+            Order Tracking
+          </span>
           <Skeleton variant="rectangular" height={300} />
         </div>
       </div>

@@ -35,9 +35,17 @@ export const orderApiSlice = apiSlice.injectEndpoints({
     getOrderById: builder.query({
       query: (data) => URLS.ORDER_URL + `get_order_by_id/?id=${data}`,
     }),
-    getOrderOfVehicle: builder.query({
-      query: (data) => URLS.ORDER_URL + `get_order_of_vehicle/?vehicle=${data}`,
+
+    getOrdersByDeliveryPoint: builder.query({
+      query: (id) =>
+        URLS.ORDER_URL + `get_orders_of_delivery_point/?delivery_point=${id}`,
     }),
+
+    getOrderOfVehicle: builder.query({
+      query: (data) =>
+        URLS.ORDER_URL + `get_orders_of_vehicle/?vehicle=${data}`,
+    }),
+
     updateOrderById: builder.mutation({
       query: (data) => ({
         headers: {
@@ -62,12 +70,23 @@ export const orderApiSlice = apiSlice.injectEndpoints({
       },
     }),
     getRecentOrdersCoordinates: builder.query({
-      query: (data) => URLS.ORDER_URL + `get_recent_orders_coordinates/?date=${data}`,
+      query: (data) =>
+        URLS.ORDER_URL + `get_recent_orders_coordinates/?date=${data}`,
     }),
     getOrderCoordinates: builder.query({
-      query: (data) => URLS.ORDER_URL + `get_order_coordinates_by_id/?id=${data}`,
+      query: (data) =>
+        URLS.ORDER_URL + `get_order_coordinates_by_id/?id=${data}`,
     }),
   }),
 });
 
-export const { useGetOrdersByDateQuery, useGetOrdersinPlanQuery, useGetOrderByIdQuery, useUpdateOrderByIdMutation, useGetRecentOrdersCoordinatesQuery, useGetOrderCoordinatesQuery, useGetOrderOfVehicleQuery } = orderApiSlice;
+export const {
+  useGetOrdersByDateQuery,
+  useGetOrdersinPlanQuery,
+  useGetOrderByIdQuery,
+  useUpdateOrderByIdMutation,
+  useGetRecentOrdersCoordinatesQuery,
+  useGetOrderCoordinatesQuery,
+  useGetOrderOfVehicleQuery,
+  useGetOrdersByDeliveryPointQuery
+} = orderApiSlice;

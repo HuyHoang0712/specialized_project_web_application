@@ -1,6 +1,6 @@
 import React from "react";
 
-import OrderDetailContainer from "@/app/components/Containers/OrderDetailContainer";
+import OrderDetailContainer from "@/app/components/Containers/Order/OrderDetailContainer";
 
 const OrderDetailPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;

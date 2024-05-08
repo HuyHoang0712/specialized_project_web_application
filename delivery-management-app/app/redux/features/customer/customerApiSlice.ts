@@ -50,6 +50,13 @@ export const customerApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+    deleteCustomerById: builder.mutation({
+      query: (id) => ({
+        headers: { "Content-Type": "application/json" },
+        url: URLS.CUSTOMER_URL + `delete_customer/?id=${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -58,4 +65,5 @@ export const {
   useGetCustomerByIdQuery,
   useCreateCustomerMutation,
   useUpdateCustomerByIdMutation,
+  useDeleteCustomerByIdMutation,
 } = customerApiSlice;

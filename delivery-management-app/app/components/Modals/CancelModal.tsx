@@ -2,19 +2,19 @@
 import React, { useState } from "react";
 import SolidButton from "../Buttons/SolidButton";
 import Modal from "./Modal";
-
 interface Props {
   id: string;
   title: string;
-  type: string;
+  form: any;
 }
 
-const CancelModal = ({ id, title, type }: Props) => {
+const CancelModal = ({ id, title, form }: Props) => {
   const [active, setActive] = useState(false);
 
   const MODAL_PROPS = {
     title: title,
-    FormContent: CancelConfirm,
+    FormContent: form,
+    formProps: { id: id },
     setActive: setActive,
   };
 
@@ -30,10 +30,6 @@ const CancelModal = ({ id, title, type }: Props) => {
       {active && <Modal {...MODAL_PROPS} />}
     </>
   );
-};
-
-const CancelConfirm = () => {
-  return <div>CancelConfirm</div>;
 };
 
 export default CancelModal;

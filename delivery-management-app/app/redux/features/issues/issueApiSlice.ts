@@ -6,7 +6,10 @@ import URLS from "@/app/lib/urls";
 export const issueApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllIssue: builder.query({
-      query: (type) => URLS.ISSUE_URL + `get_issues/?type=${type}`,
+      query: (type: string, status?: number) =>
+        URLS.ISSUE_URL +
+        `get_issues/?type=${type}` +
+        (status && `&status=${status}`),
     }),
     getIssuesByStatsus: builder.query({
       query: (data: number) =>

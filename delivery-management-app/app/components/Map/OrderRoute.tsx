@@ -11,7 +11,7 @@ interface Props {
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN as string;
 
-async function OrderRoute(props: Props) {
+function OrderRoute(props: Props) {
   const { id } = props;
   const { data, error, isLoading } = useGetOrderCoordinatesQuery(id);
   if (isLoading) {
@@ -28,7 +28,7 @@ async function OrderRoute(props: Props) {
   data.map((item: any, idx: number) => {
     const marker = new mapboxgl.Marker().setLngLat(data[idx]).addTo(mapbox);
   });
-  const geojson = await getRoute(data).then((res: any) => {
+  getRoute(data).then((res: any) => {
     mapbox.addLayer({
       id: "route",
       type: "line",
@@ -58,7 +58,10 @@ async function getRoute(coordinates: any) {
   // only the end or destination will change
   const start_coordinates = coordinates[0];
   const end_coordinates = coordinates[1];
-  const query = await fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${start_coordinates[0]},${start_coordinates[1]};${end_coordinates[0]},${end_coordinates[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`, { method: "GET" });
+  const query = await fetch(
+    `https://api.mapbox.com/directions/v5/mapbox/driving/${start_coordinates[0]},${start_coordinates[1]};${end_coordinates[0]},${end_coordinates[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+    { method: "GET" }
+  );
   const json = await query.json();
   const data = json.routes[0];
   const route = data.geometry.coordinates;

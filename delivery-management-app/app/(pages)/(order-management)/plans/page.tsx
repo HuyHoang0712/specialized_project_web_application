@@ -12,7 +12,7 @@ function PlansPage() {
     <div className="content-container">
       <div className="flex flex-row self-end gap-3">
         <CreateModal title={"Create Transportation Plan"} type={"Plan"} />
-        <CreateModal title={"Create Order"} type={"Order"} />
+        {/* <CreateModal title={"Create Order"} type={"Order"} /> */}
       </div>
       <div className="flex h-[90%] bg-white p-3 rounded-xl">
         <TransportationPlanList />

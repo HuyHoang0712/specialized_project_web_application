@@ -7,7 +7,7 @@ const RequestList = () => {
   const [page, setPage] = useState(0);
 
   return (
-    <div className="flex flex-1 flex-col bg-white rounded-lg shadow-sm p-3 gap-5">
+    <div className="flex h-full flex-col bg-white rounded-lg shadow-sm p-3 gap-5">
       <div className="flex w-[25rem]">
         <button
           className={clsx(
@@ -30,7 +30,9 @@ const RequestList = () => {
           Vehicle
         </button>
       </div>
-      {page === 0 ? <EmployeeRequestList /> : <VehicleRequestList />}
+      <div className="flex h-[90%]">
+        {page === 0 ? <EmployeeRequestList /> : <VehicleRequestList />}
+      </div>
     </div>
   );
 };

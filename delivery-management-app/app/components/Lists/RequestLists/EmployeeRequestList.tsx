@@ -61,13 +61,13 @@ const EmployeeRequestList = () => {
     type: "issue-employee",
   };
   return (
-    <div className="flex flex-1 flex-col gap-3">
+    <div className="flex h-full w-full flex-col gap-3">
       <div className="flex flex-row w-full justify-between items-center">
         <span className="text-lg text-black-60 font-medium">
           Employee Requests
         </span>
         <div className="flex flex-row gap-3">
-          <Search setSearchKey={setSearchKey} />
+          <Search setSearchKey={setSearchKey} placeholder="Search by title"/>
           <FilterModal
             filterForm={FilterIssue}
             formProps={{ filterKey, setFilterKey, requests }}

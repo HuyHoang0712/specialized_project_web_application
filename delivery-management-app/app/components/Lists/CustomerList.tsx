@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Search from "../Search/Search";
-import FilterModal from "../Modals/FilterModal";
+import SearchFilterService from "@/app/utils/SearchFilter.service";
 import List, { ListSkeleton } from "./List";
 import { useGetAllCustomersQuery } from "@/app/redux/features/customer/customerApiSlice";
 
@@ -20,7 +20,7 @@ const CustomerList = () => {
       { title: "Name", key: "name" },
       { title: "Adress", key: "address" },
     ],
-    data: data && filterDataByName(data, searchKey),
+    data: data && SearchFilterService.searchByKey("name", searchKey, data),
     type: "customer",
   };
   return (
@@ -28,7 +28,7 @@ const CustomerList = () => {
       <div className="flex flex-row w-full justify-between items-center">
         <span className="text-lg text-black-60 font-medium">Customers</span>
         <div className="flex flex-row gap-3">
-          <Search setSearchKey={setSearchKey} />
+          <Search setSearchKey={setSearchKey} placeholder="Search by name"/>
           {/* <FilterModal /> */}
         </div>
       </div>

@@ -44,6 +44,7 @@ const StatusCard = (props: Props) => {
         "bg-secondary-30 text-[#FAA300]": label === 0,
         "bg-[#5570F1]/[.16] text-primary-100": label === 1,
         "bg-red/[.16] text-red": label === 3,
+        "bg-black-10/40 text-black-60": label === 4,
       })}
     >
       {STATUS.find((item) => item.value === label)?.label}

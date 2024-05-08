@@ -6,7 +6,7 @@ interface SummaryCardProps {
   Icon: any;
   title: string;
   value: string;
-  type: OverridableStringUnion<"default" | "available" | "busy" | "on_break">;
+  type: number;
 }
 
 const SummaryCard = ({ Icon, title, value, type }: SummaryCardProps) => {
@@ -14,10 +14,11 @@ const SummaryCard = ({ Icon, title, value, type }: SummaryCardProps) => {
     <div className="flex bg-white p-3 gap-3 rounded-lg shadow-sm items-center">
       <Icon
         className={clsx("w-14 icon-sw-2 rounded-lg p-3", {
-          "bg-[#32936F]/[.1] text-green": type === "available",
-          "bg-red/[.1] text-red": type === "busy",
-          "text-[#FAA300] bg-secondary-30/50": type === "on_break",
-          "text-primary-100 bg-primary-100/10 ": type === "default",
+          "bg-[#32936F]/[.1] text-green": type === 2,
+          "bg-red/[.1] text-red": type === 3,
+          "text-[#FAA300] bg-secondary-30/50": type === 0,
+          "text-primary-100 bg-primary-100/10 ": type === 1,
+          "text-black-100 bg-black-10/30": type === 4,
         })}
       />
       <div className="flex flex-col">

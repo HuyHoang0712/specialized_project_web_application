@@ -2,9 +2,15 @@ import React from "react";
 import dynamic from "next/dynamic";
 import CustomerDetailContainer from "@/app/components/Containers/CustomerDetailContainer";
 import { Skeleton } from "@mui/material";
+import OrderSubListWrap from "@/app/components/Wrap/OrderSubListWrap";
+const MapBox = dynamic(() => import("@/app/components/Map/Map"), {
+  ssr: false,
+  loading: () => <Skeleton variant="rectangular" className="flex-1" />,
+});
+
 const LineChart = dynamic(() => import("@/app/components/Chart/LineChart"), {
   ssr: false,
-  loading: () => <Skeleton variant="rectangular" height={500} />,
+  loading: () => <Skeleton variant="rectangular" className="flex-1" />,
 });
 
 const CustomerPage = ({ params }: { params: { id: string } }) => {
@@ -13,9 +19,16 @@ const CustomerPage = ({ params }: { params: { id: string } }) => {
   return (
     <div className="content-container flex-row">
       <CustomerDetailContainer id={id} />
-      <div className="flex flex-1 flex-col justify-between">
+      <div className="flex flex-1 flex-col gap-3">
+        <div className="flex flex-col gap-y-3 p-3 flex-1 bg-white rounded-lg shadow-sm">
+          <span className="font-medium text-primary-100">
+            CUSTOMER POSITION
+          </span>
+          <MapBox />
+        </div>
         <LineChart />
       </div>
+      <OrderSubListWrap id={id} />
     </div>
   );
 };
