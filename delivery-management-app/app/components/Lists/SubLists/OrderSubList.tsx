@@ -21,7 +21,7 @@ const OrderSubList = ({ data }: Props) => {
         data.map((order, idx) => (
           <div
             key={idx}
-            className="flex gap-2 py-2 hover:bg-primary-10/50"
+            className="flex gap-2 p-3 hover:bg-primary-10/50 cursor-pointer transition-all duration-200 ease-in-out"
             onClick={() => router.push(`/order/${order.id}`)}
           >
             <div className="flex flex-col items-center justify-start py-1">

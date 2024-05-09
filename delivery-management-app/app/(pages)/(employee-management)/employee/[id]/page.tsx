@@ -1,6 +1,6 @@
 import React from "react";
 
-import EmployeeDetailContainer from "@/app/components/Containers/EmployeeDetailContainer";
+import EmployeeDetailContainer from "@/app/components/Containers/Employee/EmployeeDetailContainer";
 import EmployeeRequestsWrap from "@/app/components/Wrap/EmployeeRequestsWrap";
 const EmployeeDetailPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;

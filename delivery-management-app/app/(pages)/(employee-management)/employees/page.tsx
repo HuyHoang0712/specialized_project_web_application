@@ -1,6 +1,6 @@
 import React from "react";
 import CreateModal from "@/app/components/Modals/CreateModal";
-import EmployeeSumaryContainer from "@/app/components/Containers/EmployeeSumaryContainer";
+import EmployeeSumaryContainer from "@/app/components/Containers/Employee/EmployeeSumaryContainer";
 import EmployeeList from "@/app/components/Lists/EmployeeList";
 const EmployeeManagementPage = () => {
   const modalProps = {

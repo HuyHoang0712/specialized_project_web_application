@@ -152,6 +152,7 @@ function NavBar() {
             )}
             href={"/auth/login"}
             scroll={false}
+            replace={true}
             onClick={() => {
               dispatch(logOut());
             }}

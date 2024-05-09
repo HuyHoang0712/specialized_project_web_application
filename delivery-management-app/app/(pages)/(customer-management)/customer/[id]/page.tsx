@@ -3,15 +3,12 @@ import dynamic from "next/dynamic";
 import CustomerDetailContainer from "@/app/components/Containers/CustomerDetailContainer";
 import { Skeleton } from "@mui/material";
 import OrderSubListWrap from "@/app/components/Wrap/OrderSubListWrap";
+import OrderSummayOfCustomerWrap from "@/app/components/Wrap/OrderSummayOfCustomerWrap";
 const MapBox = dynamic(() => import("@/app/components/Map/Map"), {
   ssr: false,
   loading: () => <Skeleton variant="rectangular" className="flex-1" />,
 });
 
-const LineChart = dynamic(() => import("@/app/components/Chart/LineChart"), {
-  ssr: false,
-  loading: () => <Skeleton variant="rectangular" className="flex-1" />,
-});
 
 const CustomerPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -26,7 +23,7 @@ const CustomerPage = ({ params }: { params: { id: string } }) => {
           </span>
           <MapBox />
         </div>
-        <LineChart />
+        <OrderSummayOfCustomerWrap id={id}/>
       </div>
       <OrderSubListWrap id={id} />
     </div>

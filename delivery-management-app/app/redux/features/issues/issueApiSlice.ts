@@ -7,7 +7,10 @@ export const issueApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllIssue: builder.query({
       query: ({ type, status }) =>
-        URLS.ISSUE_URL + `get_issues/?type=${type}&status=${status}`,
+        URLS.ISSUE_URL +
+        (status !== undefined
+          ? `get_issues/?type=${type}&status=${status}`
+          : `get_issues/?type=${type}`),
     }),
     getIssuesByStatsus: builder.query({
       query: (data: number) =>
@@ -41,22 +44,42 @@ export const issueApiSlice = apiSlice.injectEndpoints({
           const res = await queryFulfilled;
 
           dispatch(
+            issueApiSlice.util.updateQueryData("getIssueById", id, (draft) => {
+              Object.assign(draft, res.data);
+            })
+          );
+          dispatch(
             issueApiSlice.util.updateQueryData(
-              "getIssueById",
-              { id, type },
+              "getAllIssue",
+              { type: type },
               (draft) => {
-                Object.assign(draft, res.data);
+                draft.map((item: any) => {
+                  if (item.id === id) {
+                    item.status = put.status;
+                  }
+                });
               }
             )
           );
           dispatch(
-            issueApiSlice.util.updateQueryData("getAllIssue", type, (draft) => {
-              draft.map((item: any) => {
-                if (item.id === id) {
-                  item.status = put.status;
-                }
-              });
-            })
+            issueApiSlice.util.prefetch(
+              "getAllIssue",
+              { type: type, status: 0 },
+              { force: true }
+            )
+          );
+          dispatch(
+            issueApiSlice.util.updateQueryData(
+              "getIssuesOfVehicle",
+              res.data.vehicle_id,
+              (draft) => {
+                draft.map((item: any) => {
+                  if (item.id === id) {
+                    item.status = put.status;
+                  }
+                });
+              }
+            )
           );
         } catch (error) {
           throw error;

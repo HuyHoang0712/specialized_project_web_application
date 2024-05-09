@@ -13,16 +13,14 @@ const authSlice = createSlice({
     setCredentials: (state, action) => {
       const response = action.payload;
       TokenService.updateLocalAccessToken(response);
-
-      const decodedUser = jwtDecode(response?.access_token);
-
+      const decodedUser = jwtDecode(response?.access_token);      
       state.user = decodedUser;
       state.token = TokenService.getToken();
     },
     logOut: (state) => {
       state.user = null;
       state.token = null;
-      TokenService.removeUser();
+      TokenService.logOut();
     },
   },
 });

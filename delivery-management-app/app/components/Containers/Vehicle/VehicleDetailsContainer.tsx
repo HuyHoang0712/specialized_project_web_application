@@ -62,7 +62,7 @@ const VehicleDetailsContainer = ({ id }: { id: string }) => {
         </div>
       </div>
       <div className="flex flex-1 gap-3 justify-end items-end">
-        <CancelModal id={id} title="Cancel Vehicle" type="vehicle" />
+        {/* <CancelModal id={id} title="Cancel Vehicle"  /> */}
         <UpdateModal data={vehicle} title="Update Vehicle" type="vehicle" />
       </div>
     </div>

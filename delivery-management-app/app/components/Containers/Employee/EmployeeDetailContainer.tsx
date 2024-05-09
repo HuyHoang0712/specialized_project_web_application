@@ -3,10 +3,10 @@ import React from "react";
 import Image from "next/image";
 import { Images } from "@/app/lib/assets";
 import { useGetEmployeeByIdQuery } from "@/app/redux/features/employee/employeeApiSlice";
-import CancelModal from "../Modals/CancelModal";
-import UpdateModal from "../Modals/UpdateModal";
-import StatusCard from "../Cards/StatusCard";
-import InforCard, { InforCardSkeleton } from "../Cards/InforCard";
+import CancelModal from "../../Modals/CancelModal";
+import UpdateModal from "../../Modals/UpdateModal";
+import StatusCard from "../../Cards/StatusCard";
+import InforCard, { InforCardSkeleton } from "../../Cards/InforCard";
 
 import {
   HashtagIcon,

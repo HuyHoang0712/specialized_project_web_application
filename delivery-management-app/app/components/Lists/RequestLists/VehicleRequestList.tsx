@@ -42,7 +42,7 @@ const VehicleRequestList = () => {
     data: requests,
     error,
     isLoading,
-  } = useGetAllIssueQuery("issue-vehicle");
+  } = useGetAllIssueQuery({ type: "issue-vehicle" });
   const [searchKey, setSearchKey] = useState("");
   const [filterKey, setFilterKey] = useState({
     label: "All",

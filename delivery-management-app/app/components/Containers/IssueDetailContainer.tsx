@@ -20,7 +20,11 @@ const IssueDetailContainer = ({ formProps, setActive }: Props) => {
   if (isLoading) return <IssueDetailContianerSkeleton />;
   const handleuUpdateIssueStatus = async (status: number) => {
     try {
-      await updateIssueStatus({ id: id, status: status, type: type });
+      await updateIssueStatus({
+        id: id,
+        status: status,
+        type: issue.vehicle_id ? "issue-vehicle" : "issue-employee",
+      });
       setActive(false);
     } catch (err) {
       console.error(err);

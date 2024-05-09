@@ -6,9 +6,11 @@ import { useGetOrderOfVehicleQuery } from "@/app/redux/features/order/orderApiSl
 import OrderInforCard, {
   OrderInforCardSkeleton,
 } from "../../Cards/OrderInforCard";
-import LineChart from "../../Chart/LineChart";
-import RequestList, { ListSkeleton } from "../../Lists/SubLists/RequestSubList";
+import RequestSubList from "../../Lists/SubLists/RequestSubList";
 import OrderSubList from "../../Lists/SubLists/OrderSubList";
+import { Skeleton } from "@mui/material";
+import OrderSummayOfVehicleWrap from "../../Wrap/OrderSummaryOfVehicleWrap";
+
 const VehicleDetailSummaryContainer = ({ id }: { id: string }) => {
   const {
     data: issues,
@@ -45,14 +47,22 @@ const VehicleDetailSummaryContainer = ({ id }: { id: string }) => {
         )}
         <div className="flex flex-col flex-[2_2_75%] bg-white shadow-sm rounded-lg p-3 overflow-hidden">
           <h1 className="font-medium text-primary-100">VEHICLE REQUESTS</h1>
-          {issueLoading ? <ListSkeleton /> : <RequestList data={issues} />}
+          {issueLoading ? (
+            <Skeleton variant="rectangular" className="flex-1" />
+          ) : (
+            <RequestSubList data={issues} />
+          )}
         </div>
       </div>
       <div className="flex flex-col gap-4 h-full w-[60%]">
-        <LineChart />
+        <OrderSummayOfVehicleWrap id={"7"} />
         <div className="flex flex-col flex-1 bg-white shadow-sm rounded-lg p-3 overflow-hidden">
           <h1 className="font-medium text-primary-100">ASSIGNED ORDERS</h1>
-          {orderLoading ? <ListSkeleton /> : <OrderSubList data={orders} />}
+          {orderLoading ? (
+            <Skeleton variant="rectangular" className="flex-1" />
+          ) : (
+            <OrderSubList data={orders} />
+          )}
         </div>
       </div>
     </div>

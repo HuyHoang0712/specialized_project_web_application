@@ -42,7 +42,7 @@ const EmployeeRequestList = () => {
     data: requests,
     error,
     isLoading,
-  } = useGetAllIssueQuery("issue-employee");
+  } = useGetAllIssueQuery({ type: "issue-employee" });
   const [searchKey, setSearchKey] = useState("");
   const [filterKey, setFilterKey] = useState({
     label: "All",
@@ -67,7 +67,7 @@ const EmployeeRequestList = () => {
           Employee Requests
         </span>
         <div className="flex flex-row gap-3">
-          <Search setSearchKey={setSearchKey} placeholder="Search by title"/>
+          <Search setSearchKey={setSearchKey} placeholder="Search by title" />
           <FilterModal
             filterForm={FilterIssue}
             formProps={{ filterKey, setFilterKey, requests }}

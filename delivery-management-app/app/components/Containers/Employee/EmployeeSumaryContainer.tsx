@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import { useGetStatusSummaryQuery } from "@/app/redux/features/employee/employeeApiSlice";
-import SummaryCard, { SummaryCardSkeleton } from "../Cards/SummaryCard";
+import SummaryCard, { SummaryCardSkeleton } from "../../Cards/SummaryCard";
 import { Skeleton } from "@mui/material";
-import IssueCard from "../Cards/DashboardCards/IssueCard";
-import IssueEmptyList from "../EmptyList/IssueEmptyList";
+import IssueCard from "../../Cards/DashboardCards/IssueCard";
+import IssueEmptyList from "../../EmptyList/IssueEmptyList";
 import {
   UserCircleIcon,
   UsersIcon,

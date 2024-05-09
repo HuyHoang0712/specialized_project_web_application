@@ -61,6 +61,8 @@ const updateLocalAccessToken = (token) => {
       secure: process.env.NEXT_PUBLIC_NODE_ENV === "production",
     };
 
+    Cookie.set("user_name", token.user_name, accessTokenCokieOptions);
+    Cookie.set("user_id", accessTokenDecoded.user_id, accessTokenCokieOptions);
     Cookie.set("access_token", token.access_token, accessTokenCokieOptions);
     Cookie.set("refresh_token", token.refresh_token, refreshTokenCokieOptions);
   } catch (error) {
@@ -68,11 +70,13 @@ const updateLocalAccessToken = (token) => {
   }
 };
 
-const removeUser = () => {
+const logOut = () => {
   try {
     const token = Cookie.get("access_token");
-    console.log(token);
     if (token) {
+      Cookie.remove("user_name", { path: "/" });
+      Cookie.remove("user_id", { path: "/" });
+      Cookie.remove("refresh_token", { path: "/" });
       Cookie.remove("access_token", { path: "/" });
     }
   } catch (error) {
@@ -103,7 +107,7 @@ const isAccessExpired = () => {
 const TokenService = {
   getLocalAccessToken,
   updateLocalAccessToken,
-  removeUser,
+  logOut,
   getExpiryDate,
   isAccessExpired,
   getToken,

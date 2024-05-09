@@ -43,20 +43,18 @@ const CustomerDetailContainer = (props: CustomerDetailContainerProps) => {
       </span>
       <div className="flex flex-col flex-1 gap-3">
         <span className="font-medium text-primary-100">CUSTOMER DETAILS</span>
-        <div className="flex-1 grid grid-cols-2 auto-rows-max gap-x-8 gap-y-5">
+        <div className="flex-1 grid grid-cols-1 auto-rows-max gap-x-8 gap-y-5">
           <InforCard Icon={HashtagIcon} title="Id:" content={customer.id} />
           <InforCard Icon={PhoneIcon} title="Phone:" content={"0912301231"} />
           <InforCard
             Icon={EnvelopeIcon}
             title="Email:"
             content={"example@mail.com"}
-            styles="col-span-2"
           />
           <InforCard
             Icon={MapPinIcon}
             title="Addres:"
             content={customer.address}
-            styles="col-span-2"
           />
         </div>
         <div className="flex justify-end items-center gap-3">
