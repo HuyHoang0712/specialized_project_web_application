@@ -5,6 +5,14 @@ import { apiSlice } from "../../apiSlice";
 import URLS from "@/app/lib/urls";
 export const issueApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    createIssue: builder.mutation({
+      query: (data) => ({
+        headers: { "Content-Type": "application/json" },
+        url: URLS.ISSUE_URL + "create_issue/",
+        method: "POST",
+        body: JSON.stringify(data),
+      }),
+    }),
     getAllIssue: builder.query({
       query: ({ type, status }) =>
         URLS.ISSUE_URL +
@@ -26,6 +34,9 @@ export const issueApiSlice = apiSlice.injectEndpoints({
     }),
     getIssueById: builder.query({
       query: (id) => URLS.ISSUE_URL + `get_issue_by_id/?id=${id}`,
+    }),
+    getCurrentEmployeeIssues: builder.query({
+      query: () => URLS.ISSUE_URL + `get_user_issues`,
     }),
     updateIssueStatus: builder.mutation({
       query: (data: { id: string; status: number; type: string }) => ({
@@ -81,6 +92,19 @@ export const issueApiSlice = apiSlice.injectEndpoints({
               }
             )
           );
+          dispatch(
+            issueApiSlice.util.updateQueryData(
+              "getCurrentEmployeeIssues",
+              undefined,
+              (draft) => {
+                draft.map((item: any) => {
+                  if (item.id === id) {
+                    item.status = put.status;
+                  }
+                });
+              }
+            )
+          );
         } catch (error) {
           throw error;
         }
@@ -96,4 +120,6 @@ export const {
   useGetIssuesOfVehicleQuery,
   useGetIssueByIdQuery,
   useUpdateIssueStatusMutation,
+  useGetCurrentEmployeeIssuesQuery,
+  useCreateIssueMutation,
 } = issueApiSlice;

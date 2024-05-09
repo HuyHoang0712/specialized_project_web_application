@@ -20,8 +20,6 @@ interface ProfileDetailContainerProps {
 export const Profile = ({ id }: ProfileDetailContainerProps) => {
   const { data, error, isLoading } = useGetUserProfileQuery(undefined);
 
-  console.log(data);
-  
   const update_btn_props = {
     data: data,
     title: "Update Profile",
