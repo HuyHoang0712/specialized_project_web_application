@@ -16,7 +16,7 @@ interface Props {
 const IssueDetailContainer = ({ formProps, setActive }: Props) => {
   const { id, type } = formProps;
   const [updateIssueStatus] = useUpdateIssueStatusMutation();
-  const { data: issue, isLoading } = useGetIssueByIdQuery({ id, type });
+  const { data: issue, isLoading } = useGetIssueByIdQuery(id);
   if (isLoading) return <IssueDetailContianerSkeleton />;
   const handleuUpdateIssueStatus = async (status: number) => {
     try {

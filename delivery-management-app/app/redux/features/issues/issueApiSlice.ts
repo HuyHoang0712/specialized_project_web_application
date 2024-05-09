@@ -6,10 +6,8 @@ import URLS from "@/app/lib/urls";
 export const issueApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllIssue: builder.query({
-      query: (type: string, status?: number) =>
-        URLS.ISSUE_URL +
-        `get_issues/?type=${type}` +
-        (status && `&status=${status}`),
+      query: ({ type, status }) =>
+        URLS.ISSUE_URL + `get_issues/?type=${type}&status=${status}`,
     }),
     getIssuesByStatsus: builder.query({
       query: (data: number) =>
@@ -24,8 +22,7 @@ export const issueApiSlice = apiSlice.injectEndpoints({
         URLS.ISSUE_URL + `get_issues_of_vehicle?vehicle=${data}`,
     }),
     getIssueById: builder.query({
-      query: ({ id, type }) =>
-        URLS.ISSUE_URL + `get_issue_by_id/?id=${id}&type=${type}`,
+      query: (id) => URLS.ISSUE_URL + `get_issue_by_id/?id=${id}`,
     }),
     updateIssueStatus: builder.mutation({
       query: (data: { id: string; status: number; type: string }) => ({

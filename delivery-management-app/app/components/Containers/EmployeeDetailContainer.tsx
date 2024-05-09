@@ -66,7 +66,7 @@ const EmployeeDetailContainer = ({ id }: EmployeeDetailContainerProps) => {
           </div>
           <div className="mt-10 grid gap-3">
             <UpdateModal {...update_btn_props} />
-            <CancelModal {...delete_btn_props} />
+            {/* <CancelModal {...delete_btn_props} /> */}
           </div>
         </div>
         <div className="flex flex-col flex-1 gap-3">

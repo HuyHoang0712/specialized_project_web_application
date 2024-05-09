@@ -45,11 +45,7 @@ const VehicleDetailSummaryContainer = ({ id }: { id: string }) => {
         )}
         <div className="flex flex-col flex-[2_2_75%] bg-white shadow-sm rounded-lg p-3 overflow-hidden">
           <h1 className="font-medium text-primary-100">VEHICLE REQUESTS</h1>
-          {issueLoading ? (
-            <ListSkeleton />
-          ) : (
-            <RequestList title="VEHICLE REQUESTS" data={issues ?? []} />
-          )}
+          {issueLoading ? <ListSkeleton /> : <RequestList data={issues} />}
         </div>
       </div>
       <div className="flex flex-col gap-4 h-full w-[60%]">

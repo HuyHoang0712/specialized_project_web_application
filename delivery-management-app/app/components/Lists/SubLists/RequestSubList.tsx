@@ -4,24 +4,24 @@ import { Skeleton } from "@mui/material";
 import StatusCard from "../../Cards/StatusCard";
 import IssueEmptyList from "../../EmptyList/IssueEmptyList";
 import { Issue } from "@/app/lib/types";
+import dayjs from "dayjs";
 interface RequestListProps {
-  title: string;
   data: any;
 }
 
-const RequestSubList = ({ title, data }: RequestListProps) => {
+const RequestSubList = ({ data }: RequestListProps) => {
   return (
-    <div className="w-full h-full overflow-y-scroll scroll-smooth no-scrollbar">
+    <div className="w-full h-full divide-y-2 overflow-y-scroll scroll-smooth no-scrollbar">
       {data.length > 0 ? (
         data.map((issue: Issue, idx: number) => (
-          <div key={idx} className="space-y-2 py-1">
+          <div key={idx} className="space-y-2 py-2">
             <div className="flex justify-between items-center">
               <span className="font-medium text-black-60">{issue.title}</span>
               <StatusCard label={issue.status} type="issue-vehicle" />
             </div>
             <div className="flex justify-between items-center text-black-40">
               <span className="text-sm font-medium ">Label: {issue.label}</span>
-              <span className="text-xs">{issue.date_time}</span>
+              <span className="text-xs">{dayjs(issue.date_time).format("DD-MM-YYYY HH:MM")}</span>
             </div>
           </div>
         ))
