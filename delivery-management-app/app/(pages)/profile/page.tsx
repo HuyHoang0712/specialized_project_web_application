@@ -1,5 +1,5 @@
 import { Profile } from "@/app/components/Containers/ProfileContainer";
-import { Request } from "@/app/components/Containers/RequestContainer";
+import Request from "@/app/components/Containers/RequestContainer";
 import { cookies } from "next/headers";
 
 function ProfilePage() {

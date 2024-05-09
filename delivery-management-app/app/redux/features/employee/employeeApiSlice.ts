@@ -29,9 +29,13 @@ export const employeeApiSlice = apiSlice.injectEndpoints({
         try {
           const res = await queryFulfilled;
           const putResult = dispatch(
-            employeeApiSlice.util.updateQueryData("getEmployeeById", id, (draft) => {
-              Object.assign(draft, res.data);
-            })
+            employeeApiSlice.util.updateQueryData(
+              "getEmployeeById",
+              id,
+              (draft) => {
+                Object.assign(draft, res.data);
+              }
+            )
           );
         } catch (error) {
           throw error;
@@ -47,4 +51,11 @@ export const employeeApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAllEmployeesQuery, useGetEmployeeByIdQuery, useCreateEmployeeMutation, useUpdateEmployeeByIdMutation, useGetStatusSummaryQuery, useGetGroupsQuery } = employeeApiSlice;
+export const {
+  useGetAllEmployeesQuery,
+  useGetEmployeeByIdQuery,
+  useCreateEmployeeMutation,
+  useUpdateEmployeeByIdMutation,
+  useGetStatusSummaryQuery,
+  useGetGroupsQuery,
+} = employeeApiSlice;

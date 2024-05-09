@@ -1,16 +1,19 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Images } from "@/app/lib/assets";
 import { BellIcon, HomeIcon } from "@heroicons/react/24/solid";
-import Cookie from "js-cookie";
+import TokenService from "@/app/utils/Token.service";
 
 function Header() {
   let pathname = usePathname() || "/";
   let paths = pathname.split("/");
-
+  const [username, setUsername] = useState("");
+  useEffect(() => {
+    setUsername(TokenService.getUserName() as string);
+  }, []);
   const transformName = () => {
     const dashboard = ["dashboard"];
     const orderManage = ["plans", "plan", "order"];
@@ -22,7 +25,7 @@ function Header() {
   };
 
   let pageName = transformName();
-  const usename = Cookie.get("user_name");
+
   return (
     <div className="flex flex-col h-header divide-y">
       <div className="flex flex-row items-center px-3 py-3 justify-between">
@@ -30,7 +33,7 @@ function Header() {
         <div className="flex flex-row items-center gap-3">
           <BellIcon className="w-6 fill-primary-100 hover:scale-105 relative" />
           <span className="text-sm font-normal text-black-100 px-3 py-[.313rem] bg-secondary-20 rounded-lg">
-            {usename}
+            {username}
           </span>
           <Link href={"/profile"}>
             <Image

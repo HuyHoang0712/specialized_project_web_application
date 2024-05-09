@@ -10,12 +10,21 @@ const getLocalAccessToken = () => {
   }
 };
 
-const getUser = () => {
+const getUserName = () => {
   try {
-    const user = Cookie.get("access_token");
-    return jwtDecode(user);
+    const user = Cookie.get("user_name");
+    return user;
   } catch (error) {
-    return null;
+    return "";
+  }
+};
+
+const getUserId = () => {
+  try {
+    const userId = Cookie.get("user_id");
+    return userId;
+  } catch (error) {
+    return "";
   }
 };
 
@@ -111,7 +120,8 @@ const TokenService = {
   getExpiryDate,
   isAccessExpired,
   getToken,
-  getUser,
+  getUserName,
+  getUserId,
 };
 
 export default TokenService;
