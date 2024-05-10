@@ -43,7 +43,6 @@ const LineChart = ({ data }: Props) => {
   };
 
   const chartData = getData().reverse();
-  console.log(chartData);
 
   return (
     <Chart

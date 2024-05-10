@@ -48,6 +48,9 @@ export const employeeApiSlice = apiSlice.injectEndpoints({
     getGroups: builder.query({
       query: () => URLS.EMPLOYEE_URL + "get_groups/",
     }),
+    getUnassignedEmployees: builder.query({
+      query: () => URLS.EMPLOYEE_URL + "get_unassigned_employees/",
+    }),
   }),
 });
 
@@ -58,4 +61,5 @@ export const {
   useUpdateEmployeeByIdMutation,
   useGetStatusSummaryQuery,
   useGetGroupsQuery,
+  useGetUnassignedEmployeesQuery,
 } = employeeApiSlice;

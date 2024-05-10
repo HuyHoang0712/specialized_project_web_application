@@ -1,3 +1,5 @@
+import REQUEST_LABELS from "./requestLabels";
+
 const EMPLOYEE_STATUS = [
   {
     label: "Inactive",
@@ -70,4 +72,10 @@ const ISSUE_STATUS = [
   },
 ];
 
-export { EMPLOYEE_STATUS, VEHICLE_STATUS, ORDER_STATUS, ISSUE_STATUS };
+export {
+  EMPLOYEE_STATUS,
+  VEHICLE_STATUS,
+  ORDER_STATUS,
+  ISSUE_STATUS,
+  REQUEST_LABELS,
+};

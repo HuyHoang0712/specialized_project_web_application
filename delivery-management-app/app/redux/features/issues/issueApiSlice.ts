@@ -6,13 +6,13 @@ import URLS from "@/app/lib/urls";
 export const issueApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createIssue: builder.mutation({
-      query: (data) => ({
+      query: ({ data, type }) => ({
         headers: { "Content-Type": "application/json" },
-        url: URLS.ISSUE_URL + "create_issue/",
+        url: URLS.ISSUE_URL + "create_issue/?type=" + type,
         method: "POST",
         body: JSON.stringify(data),
       }),
-      onQueryStarted: async (data, { dispatch, queryFulfilled }) => {
+      onQueryStarted: async ({ data, type }, { dispatch, queryFulfilled }) => {
         try {
           const res = await queryFulfilled;
           dispatch(
@@ -28,6 +28,15 @@ export const issueApiSlice = apiSlice.injectEndpoints({
             issueApiSlice.util.updateQueryData(
               "getIssuesByStatsus",
               0,
+              (draft) => {
+                draft.push(res.data);
+              }
+            )
+          );
+          dispatch(
+            issueApiSlice.util.updateQueryData(
+              "getIssuesOfVehicle",
+              data.vehicle_id,
               (draft) => {
                 draft.push(res.data);
               }

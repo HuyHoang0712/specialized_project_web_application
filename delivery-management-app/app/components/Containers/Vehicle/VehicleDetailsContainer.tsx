@@ -7,8 +7,8 @@ import { TruckIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { Images } from "@/app/lib/assets";
 import { TagIcon } from "@heroicons/react/24/solid";
-import CancelModal from "../../Modals/CancelModal";
-import UpdateModal from "../../Modals/UpdateModal";
+import CreateVehicleRequestModal from "../../Modals/CreateVehicleRequestModal";
+import AssignDriverModal from "../../Modals/AssignDriverModal";
 const VehicleDetailsContainer = ({ id }: { id: string }) => {
   const { data: vehicle, error, isLoading } = useGetVehicleByIdQuery(id);
   if (isLoading) {
@@ -62,8 +62,8 @@ const VehicleDetailsContainer = ({ id }: { id: string }) => {
         </div>
       </div>
       <div className="flex flex-1 gap-3 justify-end items-end">
-        {/* <CancelModal id={id} title="Cancel Vehicle"  /> */}
-        <UpdateModal data={vehicle} title="Update Vehicle" type="vehicle" />
+        <CreateVehicleRequestModal id={id} />
+        <AssignDriverModal id={id} />
       </div>
     </div>
   );
