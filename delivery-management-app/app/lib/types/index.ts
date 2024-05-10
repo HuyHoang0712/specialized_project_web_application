@@ -18,9 +18,6 @@ export interface Issue {
   status: number;
   label: string;
   creator: string | null;
-  order: string | null;
-  vehicle: string | null;
-  warehouse: string | null;
 }
 
 export interface Plan {

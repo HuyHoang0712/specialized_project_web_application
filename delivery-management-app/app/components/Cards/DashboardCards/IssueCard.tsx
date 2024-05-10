@@ -6,6 +6,8 @@ import StatusCard from "../StatusCard";
 import IssueDetailContainer from "@/app/components/Containers/IssueDetailContainer";
 import Modal from "../../Modals/Modal";
 import dayjs from "dayjs";
+
+
 const IssueCard = (props: any) => {
   const [active, setActive] = useState(false);
   const { id, date_time, status, label, creator, vehicle_id } = props;

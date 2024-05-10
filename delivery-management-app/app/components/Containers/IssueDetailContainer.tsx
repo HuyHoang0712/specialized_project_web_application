@@ -8,6 +8,7 @@ import {
   useGetIssueByIdQuery,
 } from "@/app/redux/features/issues/issueApiSlice";
 import { Skeleton } from "@mui/material";
+import dayjs from "dayjs";
 interface Props {
   formProps: any;
   setActive: any;
@@ -15,6 +16,8 @@ interface Props {
 
 const IssueDetailContainer = ({ formProps, setActive }: Props) => {
   const { id, type } = formProps;
+  console.log("id", id, "type", type);
+
   const [updateIssueStatus] = useUpdateIssueStatusMutation();
   const { data: issue, isLoading } = useGetIssueByIdQuery(id);
   if (isLoading) return <IssueDetailContianerSkeleton />;
@@ -60,7 +63,7 @@ const IssueDetailContainer = ({ formProps, setActive }: Props) => {
           <span className="text-black-60 font-medium">{issue.creator}</span>
         </div>
         <span className="justify-self-end text-sm text-black-40 items-center self-center">
-          {issue.date_time}
+          {dayjs(issue.date_time).format("DD MMM YYYY HH:mm")}
         </span>
         {issue.vehicle_id && (
           <>

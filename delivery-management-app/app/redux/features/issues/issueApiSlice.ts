@@ -24,13 +24,27 @@ export const issueApiSlice = apiSlice.injectEndpoints({
               }
             )
           );
+          dispatch(
+            issueApiSlice.util.updateQueryData(
+              "getIssuesByStatsus",
+              0,
+              (draft) => {
+                draft.push(res.data);
+              }
+            )
+          );
         } catch (error) {
           throw error;
         }
       },
     }),
+
     getAllIssue: builder.query({
-      query: (type) => URLS.ISSUE_URL + `get_issues/?type=${type}`,
+      query: ({ type, status }) =>
+        URLS.ISSUE_URL +
+        (status !== undefined
+          ? `get_issues/?type=${type}&status=${status}`
+          : `get_issues/?type=${type}`),
     }),
     getIssuesByStatsus: builder.query({
       query: (data: number) =>
@@ -45,8 +59,7 @@ export const issueApiSlice = apiSlice.injectEndpoints({
         URLS.ISSUE_URL + `get_issues_of_vehicle?vehicle=${data}`,
     }),
     getIssueById: builder.query({
-      query: ({ id, type }) =>
-        URLS.ISSUE_URL + `get_issue_by_id/?id=${id}&type=${type}`,
+      query: (id) => URLS.ISSUE_URL + `get_issue_by_id/?id=${id}`,
     }),
     getCurrentEmployeeIssues: builder.query({
       query: () => URLS.ISSUE_URL + `get_user_issues`,
@@ -66,7 +79,11 @@ export const issueApiSlice = apiSlice.injectEndpoints({
       ) => {
         try {
           const res = await queryFulfilled;
-
+          dispatch(
+            issueApiSlice.util.prefetch("getIssuesByStatsus", 0, {
+              force: true,
+            })
+          );
           dispatch(
             issueApiSlice.util.updateQueryData(
               "getIssueById",
@@ -77,13 +94,17 @@ export const issueApiSlice = apiSlice.injectEndpoints({
             )
           );
           dispatch(
-            issueApiSlice.util.updateQueryData("getAllIssue", type, (draft) => {
-              draft.map((item: any) => {
-                if (item.id === id) {
-                  item.status = put.status;
-                }
-              });
-            })
+            issueApiSlice.util.updateQueryData(
+              "getAllIssue",
+              { type: type },
+              (draft) => {
+                draft.map((item: any) => {
+                  if (item.id === id) {
+                    item.status = put.status;
+                  }
+                });
+              }
+            )
           );
           dispatch(
             issueApiSlice.util.updateQueryData(
