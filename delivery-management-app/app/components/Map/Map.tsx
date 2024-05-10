@@ -5,24 +5,6 @@ import { useRef, useEffect, useState } from "react";
 import { useGetRecentOrdersCoordinatesQuery } from "@/app/redux/features/order/orderApiSlice";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-// function Mapbox(props: Props) {
-//   const { center } = props;
-//   return (
-//     <Map
-//       mapStyle="mapbox://styles/mapbox/streets-v11"
-//       mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
-//       initialViewState={{
-//         latitude: center[0],
-//         longitude: center[1],
-//         zoom: 15,
-//       }}
-//       style={{ width: "100%", overflow: "hidden" }}
-//     >
-//       <Marker latitude={center[0]} longitude={center[1]} />
-//     </Map>
-//   );
-// }
-
 function Mapbox() {
   var utc = new Date().toJSON().slice(0, 10).replace("/", "-");
   const { data, error, isLoading } = useGetRecentOrdersCoordinatesQuery(utc);
