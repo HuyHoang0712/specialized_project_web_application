@@ -65,6 +65,8 @@ const UpdateOrderForm = (props: Props) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { pickup_point, delivery_point, ...rest } = data;
+    console.log(rest);
+
     updateOrder(rest)
       .unwrap()
       .then((res) => {
@@ -134,7 +136,7 @@ const UpdateOrderForm = (props: Props) => {
         <FormInput
           Icon={TruckIcon}
           label="Vehicle:"
-          register={(register("vehicle"), { required: "Vehicle is required!" })}
+          register={register("vehicle", { required: "Vehicle is required!" })}
           type="text"
           error={errors.vehicle?.message}
         />
