@@ -54,17 +54,20 @@ const CreateEmployeeForm = (props: Props) => {
       data.first_name,
       data.last_name
     );
-    const res = await createEmployee({
+    await createEmployee({
       ...data,
       username: username,
       password: password,
-    });
+    })
+      .unwrap()
+      .then((res) => {
+        toast.success("Employee added successfully!", { toastId: 1 });
+        setActive(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-
-  if (isSuccess) {
-    toast.success("Employee added successfully!", { toastId: 1 });
-    setActive(false);
-  }
 
   const onChooseRole = (role: any) => {
     setValue("group", role.name);
@@ -93,12 +96,14 @@ const CreateEmployeeForm = (props: Props) => {
       <h1 className="text-lg font-medium text-black-100">
         Employee Information
       </h1>
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col gap-5 w-full">
         <div className="flex items-center gap-4">
           <FormInput
             Icon={UserIcon}
             label="First Name*:"
-            register={register("first_name", { required: true })}
+            register={register("first_name", {
+              required: "First name is required!",
+            })}
             type="text"
             placeholder="First Name"
             error={errors.first_name?.message}
@@ -106,7 +111,9 @@ const CreateEmployeeForm = (props: Props) => {
           <FormInput
             Icon={UserIcon}
             label="Last Name*:"
-            register={register("last_name", { required: true })}
+            register={register("last_name", {
+              required: "Last name is required!",
+            })}
             type="text"
             placeholder="Last Name"
             error={errors.last_name?.message}
@@ -115,7 +122,9 @@ const CreateEmployeeForm = (props: Props) => {
         <div className="flex items-center gap-4">
           <FormInput
             label="Date of Birth*:"
-            register={register("dob", { required: true })}
+            register={register("dob", {
+              required: "Employee birthday is required!",
+            })}
             type="date"
             placeholder="Date of Birth"
             error={errors.dob?.message}
@@ -124,19 +133,26 @@ const CreateEmployeeForm = (props: Props) => {
             Icon={PhoneIcon}
             label="Contact Number*:"
             register={register("phone", {
-              required: true,
-              pattern: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
+              required: "Phone number is required!",
+              pattern: {
+                value: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
+                message: "Invalid phone number!",
+              },
             })}
             type="tel"
-            placeholder="Customer Name"
-            error={errors.phone ? "Invalid phone number!" : undefined}
+            placeholder="E.g: 0987654321"
+            error={errors.phone?.message}
           />
         </div>
         <FormInput
           Icon={EnvelopeIcon}
           label="Email*:"
           register={register("email", {
-            required: true,
+            required: "Email is required!",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Invalid email address!",
+            },
           })}
           type="email"
           placeholder="Email"
@@ -146,7 +162,9 @@ const CreateEmployeeForm = (props: Props) => {
           <FormInput
             Icon={IdentificationIcon}
             label="Username*:"
-            register={register("username", { required: true })}
+            register={register("username", {
+              required: "Username is required!",
+            })}
             type="text"
             placeholder="Username"
             error={errors.username?.message}

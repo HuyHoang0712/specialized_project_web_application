@@ -56,20 +56,21 @@ const CreateTransportationPlan = (props: CreateTransportationPlanProps) => {
     if (selectedFile) {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      const res = await createPlan(formData).unwrap();
-      console.log(res);
+      createPlan(formData)
+        .unwrap()
+        .then((res) => {
+          toast.success("Plan created successfully!", {
+            toastId: SUCCESS_TOAST,
+          });
+          setActive(false);
+          router.push(`/plan/${res}`);
+        })
 
-      if (res) {
-        toast.success("Plan created successfully!", {
-          toastId: SUCCESS_TOAST,
+        .catch((err) => {
+          toast.error("An error occurred while creating the plan!", {
+            toastId: ERROR_TOAST,
+          });
         });
-        setActive(false);
-        router.push(`/plan/${res}`);
-      }
-    } else {
-      toast.error("Please input an excel file!", {
-        toastId: ERROR_TOAST,
-      });
     }
   };
 

@@ -24,10 +24,7 @@ type Inputs = {
 const CreateVehicleForm = ({ setActive }: Props) => {
   const [createVehicle, { data: newVehicle, isSuccess, isLoading }] =
     useCreateVehicleMutation();
-  if (isSuccess) {
-    toast.success("Vehicle created successfully");
-    setActive(false);
-  }
+
   const {
     register,
     handleSubmit,
@@ -38,7 +35,13 @@ const CreateVehicleForm = ({ setActive }: Props) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
-    const res = await createVehicle(data);
+    createVehicle(data)
+      .unwrap()
+      .then((res) => {
+        toast.success("Vehicle created successfully!", { toastId: 1 });
+        setActive(false);
+      })
+      .catch((err) => console.log(err));
   };
 
   const btn_props = {
@@ -56,11 +59,13 @@ const CreateVehicleForm = ({ setActive }: Props) => {
       <h1 className="text-lg font-medium text-black-100">
         Vehicle Information
       </h1>
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col gap-5 w-full">
         <FormInput
           Icon={IdentificationIcon}
           label="Lisence Plate*:"
-          register={register("license_plate", { required: true })}
+          register={register("license_plate", {
+            required: "License plate is required!",
+          })}
           type="text"
           placeholder="License Plate"
           error={errors.license_plate?.message}
@@ -68,7 +73,9 @@ const CreateVehicleForm = ({ setActive }: Props) => {
         <FormInput
           Icon={TagIcon}
           label="Brand*:"
-          register={register("brand", { required: true })}
+          register={register("brand", {
+            required: "Vehicle brand is required!",
+          })}
           type="text"
           placeholder="Brand"
           error={errors.brand?.message}
@@ -76,7 +83,9 @@ const CreateVehicleForm = ({ setActive }: Props) => {
         <FormInput
           Icon={TruckIcon}
           label="Fuel Consumption*:"
-          register={register("fuel_consumption_level", { required: true })}
+          register={register("fuel_consumption_level", {
+            required: "Fuel consumption level is required!",
+          })}
           type="number"
           placeholder="Fuel Consumption Level (m/l)"
           error={errors.fuel_consumption_level?.message}
@@ -84,7 +93,9 @@ const CreateVehicleForm = ({ setActive }: Props) => {
         <FormInput
           Icon={TruckIcon}
           label="Capacity*:"
-          register={register("capacity", { required: true })}
+          register={register("capacity", {
+            required: "Vehicle Capacity is required!",
+          })}
           type="number"
           placeholder="Capacity (kg)"
           error={errors.capacity?.message}

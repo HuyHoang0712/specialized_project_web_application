@@ -52,13 +52,15 @@ const UpdateCustomerForm = ({ formProps: customer, setActive }: Props) => {
     updateData.id = customer.id;
     console.log(updateData);
 
-    try {
-      const res = await updateCustomer(updateData);
-      toast.success("Customer added successfully!", { toastId: 1 });
-      setActive(false);
-    } catch (error: any) {
-      throw error;
-    }
+    await updateCustomer(updateData)
+      .unwrap()
+      .then((res) => {
+        toast.success("Customer updated successfully!", { toastId: 1 });
+        setActive(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   useEffect(() => {
     setValue("name", customer.name);
@@ -88,7 +90,7 @@ const UpdateCustomerForm = ({ formProps: customer, setActive }: Props) => {
       <h1 className="text-lg font-medium text-black-100">
         Contact Information
       </h1>
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col gap-5  w-full">
         <div className="flex items-center gap-4">
           <FormInput
             Icon={UserIcon}
@@ -104,18 +106,25 @@ const UpdateCustomerForm = ({ formProps: customer, setActive }: Props) => {
             label="Contact Number:"
             register={register("phone_number", {
               required: true,
-              pattern: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
+              pattern: {
+                value: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
+                message: "Invalid phone number!",
+              },
             })}
             type="tel"
-            placeholder="Customer Name"
-            error={errors.phone_number ? "Invalid phone number!" : undefined}
+            placeholder="E.g: 0987654321"
+            error={errors.phone_number?.message}
           />
         </div>
         <FormInput
           Icon={EnvelopeIcon}
           label="Email:"
           register={register("email", {
-            required: true,
+            required: "Email is required!",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Invalid email address!",
+            },
           })}
           type="email"
           placeholder="Email"

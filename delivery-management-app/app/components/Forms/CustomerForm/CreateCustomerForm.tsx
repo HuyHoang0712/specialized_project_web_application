@@ -49,13 +49,16 @@ const CreateCustomerForm = (props: Props) => {
       "," +
       data.address.city;
     console.log({ ...data, address: combinedAddress });
-    try {
-      const res = await createCustomer({ ...data, address: combinedAddress });
-      toast.success("Customer added successfully!", { toastId: 1 });
-      setActive(false);
-    } catch (error: any) {
-      throw error;
-    }
+
+    createCustomer({ ...data, address: combinedAddress })
+      .unwrap()
+      .then((res) => {
+        toast.success("Customer added successfully!", { toastId: 1 });
+        setActive(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const btn_props = {
@@ -80,12 +83,14 @@ const CreateCustomerForm = (props: Props) => {
       <h1 className="text-lg font-medium text-black-100">
         Contact Information
       </h1>
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col gap-5 w-full">
         <div className="flex items-center gap-4">
           <FormInput
             Icon={UserIcon}
             label="Customer Name*:"
-            register={register("name", { required: true })}
+            register={register("name", {
+              required: "Customer Name is required!",
+            })}
             type="text"
             placeholder="Customer Name"
             error={errors.name?.message}
@@ -94,19 +99,26 @@ const CreateCustomerForm = (props: Props) => {
             Icon={PhoneIcon}
             label="Contact Number*:"
             register={register("phone_number", {
-              required: true,
-              pattern: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
+              required: "Phone number is required!",
+              pattern: {
+                value: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
+                message: "Invalid phone number!",
+              },
             })}
             type="tel"
-            placeholder="Customer Name"
-            error={errors.phone_number ? "Invalid phone number!" : undefined}
+            placeholder="E.g: 0987654321"
+            error={errors.phone_number?.message}
           />
         </div>
         <FormInput
           Icon={EnvelopeIcon}
           label="Email*:"
           register={register("email", {
-            required: true,
+            required: "Email is required!",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Invalid email address!",
+            },
           })}
           type="email"
           placeholder="Email"

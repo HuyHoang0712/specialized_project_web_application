@@ -16,10 +16,10 @@ export const authApiSlice = apiSlice.injectEndpoints({
         try {
           const res = await queryFulfilled;
           dispatch(setCredentials(res.data));
-          toast.success("Login Success!!", { toastId: 1 });
+          
         } catch (error: any) {
-          toast.error(error.error?.data.error_message, { toastId: 0 });
-          throw error;
+          // toast.error(error.error?.data.error_message, { toastId: 0 });
+          // throw error;
         }
       },
     }),

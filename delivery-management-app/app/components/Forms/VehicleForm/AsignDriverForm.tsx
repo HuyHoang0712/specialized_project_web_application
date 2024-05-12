@@ -42,9 +42,13 @@ const AsignDriverForm = ({ formProps: { id }, setActive }: Props) => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(popup.value);
     const rq_date = { license_plate: id, driver_id: (popup.value as any).id };
-    await assignDriver(rq_date);
-    toast.success("Request created successfully!", { toastId: 1 });
-    setActive(false);
+    assignDriver(rq_date)
+      .unwrap()
+      .then((res) => {
+        toast.success("Request created successfully!", { toastId: 1 });
+        setActive(false);
+      })
+      .catch((err) => console.log(err));
   };
 
   const driver_input_props = {

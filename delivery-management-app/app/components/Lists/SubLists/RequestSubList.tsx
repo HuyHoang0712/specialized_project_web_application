@@ -27,7 +27,6 @@ const RequestSubList = ({ data }: RequestListProps) => {
 
 const IssueCard = ({ issue }: { issue: any }) => {
   const [active, setActive] = useState(false);
-  console.log(issue);
 
   const modalProps = {
     title: "Issue Details",

@@ -2,6 +2,7 @@
 import React from "react";
 import SolidButton from "../Buttons/SolidButton";
 import { useUpdateOrderByIdMutation } from "@/app/redux/features/order/orderApiSlice";
+import { toast } from "react-toastify";
 interface Props {
   formProps: any;
   setActive: any;
@@ -10,8 +11,13 @@ interface Props {
 const CancelOrderForm = ({ formProps: { id }, setActive }: Props) => {
   const [updateOrder] = useUpdateOrderByIdMutation();
   const confirmCancel = async () => {
-    await updateOrder({ id, status: 3 });
-    setActive(false);
+    updateOrder({ id, status: 3 })
+      .unwrap()
+      .then((res) => {
+        toast.success("Order canceled!", { toastId: 1 });
+        setActive(false);
+      })
+      .catch((err) => console.log(err));
   };
 
   const confirm_btn_props = {

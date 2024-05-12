@@ -30,6 +30,7 @@ interface Props {
 const UpdateEmployeeForm = ({ formProps: data, setActive }: Props) => {
   const { data: groups } = useGetGroupsQuery("");
   const [updateEmployee] = useUpdateEmployeeByIdMutation();
+
   const {
     register,
     handleSubmit,
@@ -46,15 +47,14 @@ const UpdateEmployeeForm = ({ formProps: data, setActive }: Props) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (inputData) => {
     const updateData = { ...inputData, id: data.id };
-    try {
-      const res = await updateEmployee(updateData);
-      toast.success("Customer added successfully!", { toastId: 1 });
-      setActive(false);
-    } catch (error) {
-      console.log(error);
-    }
+    updateEmployee(updateData)
+      .unwrap()
+      .then((res) => {
+        toast.success("Employee updated successfully!", { toastId: 1 });
+        setActive(false);
+      })
+      .catch((err) => console.log(err));
   };
-
   const onChooseRole = (role: any) => {
     setValue("group", role.name);
   };
@@ -80,7 +80,7 @@ const UpdateEmployeeForm = ({ formProps: data, setActive }: Props) => {
       className="flex flex-col lg:w-[30vw] sm:w-[35vw] gap-4"
     >
       <h1 className="text-lg font-medium text-black-100">Employee Details</h1>
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col gap-5 w-full">
         <div className="flex items-center gap-4">
           <FormInput
             Icon={HashtagIcon}
@@ -120,18 +120,24 @@ const UpdateEmployeeForm = ({ formProps: data, setActive }: Props) => {
             label="Phone Number:"
             type="tel"
             register={register("phone", {
-              required: true,
-              pattern: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
-              maxLength: 12,
+              required: "Phone number is required!",
+              pattern: {
+                value: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
+                message: "Invalid phone number!",
+              },
             })}
-            error={errors.phone ? "Invalid phone number!" : undefined}
+            error={errors.phone?.message}
           />
         </div>
         <FormInput
           Icon={EnvelopeIcon}
           label="Email:"
           register={register("email", {
-            required: true,
+            required: "Email is required!",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Invalid email address!",
+            },
           })}
           type="email"
           placeholder="Email"

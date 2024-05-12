@@ -42,9 +42,7 @@ export const issueApiSlice = apiSlice.injectEndpoints({
               }
             )
           );
-        } catch (error) {
-          throw error;
-        }
+        } catch (error) {}
       },
     }),
 
@@ -128,9 +126,7 @@ export const issueApiSlice = apiSlice.injectEndpoints({
               }
             )
           );
-        } catch (error) {
-          throw error;
-        }
+        } catch (error) {}
       },
     }),
   }),

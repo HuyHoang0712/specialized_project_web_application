@@ -37,9 +37,7 @@ export const employeeApiSlice = apiSlice.injectEndpoints({
               }
             )
           );
-        } catch (error) {
-          throw error;
-        }
+        } catch (error) {}
       },
     }),
     getStatusSummary: builder.query({

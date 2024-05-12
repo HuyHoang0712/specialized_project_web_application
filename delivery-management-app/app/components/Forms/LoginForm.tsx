@@ -27,8 +27,15 @@ function LoginForm() {
       password: formData.get("password"),
     };
     try {
-      const res = await login(JSON.stringify(data)).unwrap();
-      router.push("/dashboard");
+      login(JSON.stringify(data))
+        .unwrap()
+        .then((res) => {
+          toast.success("Login Success!!", { toastId: 1 });
+          router.push("/dashboard");
+        })
+        .catch((err) => {
+          toast.error(err.data.error_message, { toastId: 0 });
+        });
     } catch (error: any) {
       throw error;
     }

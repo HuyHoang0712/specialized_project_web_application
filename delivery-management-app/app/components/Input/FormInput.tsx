@@ -27,14 +27,15 @@ const FormInput = (props: InputItemProps) => {
           value={value}
           placeholder={placeholder}
           className={clsx(
-            "w-full border border-primary-30 rounded-md shadow-sm py-2",
+            "w-full border-2 border-primary-30 rounded-md shadow-sm py-2",
             { "pl-8": Icon },
-            { "bg-primary-10/50": disabled }
+            { "bg-primary-10/50": disabled },
+            { "border-red": error }
           )}
           disabled={disabled}
         />
         {error && (
-          <span className="absolute font-medium bottom-[-1.25rem] text-xs text-red">
+          <span className="absolute font-medium bottom-[-1rem] text-xs text-red">
             {error}
           </span>
         )}

@@ -37,16 +37,16 @@ const CreateIssueForm = ({ formProps, setActive }: Props) => {
     if (formProps) rq_data = { ...rq_data, vehicle_id: id };
     console.log(rq_data);
 
-    try {
-      const res = await createIssue({
-        data: rq_data,
-        type: type ?? "employee",
-      });
-      toast.success("Request created successfully!", { toastId: 1 });
-      setActive(false);
-    } catch (error: any) {
-      throw error;
-    }
+    createIssue({
+      data: rq_data,
+      type: type ?? "employee",
+    })
+      .unwrap()
+      .then((res) => {
+        toast.success("Request created successfully!", { toastId: 1 });
+        setActive(false);
+      })
+      .catch((err) => console.log(err));
   };
 
   const label_input_props = {

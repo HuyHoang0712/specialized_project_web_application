@@ -2,6 +2,7 @@
 import React from "react";
 import SolidButton from "../Buttons/SolidButton";
 import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 import { useDeleteCustomerByIdMutation } from "@/app/redux/features/customer/customerApiSlice";
 interface Props {
   formProps: any;
@@ -10,9 +11,14 @@ interface Props {
 const DeleteCustomerForm = ({ formProps: { id }, setActive }: Props) => {
   const [deleteCustomer] = useDeleteCustomerByIdMutation();
   const confirmDelete = async () => {
-    await deleteCustomer(id);
-    setActive(false);
-    redirect("/customers");
+    deleteCustomer(id)
+      .unwrap()
+      .then((res) => {
+        setActive(false);
+        toast.success("Customer deleted!", { toastId: 1 });
+        redirect("/customers");
+      })
+      .catch((err) => console.log(err));
   };
 
   const confirm_btn_props = {

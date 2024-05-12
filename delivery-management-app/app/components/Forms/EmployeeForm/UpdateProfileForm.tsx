@@ -4,7 +4,14 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import FormInput from "../../Input/FormInput";
 import SolidButton from "../../Buttons/SolidButton";
-import { UserIcon, EnvelopeIcon, PhoneIcon, HashtagIcon, CakeIcon, ChevronDoubleDownIcon } from "@heroicons/react/24/solid";
+import {
+  UserIcon,
+  EnvelopeIcon,
+  PhoneIcon,
+  HashtagIcon,
+  CakeIcon,
+  ChevronDoubleDownIcon,
+} from "@heroicons/react/24/solid";
 import { useUpdateProfileByIdMutation } from "@/app/redux/features/profile/profileApiSlice";
 type Inputs = {
   first_name: string;
@@ -28,7 +35,7 @@ const UpdateProfileForm = ({ formProps: data, setActive }: Props) => {
     setValue,
     getValues,
   } = useForm<Inputs>({ mode: "all" });
-  
+
   useEffect(() => {
     setValue("first_name", data.first_name);
     setValue("last_name", data.last_name);
@@ -39,13 +46,14 @@ const UpdateProfileForm = ({ formProps: data, setActive }: Props) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (inputData) => {
     const updateData = { ...inputData, id: data.id };
-    try {
-      const res = await updateProfile(updateData);
-      toast.success("Profile updated successfully!", { toastId: 1 });
-      setActive(false);
-    } catch (error) {
-      console.log(error);
-    }
+
+    updateProfile(updateData)
+      .unwrap()
+      .then((res) => {
+        toast.success("Profile updated successfully!", { toastId: 1 });
+        setActive(false);
+      })
+      .catch((err) => console.log(err));
   };
 
   const btn_props = {
@@ -56,19 +64,34 @@ const UpdateProfileForm = ({ formProps: data, setActive }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:w-[30vw] sm:w-[35vw] gap-4">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col lg:w-[30vw] sm:w-[35vw] gap-4"
+    >
       <h1 className="text-lg font-medium text-black-100">Employee Details</h1>
       <div className="flex flex-col gap-4 w-full">
         <div className="flex items-center gap-4">
-          <FormInput Icon={HashtagIcon} label="Employee ID:" type="text" value={data.id} disabled={true} />
-          <FormInput Icon={ChevronDoubleDownIcon} label="Role:" type="text" value={data.role} disabled={true} />
+          <FormInput
+            Icon={HashtagIcon}
+            label="Employee ID:"
+            type="text"
+            value={data.id}
+            disabled={true}
+          />
+          <FormInput
+            Icon={ChevronDoubleDownIcon}
+            label="Role:"
+            type="text"
+            value={data.role}
+            disabled={true}
+          />
         </div>
         <div className="flex items-center gap-4">
           <FormInput
             Icon={UserIcon}
             label="First Name:"
             register={register("first_name", {
-              required: true,
+              required: "First Name is required!",
             })}
             type="text"
           />
@@ -76,30 +99,44 @@ const UpdateProfileForm = ({ formProps: data, setActive }: Props) => {
             Icon={UserIcon}
             label="Last Name:"
             register={register("last_name", {
-              required: true,
+              required: "Last Name is required!",
             })}
             type="text"
           />
         </div>
         <div className="flex items-center gap-4">
-          <FormInput Icon={CakeIcon} label="Date of Birth:" register={register("date_of_birth", { required: true })} type="date" error={errors.date_of_birth?.message} />
+          <FormInput
+            Icon={CakeIcon}
+            label="Date of Birth:"
+            register={register("date_of_birth", {
+              required: "Your birthday is required!",
+            })}
+            type="date"
+            error={errors.date_of_birth?.message}
+          />
           <FormInput
             Icon={PhoneIcon}
             label="Phone Number:"
             type="tel"
             register={register("phone", {
-              required: true,
-              pattern: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
-              maxLength: 12,
+              required: "Phone number is required!",
+              pattern: {
+                value: /(84|0)([235789])([0-9]{10}|[0-9]{8})/g,
+                message: "Invalid phone number!",
+              },
             })}
-            error={errors.phone ? "Invalid phone number!" : undefined}
+            error={errors.phone?.message}
           />
         </div>
         <FormInput
           Icon={EnvelopeIcon}
           label="Email:"
           register={register("email", {
-            required: true,
+            required: "Email is required!",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Invalid email address!",
+            },
           })}
           type="email"
           placeholder="Email"

@@ -70,7 +70,7 @@ const SearchIuput = (props: SearchIuputProps) => {
 
   return (
     <div className="flex flex-col gap-2 flex-1">
-      <h3 className="text-black-100">{label}</h3>
+      <h3 className="text-black-100 text-sm">{label}</h3>
       <div
         ref={searchBoxRef}
         className={`flex items-center relative ${name_key}`}
@@ -78,7 +78,7 @@ const SearchIuput = (props: SearchIuputProps) => {
         <input
           type="text"
           {...register}
-          className="w-full order border-primary-30 rounded-md shadow-sm py-2"
+          className="w-full border-2 border-primary-30 rounded-md shadow-sm py-2"
           placeholder="-----"
           contextMenu="false"
           autoComplete="off"

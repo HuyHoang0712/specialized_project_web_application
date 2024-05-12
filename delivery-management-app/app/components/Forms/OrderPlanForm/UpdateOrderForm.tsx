@@ -38,11 +38,6 @@ const UpdateOrderForm = (props: Props) => {
 
   const [updateOrder, { isSuccess }] = useUpdateOrderByIdMutation();
 
-  // const [order, setOrder] = useState({
-  //   ...data,
-  //   vehicle: data.vehicle.license_plate,
-  // });
-
   const {
     register,
     handleSubmit,
@@ -70,13 +65,13 @@ const UpdateOrderForm = (props: Props) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { pickup_point, delivery_point, ...rest } = data;
-    try {
-      const res = await updateOrder(rest);
-      toast.success("Order updated successfully!", { toastId: 1 });
-      setActive(false);
-    } catch (error: any) {
-      throw error;
-    }
+    updateOrder(rest)
+      .unwrap()
+      .then((res) => {
+        toast.success("Order updated successfully!", { toastId: 1 });
+        setActive(false);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -85,7 +80,7 @@ const UpdateOrderForm = (props: Props) => {
       className="flex flex-col lg:w-[30vw] sm:w-[35vw] gap-4"
     >
       <h1 className="text-lg font-medium text-black-100">Order Information</h1>
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col gap-5 w-full">
         <div className="flex items-center gap-4">
           <FormInput
             Icon={HashtagIcon}
@@ -139,7 +134,7 @@ const UpdateOrderForm = (props: Props) => {
         <FormInput
           Icon={TruckIcon}
           label="Vehicle:"
-          register={register("vehicle")}
+          register={(register("vehicle"), { required: "Vehicle is required!" })}
           type="text"
           error={errors.vehicle?.message}
         />

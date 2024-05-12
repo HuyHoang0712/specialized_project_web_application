@@ -16,10 +16,7 @@ const CreateModal = ({ title, type }: CreateModalProps) => {
   switch (type) {
     case "Plan":
       FormContent = dynamic(() => import("@/app/components/Forms/OrderPlanForm/CreateTransportationPlan"), { ssr: false, loading: () => <>Loading...</> });
-      break;
-    case "Order":
-      FormContent = dynamic(() => import("@/app/components/Forms/OrderPlanForm/CreateOrderForm"), { ssr: false, loading: () => <>Loading...</> });
-      break;
+      break;   
     case "Customer":
       FormContent = dynamic(() => import("@/app/components/Forms/CustomerForm/CreateCustomerForm"), { ssr: false, loading: () => <>Loading...</> });
       break;

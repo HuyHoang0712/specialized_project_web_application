@@ -7,13 +7,6 @@ export const customerApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllCustomers: builder.query({
       query: () => URLS.CUSTOMER_URL,
-      onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
-        try {
-          const res = await queryFulfilled;
-        } catch (error) {
-          console.log(error);
-        }
-      },
     }),
     getCustomerById: builder.query({
       query: (id) => URLS.CUSTOMER_URL + `get_customer_by_id/?id=${id}`,
@@ -45,9 +38,7 @@ export const customerApiSlice = apiSlice.injectEndpoints({
               }
             )
           );
-        } catch (error) {
-          throw error;
-        }
+        } catch (error) {}
       },
     }),
     deleteCustomerById: builder.mutation({
