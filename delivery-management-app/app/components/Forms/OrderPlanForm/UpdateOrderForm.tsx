@@ -73,7 +73,7 @@ const UpdateOrderForm = (props: Props) => {
         toast.success("Order updated successfully!", { toastId: 1 });
         setActive(false);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => toast.error(error.data.detail, { toastId: 0 }));
   };
 
   return (

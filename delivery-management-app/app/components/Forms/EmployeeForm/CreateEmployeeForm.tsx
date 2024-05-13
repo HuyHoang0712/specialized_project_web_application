@@ -65,7 +65,7 @@ const CreateEmployeeForm = (props: Props) => {
         setActive(false);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.data.detail, { toastId: 0 });
       });
   };
 

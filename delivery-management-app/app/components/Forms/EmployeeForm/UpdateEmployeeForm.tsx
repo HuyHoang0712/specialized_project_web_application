@@ -53,7 +53,7 @@ const UpdateEmployeeForm = ({ formProps: data, setActive }: Props) => {
         toast.success("Employee updated successfully!", { toastId: 1 });
         setActive(false);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => toast.error(error.data.detail, { toastId: 0 }));
   };
   const onChooseRole = (role: any) => {
     setValue("group", role.name);

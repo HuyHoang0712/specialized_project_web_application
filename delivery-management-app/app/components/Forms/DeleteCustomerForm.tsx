@@ -18,7 +18,7 @@ const DeleteCustomerForm = ({ formProps: { id }, setActive }: Props) => {
         toast.success("Customer deleted!", { toastId: 1 });
         redirect("/customers");
       })
-      .catch((err) => console.log(err));
+      .catch((error) => toast.error(error.data.detail, { toastId: 0 }));
   };
 
   const confirm_btn_props = {

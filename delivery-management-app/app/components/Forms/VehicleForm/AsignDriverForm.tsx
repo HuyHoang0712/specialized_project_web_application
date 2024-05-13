@@ -48,7 +48,7 @@ const AsignDriverForm = ({ formProps: { id }, setActive }: Props) => {
         toast.success("Request created successfully!", { toastId: 1 });
         setActive(false);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => toast.error(error.data.detail, { toastId: 0 }));
   };
 
   const driver_input_props = {

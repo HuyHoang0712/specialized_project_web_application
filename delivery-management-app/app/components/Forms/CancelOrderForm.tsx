@@ -17,7 +17,7 @@ const CancelOrderForm = ({ formProps: { id }, setActive }: Props) => {
         toast.success("Order canceled!", { toastId: 1 });
         setActive(false);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => toast.error(error.data.detail, { toastId: 0 }));
   };
 
   const confirm_btn_props = {

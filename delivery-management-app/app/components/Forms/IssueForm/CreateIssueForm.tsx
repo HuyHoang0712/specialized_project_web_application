@@ -46,7 +46,7 @@ const CreateIssueForm = ({ formProps, setActive }: Props) => {
         toast.success("Request created successfully!", { toastId: 1 });
         setActive(false);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => toast.error(error.data.detail, { toastId: 0 }));
   };
 
   const label_input_props = {

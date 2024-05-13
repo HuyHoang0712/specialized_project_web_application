@@ -53,7 +53,7 @@ const UpdateProfileForm = ({ formProps: data, setActive }: Props) => {
         toast.success("Profile updated successfully!", { toastId: 1 });
         setActive(false);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => toast.error(error.data.detail, { toastId: 0 }));
   };
 
   const btn_props = {
