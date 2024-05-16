@@ -74,6 +74,10 @@ export const orderApiSlice = apiSlice.injectEndpoints({
       query: (id: string) =>
         URLS.ORDER_URL + `get_order_summary_of_customer/?customer_id=${id}`,
     }),
+    getOrderSummaryOfVehicle: builder.query({
+      query: (id: string) =>
+        URLS.ORDER_URL + `get_order_summary_of_vehicle/?vehicle_id=${id}`,
+    }),
     getRecentOrdersCoordinates: builder.query({
       query: (data) =>
         URLS.ORDER_URL + `get_recent_orders_coordinates/?date=${data}`,
@@ -95,4 +99,5 @@ export const {
   useGetOrderSummaryOfCustomerQuery,
   useGetOrderOfVehicleQuery,
   useGetOrdersByDeliveryPointQuery,
+  useGetOrderSummaryOfVehicleQuery
 } = orderApiSlice;

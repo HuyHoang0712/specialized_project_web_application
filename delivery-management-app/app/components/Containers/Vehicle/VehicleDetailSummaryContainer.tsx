@@ -55,7 +55,7 @@ const VehicleDetailSummaryContainer = ({ id }: { id: string }) => {
         </div>
       </div>
       <div className="flex flex-col gap-4 h-full w-[60%]">
-        <OrderSummayOfVehicleWrap id={"7"} />
+        <OrderSummayOfVehicleWrap id={id} />
         <div className="flex flex-col flex-1 bg-white shadow-sm rounded-lg p-3 overflow-hidden">
           <h1 className="font-medium text-primary-100">ASSIGNED ORDERS</h1>
           {orderLoading ? (

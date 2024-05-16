@@ -2,14 +2,14 @@
 import React from "react";
 import LineChart from "../Chart/LineChart";
 import { PresentationChartLineIcon } from "@heroicons/react/24/outline";
-import { useGetOrderSummaryOfCustomerQuery } from "@/app/redux/features/order/orderApiSlice";
+import { useGetOrderSummaryOfVehicleQuery } from "@/app/redux/features/order/orderApiSlice";
 import { Skeleton } from "@mui/material";
 interface Props {
   id: string;
 }
 
 const OrderSummayOfVehicleWrap = ({ id }: Props) => {
-  const { data, isLoading } = useGetOrderSummaryOfCustomerQuery(id);
+  const { data, isLoading } = useGetOrderSummaryOfVehicleQuery(id);
 
   return (
     <div className="bg-white rounded-lg p-3 flex flex-col items-center h-[50%] w-full">
