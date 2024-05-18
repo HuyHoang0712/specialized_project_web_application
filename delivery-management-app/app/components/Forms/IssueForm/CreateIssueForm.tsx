@@ -32,10 +32,8 @@ const CreateIssueForm = ({ formProps, setActive }: Props) => {
   } = useForm<Inputs>({ mode: "all" });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const user_id = TokenService.getUserId();
-    let rq_data: { [key: string]: any } = { ...data, creator: user_id };
+    let rq_data: { [key: string]: any } = { ...data };
     if (formProps) rq_data = { ...rq_data, vehicle_id: id };
-    console.log(rq_data);
 
     createIssue({
       data: rq_data,
