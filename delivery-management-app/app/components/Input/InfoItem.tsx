@@ -12,7 +12,7 @@ const InfoItem = ({ Icon, title, content, styles }: InfoItemProps) => (
       <Icon className="w-4 text-black-40" />
       {title}
     </div>
-    <div className="text-black-100 shadow-sm shadow-inner border border-primary-10 w-full rounded-lg cursor-pointer px-3 py-2 truncate">
+    <div className="text-black-100 shadow-sm  border border-primary-10 w-full rounded-lg cursor-pointer px-3 py-2 truncate">
       {content}
     </div>
   </div>
@@ -24,7 +24,7 @@ export const InforItemSkeleton = ({ styles }: { styles?: string }) => {
         <Skeleton variant="circular" width={20} height={20} />
         <Skeleton variant="text" width={100} />
       </div>
-      <div className="text-black-100 shadow-sm shadow-inner border border-primary-10 w-full rounded-lg cursor-pointer px-3 py-2 truncate">
+      <div className="text-black-100 shadow-sm  border border-primary-10 w-full rounded-lg cursor-pointer px-3 py-2 truncate">
         <Skeleton variant="text" width={"100%"} />
       </div>
     </div>
