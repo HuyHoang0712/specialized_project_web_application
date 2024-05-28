@@ -12,7 +12,10 @@ const Request = () => {
     data: requests,
     error,
     isLoading,
-  } = useGetCurrentEmployeeIssuesQuery(undefined);
+  } = useGetCurrentEmployeeIssuesQuery(undefined, {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
   if (isLoading) {
     return (
       <div className="flex flex-1 flex-col bg-white p-3 gap-3">

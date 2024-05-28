@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { BellIcon } from "@heroicons/react/24/solid";
 import { useGetNotificationsQuery } from "@/app/redux/features/notification/notificationApiSlice";

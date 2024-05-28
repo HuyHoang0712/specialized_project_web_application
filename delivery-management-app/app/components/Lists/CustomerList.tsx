@@ -12,7 +12,10 @@ function filterDataByName(data: any[], searchKey: string) {
 }
 
 const CustomerList = () => {
-  const { data, error, isLoading } = useGetAllCustomersQuery("");
+  const { data, error, isLoading } = useGetAllCustomersQuery("", {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
   const [searchKey, setSearchKey] = useState("");
   const LIST_PROPS = {
     headers: [
@@ -28,7 +31,7 @@ const CustomerList = () => {
       <div className="flex flex-row w-full justify-between items-center">
         <span className="text-lg text-black-60 font-medium">Customers</span>
         <div className="flex flex-row gap-3">
-          <Search setSearchKey={setSearchKey} placeholder="Search by name"/>
+          <Search setSearchKey={setSearchKey} placeholder="Search by name" />
           {/* <FilterModal /> */}
         </div>
       </div>

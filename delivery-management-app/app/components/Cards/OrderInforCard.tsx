@@ -2,6 +2,12 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@mui/material";
+import {
+  UserIcon,
+  TruckIcon,
+  QuestionMarkCircleIcon,
+} from "@heroicons/react/24/outline";
+import { PhoneIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 interface Prosp {
   type: string;
   title: string;
@@ -14,65 +20,25 @@ const OrderInforCard = (props: Prosp) => {
   let Icon: any;
   switch (type) {
     case "driver":
-      Icon = dynamic(
-        () => import("@heroicons/react/24/outline").then((res) => res.UserIcon),
-        {
-          ssr: false,
-        }
-      );
+      Icon = UserIcon;
       break;
     case "vehicle":
-      Icon = dynamic(
-        () =>
-          import("@heroicons/react/24/outline").then((res) => res.TruckIcon),
-        {
-          ssr: false,
-        }
-      );
+      Icon = TruckIcon;
       break;
 
     default:
-      Icon = dynamic(
-        () =>
-          import("@heroicons/react/24/outline").then(
-            (res) => res.QuestionMarkCircleIcon
-          ),
-        {
-          ssr: false,
-        }
-      );
+      Icon = QuestionMarkCircleIcon;
       break;
   }
 
   const ContentIcon = Object.keys(content).map((key) => {
     switch (key) {
       case "Phone":
-        return dynamic(
-          () =>
-            import("@heroicons/react/24/solid").then((res) => res.PhoneIcon),
-          {
-            ssr: false,
-          }
-        );
+        return PhoneIcon;
       case "Email":
-        return dynamic(
-          () =>
-            import("@heroicons/react/24/solid").then((res) => res.EnvelopeIcon),
-          {
-            ssr: false,
-          }
-        );
-
+        return EnvelopeIcon;
       default:
-        return dynamic(
-          () =>
-            import("@heroicons/react/24/solid").then(
-              (res) => res.QuestionMarkCircleIcon
-            ),
-          {
-            ssr: false,
-          }
-        );
+        return QuestionMarkCircleIcon;
     }
   });
 
@@ -86,7 +52,9 @@ const OrderInforCard = (props: Prosp) => {
       <div className="flex items-start gap-6">
         <Icon className="w-10 p-2 bg-secondary-20 rounded-lg text-primary-100 icon-sw-2" />
         <div className="flex flex-col">
-          <span className="text-base font-medium text-primary-100">{title}</span>
+          <span className="text-base font-medium text-primary-100">
+            {title}
+          </span>
           {Object.entries(titleContent).map(
             ([key, value]: [string, any], idx) => (
               <span className="text-sm font-medium text-black-60" key={idx}>

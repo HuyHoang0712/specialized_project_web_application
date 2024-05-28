@@ -4,7 +4,10 @@ import OrderSubList from "@/app/components/Lists/SubLists/OrderSubList";
 import { Skeleton } from "@mui/material";
 import { useGetOrdersByDeliveryPointQuery } from "@/app/redux/features/order/orderApiSlice";
 const OrderSubListWrap = ({ id }: { id: string }) => {
-  const { data, error, isLoading } = useGetOrdersByDeliveryPointQuery(id);
+  const { data, error, isLoading } = useGetOrdersByDeliveryPointQuery(id, {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
   return (
     <div className="flex flex-col flex-1 bg-white rounded-lg shadow-sm p-3 gap-3">
       <h1 className="font-medium text-primary-100">Orders</h1>

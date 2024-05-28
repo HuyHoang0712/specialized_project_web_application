@@ -11,7 +11,10 @@ const OrderListDashboard = () => {
     data: orderList,
     error,
     isLoading,
-  } = useGetOrdersByDateQuery(formattedDate);
+  } = useGetOrdersByDateQuery(formattedDate, {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
   if (isLoading) {
     return <Skeleton variant="rectangular" className="flex flex-1" />;
   }

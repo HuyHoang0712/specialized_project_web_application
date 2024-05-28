@@ -30,7 +30,14 @@ interface Props {
 
 const OrderDetailContainer = (props: Props) => {
   const id = props.id;
-  const { data: order, error, isLoading } = useGetOrderByIdQuery(id);
+  const {
+    data: order,
+    error,
+    isLoading,
+  } = useGetOrderByIdQuery(id, {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
 
   if (isLoading) return <OrderDetailContainerSkeleton />;
 

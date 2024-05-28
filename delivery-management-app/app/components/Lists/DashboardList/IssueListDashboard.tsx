@@ -6,7 +6,14 @@ import { Issue } from "@/app/lib/types";
 import IssueEmptyList from "../../EmptyList/IssueEmptyList";
 import { Skeleton } from "@mui/material";
 const IssueListDashboard = () => {
-  const { data: issues, error, isLoading } = useGetIssuesByStatsusQuery(0);
+  const {
+    data: issues,
+    error,
+    isLoading,
+  } = useGetIssuesByStatsusQuery(0, {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
 
   if (isLoading)
     return <Skeleton variant="rectangular" className="flex flex-1" />;

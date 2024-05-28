@@ -11,7 +11,10 @@ function OrderSummaryCard() {
     data: orderList,
     error,
     isLoading,
-  } = useGetOrdersByDateQuery(formattedDate);
+  } = useGetOrdersByDateQuery(formattedDate, {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
 
   return (
     <div className="flex flex-col gap-3 h-[8rem] bg-white p-3 rounded-lg">

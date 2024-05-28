@@ -9,7 +9,10 @@ interface Props {
 }
 
 const OrderSummayOfVehicleWrap = ({ id }: Props) => {
-  const { data, isLoading } = useGetOrderSummaryOfVehicleQuery(id);
+  const { data, isLoading } = useGetOrderSummaryOfVehicleQuery(id, {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
 
   return (
     <div className="bg-white rounded-lg p-3 flex flex-col items-center h-[50%] w-full">

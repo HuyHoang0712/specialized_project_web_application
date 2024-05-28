@@ -16,13 +16,19 @@ const VehicleDetailSummaryContainer = ({ id }: { id: string }) => {
     data: issues,
     error: issueError,
     isLoading: issueLoading,
-  } = useGetIssuesOfVehicleQuery(id);
+  } = useGetIssuesOfVehicleQuery(id, {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
   const { data: vehicle, error, isLoading } = useGetVehicleByIdQuery(id);
   const {
     data: orders,
     error: orderError,
     isLoading: orderLoading,
-  } = useGetOrderOfVehicleQuery(id);
+  } = useGetOrderOfVehicleQuery(id, {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
 
   const driver_card_props = {
     type: "driver",

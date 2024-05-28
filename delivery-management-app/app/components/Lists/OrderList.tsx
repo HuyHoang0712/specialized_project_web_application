@@ -15,7 +15,10 @@ interface Props {
 
 const OrderList = (props: Props) => {
   const { id } = props;
-  const { data, isLoading, isError } = useGetOrdersinPlanQuery(id);
+  const { data, isLoading, isError } = useGetOrdersinPlanQuery(id, {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
   const [searchKey, setSearchKey] = useState("");
   const [filterKey, setFilterKey] = useState({
     ship_code: "All",

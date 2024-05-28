@@ -8,7 +8,7 @@ import { useGetAllPlanQuery } from "@/app/redux/features/plan/planApiSlice";
 import SearchFilterService from "@/app/utils/SearchFilter.service";
 
 const TransportationPlanList = () => {
-  const { data, error, isLoading } = useGetAllPlanQuery("");
+  const { data, error, isLoading } = useGetAllPlanQuery("", { pollingInterval: 10000, skipPollingIfUnfocused: true });
   const [searchKey, setSearchKey] = useState("");
   const [filterKey, setFilterKey] = useState({
     type: "all",

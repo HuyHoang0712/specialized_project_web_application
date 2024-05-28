@@ -51,7 +51,14 @@ const applyFilterAndSearch = (
 };
 
 const VehicleList = () => {
-  const { data: vehicles, error, isLoading } = useGetVehiclesQuery("");
+  const {
+    data: vehicles,
+    error,
+    isLoading,
+  } = useGetVehiclesQuery("", {
+    pollingInterval: 10000,
+    skipPollingIfUnfocused: true,
+  });
   const [searchKey, setSearchKey] = useState("");
   const [filterKey, setFilterKey] = useState({
     brand: "All",

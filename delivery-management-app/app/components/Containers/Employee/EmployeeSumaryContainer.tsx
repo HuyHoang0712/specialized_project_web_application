@@ -22,7 +22,10 @@ const EmployeeSumaryContainer = () => {
     data: issues,
     error: issueError,
     isLoading: issueLoading,
-  } = useGetAllIssueQuery({ type: "issue-employee", status: 0 });
+  } = useGetAllIssueQuery(
+    { type: "issue-employee", status: 0 },
+    { pollingInterval: 10000, skipPollingIfUnfocused: true }
+  );
 
   return (
     <div className="h-full flex-1 grid grid-cols-2 grid-rows-6 grid-flow-row gap-4">
@@ -32,25 +35,25 @@ const EmployeeSumaryContainer = () => {
         <>
           <SummaryCard
             Icon={UsersIcon}
-            title="Total Employee"
+            title="Total"
             value={data?.total}
             type={4}
           />
           <SummaryCard
             Icon={CheckCircleIcon}
-            title="Available Employee"
+            title="Available"
             value={data?.available}
             type={2}
           />
           <SummaryCard
             Icon={RocketLaunchIcon}
-            title="Inactive Employee"
+            title="Inactive"
             value={data?.busy}
             type={0}
           />
           <SummaryCard
             Icon={UserMinusIcon}
-            title="On Leave Employee"
+            title="On Leave"
             value={data?.on_break}
             type={3}
           />
@@ -67,7 +70,7 @@ const EmployeeSumaryContainer = () => {
           </span>
         </div>
         {issueLoading ? (
-           <Skeleton variant="rectangular" className="flex flex-1" />
+          <Skeleton variant="rectangular" className="flex flex-1" />
         ) : (
           <div className="flex flex-col flex-1 items-center divide-y overflow-y-scroll scroll-y no-scrollbar">
             {issues && issues.length > 0 ? (

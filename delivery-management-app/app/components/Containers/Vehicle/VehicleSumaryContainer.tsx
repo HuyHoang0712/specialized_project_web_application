@@ -21,7 +21,10 @@ const VehicleSumaryContainer = () => {
     data: issues,
     error: issueError,
     isLoading: issueLoading,
-  } = useGetAllIssueQuery({ type: "issue-vehicle", status: 0 });
+  } = useGetAllIssueQuery(
+    { type: "issue-vehicle", status: 0 },
+    { pollingInterval: 10000, skipPollingIfUnfocused: true }
+  );
 
   return (
     <div className="h-full flex-1 grid grid-cols-2 grid-rows-6 grid-flow-row gap-4">

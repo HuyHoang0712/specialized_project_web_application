@@ -42,7 +42,10 @@ const VehicleRequestList = () => {
     data: requests,
     error,
     isLoading,
-  } = useGetAllIssueQuery({ type: "issue-vehicle" });
+  } = useGetAllIssueQuery(
+    { type: "issue-vehicle" },
+    { pollingInterval: 10000, skipPollingIfUnfocused: true }
+  );
   const [searchKey, setSearchKey] = useState("");
   const [filterKey, setFilterKey] = useState({
     label: "All",

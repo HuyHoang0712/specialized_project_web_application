@@ -42,7 +42,10 @@ const EmployeeRequestList = () => {
     data: requests,
     error,
     isLoading,
-  } = useGetAllIssueQuery({ type: "issue-employee" });
+  } = useGetAllIssueQuery(
+    { type: "issue-employee" },
+    { pollingInterval: 10000, skipPollingIfUnfocused: true }
+  );
   const [searchKey, setSearchKey] = useState("");
   const [filterKey, setFilterKey] = useState({
     label: "All",
