@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Images } from "@/app/lib/assets";
 import { BellIcon, HomeIcon } from "@heroicons/react/24/solid";
 import TokenService from "@/app/utils/Token.service";
-
+import NotificationWrap from "../Notificaiton/NotificationWrap";
 function Header() {
   let pathname = usePathname() || "/";
   let paths = pathname.split("/");
@@ -31,7 +31,7 @@ function Header() {
       <div className="flex flex-row items-center px-3 py-3 justify-between">
         <span className="text-xl font-medium text-black-60">{pageName}</span>
         <div className="flex flex-row items-center gap-3">
-          <BellIcon className="w-6 fill-primary-100 hover:scale-105 relative" />
+          <NotificationWrap />
           <span className="text-sm font-normal text-black-100 px-3 py-[.313rem] bg-secondary-20 rounded-lg">
             {username}
           </span>
