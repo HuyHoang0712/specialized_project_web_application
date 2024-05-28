@@ -19,10 +19,7 @@ import {
   PencilSquareIcon,
 } from "@heroicons/react/24/solid";
 import { useGetOrderByIdQuery } from "@/app/redux/features/order/orderApiSlice";
-const OrderRoute = dynamic(() => import("@/app/components/Map/OrderRoute"), {
-  ssr: false,
-  loading: () => <Skeleton variant="rectangular" height={300} />,
-});
+import OrderRoute from "../../Map/OrderRoute";
 
 interface Props {
   id: string;
