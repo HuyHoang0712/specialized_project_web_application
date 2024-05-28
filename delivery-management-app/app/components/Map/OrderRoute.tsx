@@ -13,6 +13,7 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN as string;
 
 function OrderRoute(props: Props) {
   const { id } = props;
+
   const { data, error, isLoading } = useGetOrderCoordinatesQuery(id);
   if (isLoading) {
     return <div>Loading...</div>;

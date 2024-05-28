@@ -31,10 +31,7 @@ const OrderDetailContainer = (props: Props) => {
     data: order,
     error,
     isLoading,
-  } = useGetOrderByIdQuery(id, {
-    pollingInterval: 10000,
-    skipPollingIfUnfocused: true,
-  });
+  } = useGetOrderByIdQuery(id);
 
   if (isLoading) return <OrderDetailContainerSkeleton />;
 

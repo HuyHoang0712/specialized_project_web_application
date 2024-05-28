@@ -14,7 +14,7 @@ function CustomerLocation(props: Props) {
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN as string;
 
   if (isLoading) {
-    <div id="mapbox">Loading...</div>;
+    <div id="">Loading...</div>;
   } else {
     const longitude = data.longitude;
     const latitude = data.latitude;
@@ -26,7 +26,9 @@ function CustomerLocation(props: Props) {
       zoom: 14, // starting zoom
     });
 
-    const marker = new mapboxgl.Marker().setLngLat([longitude, latitude]).addTo(mapbox);
+    const marker = new mapboxgl.Marker()
+      .setLngLat([longitude, latitude])
+      .addTo(mapbox);
   }
 
   return <div id="mapbox" className="w-full h-full"></div>;

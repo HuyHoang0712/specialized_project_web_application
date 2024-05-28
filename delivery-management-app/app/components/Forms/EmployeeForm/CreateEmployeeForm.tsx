@@ -29,11 +29,18 @@ interface Props {
   setActive: any;
 }
 
-function generateCredentials(first_name: string, last_name: string) {
-  const username = `${first_name}.${last_name}`.toLowerCase();
-  const password = Math.random().toString(36).slice(-8);
-  return { username, password };
-}
+// function generateCredentials(
+//   first_name: string,
+//   last_name: string,
+//   dob: string
+// ) {
+//   dob = dob.slice(2, 4);
+//   first_name = first_name.replace(/\s/g, "");
+//   last_name = last_name.replace(/\s/g, "");
+//   const username = `${first_name}.${last_name}${dob}`.toLowerCase();
+
+//   return { username, password };
+// }
 
 const CreateEmployeeForm = (props: Props) => {
   const { setActive } = props;
@@ -50,13 +57,14 @@ const CreateEmployeeForm = (props: Props) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
-    const { username, password } = generateCredentials(
-      data.first_name,
-      data.last_name
-    );
+    const password = Math.random().toString(36).slice(-8);
+    // const { username, password } = generateCredentials(
+    //   data.first_name,
+    //   data.last_name,
+    //   data.dob,
+    // );
     await createEmployee({
       ...data,
-      username: username,
       password: password,
     })
       .unwrap()
@@ -65,6 +73,8 @@ const CreateEmployeeForm = (props: Props) => {
         setActive(false);
       })
       .catch((error) => {
+        console.log(error);
+        
         toast.error(error.data.detail, { toastId: 0 });
       });
   };
