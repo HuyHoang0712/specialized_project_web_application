@@ -28,7 +28,7 @@ function DashboardPage() {
       >
         <div className="flex flex-col rounded-lg p-3 gap-3 bg-white overflow-hidden flex-1">
           <span className="text-lg font-medium text-black-60">
-            Vehicle Tracking
+            Delivery Point Tracking
           </span>
           <div id="mapbox" className="h-full">
             <Mapbox />
